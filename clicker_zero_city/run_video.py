@@ -7,8 +7,8 @@ from command_clicker import *
 from search_coordinate import search_coordinate
 
 # isClicking = False
-video = 'png/reklama.PNG'
-video2 = 'png/reklama2.PNG'
+video_rooms = 'png/reklama.PNG'
+video_tablet = 'png/reklama2.PNG'
 prize = 'png/prize.PNG'
 rooms = "png/study_rooms"
 dining = "png/study_rooms/dining_room"
@@ -30,15 +30,15 @@ keyboard.add_hotkey('ALT + X', advertising_tablet)
 
 
 def definition_advertising_rooms():
-    """Выбор рекламы с комнат """
-    get_vidio = pyautogui.locateOnScreen(video, confidence=0.8)
+    """Выбор рекламы в комнат """
+    get_vidio = pyautogui.locateOnScreen(video_rooms, confidence=0.8)
     if get_vidio:
         return get_vidio
 
 
 def definition_advertising_tablet():
-    """Выбор рекламы с планшета"""
-    get_vidio = pyautogui.locateOnScreen(video2, confidence=0.8)
+    """Выбор рекламы в планшета"""
+    get_vidio = pyautogui.locateOnScreen(video_tablet, confidence=0.8)
     if get_vidio:
         return get_vidio
 
@@ -51,43 +51,35 @@ def definition_prize():
 
 def choose_rooms():
     """выбрать комнату для просмотра рекламы"""
-
-    for p in path:
-        click = search_coordinate(p)
-
-        if click:
-            pyautogui.center(click)
-            time.sleep(0.01)
-            pyautogui.click(click)
-            time.sleep(10)
-
-            get_vidio = pyautogui.locateOnScreen(video, confidence=0.8)
-            print('поиск рекламного значка = ', get_vidio)
-            if get_vidio:
-                print(f"Смотрю рекламу {p}")
-                break
-            else:
-                print(f'Реклама просмотрине по {p}')
-                path.remove(p)
-                break
+    try:
+        room = list(map(search_coordinate, path))
+        return room[0]
+    except IndexError:
+        return None
 
 
 def main():
     while True:
         if choosing_action["rooms"]:
-            click_rooms = definition_advertising_rooms()
-            if click_rooms:
-                pyautogui.click(click_rooms)
-                time.sleep(35)
+            room = choose_rooms()
+            if room:
+                pyautogui.click(room)
+                click_rooms = definition_advertising_rooms()
+                if click_rooms:
+                    pyautogui.click(click_rooms)
+                    time.sleep(35)
+                else:
+                    del path[0]
 
         if choosing_action['tablet']:
-            choose_rooms()
             click_tablet = definition_prize()
             if click_tablet:
                 pyautogui.click(click_tablet)
-
-            time.sleep(3)
+                time.sleep(35)
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print('Закрытия программы')

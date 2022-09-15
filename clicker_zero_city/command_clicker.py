@@ -2,18 +2,32 @@ choosing_action = {"rooms": False, 'tablet': False}
 
 
 def advertising_rooms():
+    """
+    Просмотр рекламы по комнатам
+    """
     if choosing_action["rooms"]:
-        choosing_action["rooms"] = False
-        print("Выключение кликер реклама в комнатах")
+        shutdown_click()
+        print(f"Выключение кликер реклама в комнатах")
     else:
+        shutdown_click()
         choosing_action["rooms"] = True
-        print("Включение кликер реклама в комнатах")
+        print(f"Включение кликер реклама в комнатах")
 
 
 def advertising_tablet():
+    """
+    Просмотр рекламы в планшете
+    """
+
     if choosing_action["tablet"]:
-        choosing_action["tablet"] = False
-        print("Выключение кликер реклама  в планшеты")
+        shutdown_click()
+        print(f"Выключение кликер реклама  в планшеты")
     else:
-        choosing_action["table"] = True
-        print("Включение кликер реклама  в планшеты")
+        shutdown_click()
+        choosing_action["tablet"] = True
+        print(f"Включение кликер реклама  в планшеты")
+
+
+def shutdown_click():
+    for k in choosing_action.keys():
+        choosing_action[k] = False
