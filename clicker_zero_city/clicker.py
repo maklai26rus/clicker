@@ -1,6 +1,6 @@
 import keyboard
 import pyautogui
-import mouse
+# import mouse
 import time
 
 isClicking = False
@@ -13,7 +13,7 @@ def set_clicker():
         print("Кликер отключен")
     else:
         isClicking = True
-        pyautogui.write(" Hello world!", interval = 0.4)
+        # pyautogui.write(" Hello world!", interval = 0.4)
         print("Start clicer")
 
 

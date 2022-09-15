@@ -3,9 +3,10 @@ import pyautogui
 import time
 import os
 
+from command_clicker import *
 from search_coordinate import search_coordinate
 
-isClicking = False
+# isClicking = False
 video = 'png/reklama.PNG'
 video2 = 'png/reklama2.PNG'
 prize = 'png/prize.PNG'
@@ -24,14 +25,21 @@ path_zal_room = [zal + "/" + file for file in os.listdir(zal)]
 
 path = [path_dining_room, path_lab_room, path_bank_room, path_zal_room]
 
+keyboard.add_hotkey('ALT + Z', advertising_rooms)
+keyboard.add_hotkey('ALT + X', advertising_tablet)
 
-def definition_advertising():
-    """Выбор рекламы с комнат или с планшета"""
+
+def definition_advertising_rooms():
+    """Выбор рекламы с комнат """
     get_vidio = pyautogui.locateOnScreen(video, confidence=0.8)
     if get_vidio:
         return get_vidio
-    else:
-        get_vidio = pyautogui.locateOnScreen(video2, confidence=0.8)
+
+
+def definition_advertising_tablet():
+    """Выбор рекламы с планшета"""
+    get_vidio = pyautogui.locateOnScreen(video2, confidence=0.8)
+    if get_vidio:
         return get_vidio
 
 
@@ -39,19 +47,6 @@ def definition_prize():
     """На планшете после просмотра рекламы нажать забрать приз"""
     click = pyautogui.locateOnScreen(prize, confidence=0.8)
     return click
-
-
-def set_clicker():
-    global isClicking
-    if isClicking:
-        isClicking = False
-        print("Кликер отключен")
-    else:
-        isClicking = True
-        print("Start clicer")
-
-
-keyboard.add_hotkey('ALT + Z', set_clicker)
 
 
 def choose_rooms():
@@ -79,16 +74,17 @@ def choose_rooms():
 
 def main():
     while True:
-        if isClicking:
-            choose_rooms()
-            click = definition_advertising()
-            if click:
-                pyautogui.click(click)
+        if choosing_action["rooms"]:
+            click_rooms = definition_advertising_rooms()
+            if click_rooms:
+                pyautogui.click(click_rooms)
                 time.sleep(35)
 
-            click2 = definition_prize()
-            if click2:
-                pyautogui.click(click2)
+        if choosing_action['tablet']:
+            choose_rooms()
+            click_tablet = definition_prize()
+            if click_tablet:
+                pyautogui.click(click_tablet)
 
             time.sleep(3)
 
