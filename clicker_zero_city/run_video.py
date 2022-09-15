@@ -77,16 +77,21 @@ def choose_rooms():
                 break
 
 
-while True:
-    if isClicking:
-        choose_rooms()
-        click = definition_advertising()
-        if click:
-            pyautogui.click(click)
-            time.sleep(35)
+def main():
+    while True:
+        if isClicking:
+            choose_rooms()
+            click = definition_advertising()
+            if click:
+                pyautogui.click(click)
+                time.sleep(35)
 
-        click2 = definition_prize()
-        if click2:
-            pyautogui.click(click2)
+            click2 = definition_prize()
+            if click2:
+                pyautogui.click(click2)
 
-        time.sleep(3)
+            time.sleep(3)
+
+
+if __name__ == '__main__':
+    main()
