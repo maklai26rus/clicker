@@ -1,5 +1,7 @@
 import pyautogui
 import time
+from search_coordinate import search_coordinate
+import os
 
 launcher = 'png/MGLauncher.PNG'
 zero = 'png/Zero.PNG'
@@ -9,7 +11,9 @@ tractor = "png/tractor.PNG"
 tractor2 = "png/tractor2.PNG"
 av = "png/AB.PNG"
 next_av = "png/next.PNG"
-unikal = "png/unikal.PNG"
+advertising = "png/advertising"
+path_advertising = [advertising + "/" + file for file in os.listdir(advertising)]
+path = [path_advertising, ]
 
 
 def time_game(func):
@@ -26,14 +30,14 @@ def start_var_av():
     finding_shortcut()
     game_selection()
     run_game()
-    closing_ads()
+    choose_closing_ads()
     ak_search()
     run_ab()
     ab_next()
 
 
 def finding_shortcut():
-    """Поисе ярлыка на рабочем столе"""
+    """Поиск ярлыка на рабочем столе"""
     click = pyautogui.locateOnScreen(launcher, confidence=0.8)
     pyautogui.doubleClick(click)
 
@@ -42,7 +46,7 @@ def finding_shortcut():
 def game_selection():
     """Выбор игры"""
     click = pyautogui.locateOnScreen(zero)
-    pyautogui.doubleClick(click)
+    pyautogui.click(click)
 
 
 @time_game
@@ -56,18 +60,24 @@ def run_game():
 
 
 @time_game
-def closing_ads():
-    """Закрытия рекламы"""
-    # click = pyautogui.locateOnScreen(X, confidence=0.8)
-    unikal_click = pyautogui.locateOnScreen(unikal, confidence=0.8)
-    print('Проверка на рекламу = ', unikal_click)
-    if unikal_click:
+def choose_closing_ads():
+    """Закрытия рекламы
+    Поиск рекламы. Берет из папки все рекламные привязки и ищет их координат
+
+    Если находит закрывает и перезапускает сам себя для повторной проверки на рекламу.
+    Если рекламы нет. то нечего неделает
+
+    """
+    time.sleep(10)
+    advertising_click = list(filter(None, map(search_coordinate, path)))
+
+    if advertising_click[0]:
         print('Закрытия рекламы')
-        uc = pyautogui.center(unikal_click)
-        pyautogui.click(uc)
+        ac = pyautogui.center(advertising_click[0])
+        pyautogui.click(ac)
         pyautogui.press('esc')
         time.sleep(10)
-        closing_ads()
+        choose_closing_ads()
 
 
 @time_game
@@ -111,4 +121,4 @@ def ab_next():
         pyautogui.press('esc')
 
 
-# ak_search()
+choose_closing_ads()

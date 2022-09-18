@@ -52,9 +52,12 @@ def definition_prize():
 
 
 def choose_rooms():
-    """выбрать комнату для просмотра рекламы"""
+    """выбрать комнату для просмотра рекламы
+    перебор фотографий из папки в поиске координат для передачи
+    return: Координата комнаты
+    """
     try:
-        room = list(map(search_coordinate, path))
+        room = list(filter(None, map(search_coordinate, path)))
         return room[0]
     except IndexError:
         return None
@@ -68,6 +71,7 @@ def main():
             if room:
                 if one_time_click:
                     pyautogui.click(room)
+                    one_time_click = False
                 time.sleep(5)
                 click_rooms = definition_advertising_rooms()
                 if click_rooms:
