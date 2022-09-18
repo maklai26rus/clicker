@@ -1,5 +1,8 @@
 import pyautogui
 import time
+import os
+
+from clicker_zero_city.exit_ZC import exit_zc
 
 try:
     import easyocr
@@ -51,6 +54,7 @@ def global_maps():
 
     update_map()
     get_enemy()
+    exit_zc()
 
 
 def boat_search():
@@ -65,10 +69,14 @@ def boat_search():
 
 
 def update_map():
-    # click = pyautogui.locateOnScreen(update, confidence=0.7)
+    """
+    Обновляет карту бойцов
+    """
     click = pyautogui.locateOnScreen(update, confidence=0.9)
-    # pyautogui.click(click)
-    pyautogui.click(click)
+
+    if click:
+        pyautogui.click(click)
+
     time.sleep(1)
 
 
@@ -78,9 +86,11 @@ def greenhouse_search():
     :return:
     """
     click = pyautogui.locateOnScreen(orang, confidence=0.5)
+
     if click:
         pyautogui.click(click)
-        time.sleep(10)
+
+    time.sleep(10)
 
 
 def get_enemy():
@@ -89,15 +99,19 @@ def get_enemy():
     в my_strength указана максимальная сила для нападения
     """
     number_temp = 1
-    path_temp = f'png/temp/{number_temp}.png'
-    battle_click = list(pyautogui.locateAllOnScreen(battle, confidence=0.9, grayscale=True))
 
+    battle_click = list(pyautogui.locateAllOnScreen(battle, confidence=0.9, grayscale=True))
     for enemy in battle_click:
+
+        path_temp = f'png/temp/{number_temp}.png'
+
         pyautogui.screenshot(path_temp, region=(enemy.left - 390, enemy.top, enemy.width + 130, enemy.height + 10))
         time.sleep(0.1)
+
         enemy_strength = reader.readtext(path_temp, detail=0)
         es_int = int(enemy_strength[1].replace(' ', ''))
         if my_strength >= es_int:
+            print(f"моя сила {my_strength} противника {es_int} ")
             center = pyautogui.center(enemy)
             pyautogui.click(center)
             time.sleep(0.2)
@@ -134,5 +148,3 @@ def stop_battle():
     if battle_stop:
         time.sleep(0.1)
         pyautogui.press('esc')
-
-
