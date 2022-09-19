@@ -9,8 +9,9 @@ zero = 'png/start_game/Zero.PNG'
 game = 'png/start_game/games.PNG'
 
 # Поиск комнаты Альянса
-path_alliance_rooms = "png/alliance_tractor"
-path_room_al = [path_alliance_rooms, ]
+path_alliance_rooms = "png/alliance_room"
+path_alliance = [path_alliance_rooms + "/" + file for file in os.listdir(path_alliance_rooms)]
+path_room_al = [path_alliance, ]
 
 # Проверка АВ
 av = "png/av/av.PNG"
@@ -38,8 +39,8 @@ def start_var_av():
     run_game()
     choose_closing_ads()
     ak_search()
-    run_ab()
-    ab_next()
+    if run_ab():
+        ab_next()
 
 
 def finding_shortcut():
