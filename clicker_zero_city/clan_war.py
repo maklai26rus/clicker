@@ -3,14 +3,20 @@ import time
 from search_coordinate import search_coordinate
 import os
 
-launcher = 'png/MGLauncher.PNG'
-zero = 'png/Zero.PNG'
-game = 'png/games.PNG'
-menu = "png/menu.PNG"
-tractor = "png/tractor.PNG"
-tractor2 = "png/tractor2.PNG"
-av = "png/AB.PNG"
-next_av = "png/next.PNG"
+# Запуск игры через лайнчера
+launcher = 'png/start_game/MGLauncher.PNG'
+zero = 'png/start_game/Zero.PNG'
+game = 'png/start_game/games.PNG'
+
+# Поиск комнаты Альянса
+path_alliance_rooms = "png/alliance_tractor"
+path_room_al = [path_alliance_rooms, ]
+
+# Проверка АВ
+av = "png/av/av.PNG"
+next_av = "png/av/next.PNG"
+
+# Возможные рекламные тригеры
 advertising = "png/advertising"
 path_advertising = [advertising + "/" + file for file in os.listdir(advertising)]
 path = [path_advertising, ]
@@ -71,13 +77,16 @@ def choose_closing_ads():
     time.sleep(10)
     advertising_click = list(filter(None, map(search_coordinate, path)))
 
-    if advertising_click[0]:
-        print('Закрытия рекламы')
-        ac = pyautogui.center(advertising_click[0])
-        pyautogui.click(ac)
-        pyautogui.press('esc')
-        time.sleep(10)
-        choose_closing_ads()
+    try:
+        if advertising_click[0]:
+            print('Закрытия рекламы')
+            ac = pyautogui.center(advertising_click[0])
+            pyautogui.click(ac)
+            pyautogui.press('esc')
+            time.sleep(10)
+            choose_closing_ads()
+    except IndexError:
+        pass
 
 
 @time_game
@@ -87,11 +96,10 @@ def ak_search():
     выбор ее на главную
     :return:
     """
-    click = pyautogui.locateOnScreen(tractor2, confidence=0.7)
-    if click:
-        center_click = pyautogui.center(click)
+    alliance_click = list(filter(None, map(search_coordinate, path_room_al)))
+    if alliance_click[0]:
+        center_click = pyautogui.center(alliance_click[0])
         pyautogui.click(center_click)
-        # pyautogui.doubleClick(click)
 
 
 @time_game
@@ -100,8 +108,9 @@ def run_ab():
     Выбор АВ
     :return:
     """
-    click = pyautogui.locateOnScreen(av, confidence=0.5)
-    pyautogui.click(click)
+    click = pyautogui.locateOnScreen(av, confidence=0.8)
+    if click:
+        pyautogui.click(click)
 
 
 @time_game
@@ -119,6 +128,3 @@ def ab_next():
     else:
         print("Война уже начата")
         pyautogui.press('esc')
-
-
-choose_closing_ads()

@@ -6,9 +6,9 @@ import os
 from command_clicker import *
 from search_coordinate import search_coordinate
 
-video_rooms = 'png/reklama.PNG'
-video_tablet = 'png/reklama2.PNG'
-prize = 'png/prize.PNG'
+video_rooms = 'png/marketing/marketing1.PNG'
+video_tablet = 'png/marketing/marketing2.PNG'
+prize = 'png/marketing/prize.PNG'
 
 rooms = "png/study_rooms"
 dining = "png/study_rooms/dining_room"

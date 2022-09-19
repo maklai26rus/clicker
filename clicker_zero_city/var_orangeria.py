@@ -9,14 +9,27 @@ try:
 except UserWarning:
     print("ошибка модуля")
 
-global_map = "png/global_maps.PNG"
-kater = "png/kater.PNG"
-stop = "png/stop.PNG"
-orang = "png/orang.PNG"
-battle = 'png/battle.PNG'
-battle_next = 'png/battle_next.PNG'
-update = 'png/update.PNG'
-my_strength = 3400000
+global_map = "png/greenery/global_maps.PNG"
+looking_boat = "png/greenery/boat.PNG"
+stop = "png/greenery/stop.PNG"
+orang = "png/greenery/greenery.PNG"
+battle = 'png/greenery/battle.PNG'
+battle_next = 'png/greenery/battle_next.PNG'
+update = 'png/greenery/update.PNG'
+my_strength_txt = 'my_strength.txt'
+
+
+def read_streng():
+    """
+    Читае их файла рекомендуему максимальную силу противника
+    Возращает
+    return : значение значение максимальной силы противника
+    """
+    with open(my_strength_txt, 'r', encoding='utf-8') as ms:
+        for line in ms:
+            my_strength = int("".join(line))
+    return my_strength
+
 
 reader = easyocr.Reader(['ru'])
 
@@ -62,7 +75,7 @@ def boat_search():
     Ищем на карте катер и привязываемся к нему что бы перетащить мышкку
     :return:
     """
-    click = pyautogui.locateOnScreen(kater, confidence=0.4)
+    click = pyautogui.locateOnScreen(looking_boat, confidence=0.4)
     if click:
         pyautogui.click(click)
         pyautogui.dragTo(100, 0, 1, button='left')
@@ -96,9 +109,10 @@ def greenhouse_search():
 def get_enemy():
     """
     Определение пративника по его силе.
-    в my_strength указана максимальная сила для нападения
+    в my_strength = read_streng() указана максимальная сила для нападения
     """
     number_temp = 1
+    my_strength = read_streng()
 
     battle_click = list(pyautogui.locateAllOnScreen(battle, confidence=0.9, grayscale=True))
     for enemy in battle_click:
