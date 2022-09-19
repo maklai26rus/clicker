@@ -1,22 +1,24 @@
 import pyautogui
 import time
-import os
 
 from clicker_zero_city.exit_ZC import exit_zc
 
-try:
-    import easyocr
-except UserWarning:
-    print("ошибка модуля")
+import easyocr
 
 global_map = "png/greenery/global_maps.PNG"
 looking_boat = "png/greenery/boat.PNG"
 stop = "png/greenery/stop.PNG"
-orang = "png/greenery/greenery.PNG"
+greenery = "png/greenery/greenery.PNG"
 battle = 'png/greenery/battle.PNG'
 battle_next = 'png/greenery/battle_next.PNG'
+battle_next2 = "png/greenery/battle_next2.PNG"
 update = 'png/greenery/update.PNG'
 my_strength_txt = 'my_strength.txt'
+
+try:
+    reader = easyocr.Reader(['ru'])
+except UserWarning:
+    print("ошибка модуля")
 
 
 def read_streng():
@@ -31,9 +33,6 @@ def read_streng():
     return my_strength
 
 
-reader = easyocr.Reader(['ru'])
-
-
 def time_game(func):
     def other_func():
         time.sleep(5)
@@ -45,7 +44,17 @@ def time_game(func):
 
 def start_var_orangeria():
     """Запуск скрипта"""
+    # Вызов глобальной карты для поиска оранжереи
     global_maps()
+
+    # Обновляет бойцов, всегда при запуске
+    update_map()
+
+    # Вибирает бойцов подходящих под уровень
+    get_enemy()
+
+    # Закрывает игру
+    exit_zc()
 
 
 @time_game
@@ -65,9 +74,9 @@ def global_maps():
         boat_search()
         greenhouse_search()
 
-    update_map()
-    get_enemy()
-    exit_zc()
+    # update_map()
+    # get_enemy()
+    # exit_zc()
 
 
 def boat_search():
@@ -98,7 +107,7 @@ def greenhouse_search():
     Определяем на карте оранжерею
     :return:
     """
-    click = pyautogui.locateOnScreen(orang, confidence=0.5)
+    click = pyautogui.locateOnScreen(greenery, confidence=0.5)
 
     if click:
         pyautogui.click(click)
@@ -114,7 +123,7 @@ def get_enemy():
     number_temp = 1
     my_strength = read_streng()
 
-    battle_click = list(pyautogui.locateAllOnScreen(battle, confidence=0.9, grayscale=True))
+    battle_click = list(pyautogui.locateAllOnScreen(battle, confidence=0.85, grayscale=True))
     for enemy in battle_click:
 
         path_temp = f'png/temp/{number_temp}.png'
@@ -157,8 +166,12 @@ def stop_battle():
     """
     Если энергия закончилась
     кликер закрывает окно
+    Вслучае выскакивание добавление ресурсов нажимает бой
     """
     battle_stop = pyautogui.locateOnScreen(stop, confidence=0.6)
+    click2 = pyautogui.locateOnScreen(battle_next2, confidence=0.6)
     if battle_stop:
         time.sleep(0.1)
         pyautogui.press('esc')
+    elif click2:
+        pyautogui.click(click2)
