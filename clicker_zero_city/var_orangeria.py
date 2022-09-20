@@ -10,6 +10,8 @@ looking_boat = "png/greenery/boat.PNG"
 stop = "png/greenery/stop.PNG"
 greenery = "png/greenery/greenery.PNG"
 battle = 'png/greenery/battle.PNG'
+fist = 'png/greenery/fist.PNG'
+
 battle_next = 'png/greenery/battle_next.PNG'
 battle_next2 = "png/greenery/battle_next2.PNG"
 update = 'png/greenery/update.PNG'
@@ -35,7 +37,7 @@ def read_streng():
 
 def time_game(func):
     def other_func():
-        time.sleep(5)
+        time.sleep(3)
         func()
         return func
 
@@ -57,7 +59,6 @@ def start_var_orangeria():
     exit_zc()
 
 
-@time_game
 def global_maps():
     """
     Переходим на глобальную карту для поиска  оранжереи
@@ -79,6 +80,7 @@ def global_maps():
     # exit_zc()
 
 
+@time_game
 def boat_search():
     """
     Ищем на карте катер и привязываемся к нему что бы перетащить мышкку
@@ -90,6 +92,7 @@ def boat_search():
         pyautogui.dragTo(100, 0, 1, button='left')
 
 
+@time_game
 def update_map():
     """
     Обновляет карту бойцов
@@ -98,8 +101,6 @@ def update_map():
 
     if click:
         pyautogui.click(click)
-
-    time.sleep(1)
 
 
 def greenhouse_search():
@@ -112,9 +113,8 @@ def greenhouse_search():
     if click:
         pyautogui.click(click)
 
-    time.sleep(10)
 
-
+@time_game
 def get_enemy():
     """
     Определение пративника по его силе.
@@ -123,32 +123,42 @@ def get_enemy():
     number_temp = 1
     my_strength = read_streng()
 
-    battle_click = list(pyautogui.locateAllOnScreen(battle, confidence=0.85, grayscale=True))
+    battle_click = list(pyautogui.locateAllOnScreen(battle, confidence=0.8, grayscale=True))
     for enemy in battle_click:
 
         path_temp = f'png/temp/{number_temp}.png'
-
         pyautogui.screenshot(path_temp, region=(enemy.left - 390, enemy.top, enemy.width + 130, enemy.height + 10))
         time.sleep(0.1)
 
         enemy_strength = reader.readtext(path_temp, detail=0)
-        es_int = int(enemy_strength[1].replace(' ', ''))
+        try:
+            es_int = int(enemy_strength[1].replace(' ', ''))
+        except IndexError:
+            es_int = my_strength * 2
+        print(f"Первая проверка. моя сила {my_strength} противника {es_int} ")
         if my_strength >= es_int:
-            print(f"моя сила {my_strength} противника {es_int} ")
+            print(f"Вторая проверка. моя сила {my_strength} противника {es_int} ")
             center = pyautogui.center(enemy)
             pyautogui.click(center)
-            time.sleep(0.2)
+            time.sleep(2)
+            click_fist = pyautogui.locateOnScreen(fist, confidence=0.7)
+            if click_fist:
+                time.sleep(0.2)
 
-            start_battle_orangeria()
+                start_battle_orangeria()
 
-            time.sleep(5)
+                time.sleep(5)
 
         number_temp += 1
 
 
 def start_battle_orangeria():
-    """Определяет если активна кнопка или выйти с выбора """
-    click = pyautogui.locateOnScreen(battle_next, confidence=0.6)
+    """Нажимает кнопку боя  и ждет окончания боя
+
+    Если бой неначался, то проверяет на добавление элементов (энергия или химия)
+
+    """
+    click = pyautogui.locateOnScreen(battle_next, confidence=0.7)
     if click:
         pyautogui.click(click)
         time.sleep(4)
@@ -169,9 +179,16 @@ def stop_battle():
     Вслучае выскакивание добавление ресурсов нажимает бой
     """
     battle_stop = pyautogui.locateOnScreen(stop, confidence=0.6)
-    click2 = pyautogui.locateOnScreen(battle_next2, confidence=0.6)
+    click2 = pyautogui.locateOnScreen(battle_next2, confidence=0.8)
+    print('click2', click2)
+    print('battle_stop', battle_stop)
     if battle_stop:
-        time.sleep(0.1)
         pyautogui.press('esc')
     elif click2:
         pyautogui.click(click2)
+
+
+# start_var_orangeria()
+# get_enemy()
+# stop_battle()
+# start_battle_orangeria()
