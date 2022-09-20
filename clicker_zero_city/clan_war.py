@@ -3,11 +3,6 @@ import time
 from search_coordinate import search_coordinate
 import os
 
-# Запуск игры через лайнчера
-launcher = 'png/start_game/MGLauncher.PNG'
-zero = 'png/start_game/Zero.PNG'
-game = 'png/start_game/games.PNG'
-
 # Поиск комнаты Альянса
 path_alliance_rooms = "png/alliance_room"
 path_alliance = [path_alliance_rooms + "/" + file for file in os.listdir(path_alliance_rooms)]
@@ -16,11 +11,6 @@ path_room_al = [path_alliance, ]
 # Проверка АВ
 av = "png/av/av.PNG"
 next_av = "png/av/next.PNG"
-
-# Возможные рекламные тригеры
-advertising = "png/advertising"
-path_advertising = [advertising + "/" + file for file in os.listdir(advertising)]
-path = [path_advertising, ]
 
 
 def time_game(func):
@@ -32,62 +22,11 @@ def time_game(func):
     return other_func
 
 
-def start_var_av():
+def clan_war():
     """Запуск скрипта"""
-    finding_shortcut()
-    game_selection()
-    run_game()
-    choose_closing_ads()
     ak_search()
     if run_ab():
         ab_next()
-
-
-def finding_shortcut():
-    """Поиск ярлыка на рабочем столе"""
-    click = pyautogui.locateOnScreen(launcher, confidence=0.8)
-    pyautogui.doubleClick(click)
-
-
-@time_game
-def game_selection():
-    """Выбор игры"""
-    click = pyautogui.locateOnScreen(zero)
-    pyautogui.click(click)
-
-
-@time_game
-def run_game():
-    """
-    Запуск игры
-    :return:
-    """
-    click = pyautogui.locateOnScreen(game)
-    pyautogui.click(click)
-
-
-@time_game
-def choose_closing_ads():
-    """Закрытия рекламы
-    Поиск рекламы. Берет из папки все рекламные привязки и ищет их координат
-
-    Если находит закрывает и перезапускает сам себя для повторной проверки на рекламу.
-    Если рекламы нет. то нечего неделает
-
-    """
-    time.sleep(10)
-    advertising_click = list(filter(None, map(search_coordinate, path)))
-
-    try:
-        if advertising_click[0]:
-            print('Закрытия рекламы')
-            ac = pyautogui.center(advertising_click[0])
-            pyautogui.click(ac)
-            pyautogui.press('esc')
-            time.sleep(10)
-            choose_closing_ads()
-    except IndexError:
-        pass
 
 
 @time_game
