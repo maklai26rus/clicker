@@ -13,15 +13,19 @@ def run():
 
 
 def main():
-    # schedule.every().seconds.do(start_var_av)
+    # schedule.every().seconds.do(run)
     # schedule.every(1).seconds.do(start_var_orangeria)
-    # schedule.every().hour.do(run)
+    schedule.every().hour.do(run)
     # schedule.every(1).minutes.do(run)
-    schedule.every(90).minutes.do(run)
+    # schedule.every(90).minutes.do(run)
     # run()
     while True:
         schedule.run_pending()
+        # print(schedule)
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("Выключение программы")

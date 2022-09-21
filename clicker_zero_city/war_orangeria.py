@@ -135,7 +135,7 @@ def get_enemy():
         enemy_strength = reader.readtext(path_temp, detail=0)
         try:
             es_int = int(enemy_strength[1].replace(' ', ''))
-        except IndexError:
+        except (IndexError, ValueError):
             es_int = my_strength * 2
         # print(f"Первая проверка. моя сила {my_strength} противника {es_int} ")
         if my_strength >= es_int:
@@ -182,8 +182,8 @@ def stop_battle():
     """
     battle_stop = pyautogui.locateOnScreen(stop, confidence=0.6)
     click2 = pyautogui.locateOnScreen(battle_next3, confidence=0.8)
-    print('click2', click2)
-    print('battle_stop', battle_stop)
+    # print('click2', click2)
+    # print('battle_stop', battle_stop)
     if battle_stop:
         pyautogui.press('esc')
     elif click2:

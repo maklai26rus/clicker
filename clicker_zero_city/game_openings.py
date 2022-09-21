@@ -15,7 +15,7 @@ path = [path_advertising, ]
 
 def time_game(func):
     def other_func():
-        time.sleep(5)
+        time.sleep(10)
         func()
         return func
 

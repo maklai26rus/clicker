@@ -37,9 +37,12 @@ def ak_search():
     :return:
     """
     alliance_click = list(filter(None, map(search_coordinate, path_room_al)))
-    if alliance_click[0]:
-        center_click = pyautogui.center(alliance_click[0])
-        pyautogui.click(center_click)
+    try:
+        if alliance_click[0]:
+            center_click = pyautogui.center(alliance_click[0])
+            pyautogui.click(center_click)
+    except IndexError:
+        print(f"Ошибка {alliance_click}")
 
 
 @time_game
