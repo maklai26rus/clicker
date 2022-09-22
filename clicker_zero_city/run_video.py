@@ -25,7 +25,7 @@ path_bank_room = [bank + "/" + file for file in os.listdir(bank)]
 path_zal_room = [zal + "/" + file for file in os.listdir(zal)]
 path_joinery_room = [joinery + "/" + file for file in os.listdir(joinery)]
 
-path = [path_joinery_room, path_dining_room, path_lab_room, path_bank_room, path_zal_room, ]
+path = [path_joinery_room, path_lab_room, path_bank_room, path_zal_room, path_dining_room]
 
 keyboard.add_hotkey('ALT + Z', advertising_rooms)
 keyboard.add_hotkey('ALT + X', advertising_tablet)
