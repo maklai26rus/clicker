@@ -72,11 +72,9 @@ def main():
                 if one_time_click:
                     pyautogui.click(room)
                     one_time_click = False
-                print(room, one_time_click)
                 time.sleep(5)
                 click_rooms = definition_advertising_rooms()
                 if click_rooms:
-                    print(click_rooms, room, one_time_click)
                     pyautogui.click(click_rooms)
                     time.sleep(35)
                     one_time_click = False
