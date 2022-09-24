@@ -58,6 +58,12 @@ def start_war_orangeria():
     # Вызов глобальной карты для поиска оранжереи
     global_maps()
 
+    # Поиск привязке на карте катера
+    boat_search()
+
+    # запуск Оранжереи
+    greenhouse_search()
+
     # Обновляет бойцов, всегда при запуске
     update_map()
 
@@ -75,12 +81,6 @@ def global_maps():
         pyautogui.click(click)
     time.sleep(1)
 
-    if greenhouse_search():
-        pass
-    else:
-        boat_search()
-        greenhouse_search()
-
 
 @time_game
 def boat_search():
@@ -91,7 +91,7 @@ def boat_search():
     click = pyautogui.locateOnScreen(looking_boat, confidence=0.4)
     if click:
         pyautogui.click(click)
-        pyautogui.dragTo(100, 0, 1, button='left')
+        pyautogui.dragTo(click.left // 3, click.top, 1, button='left')
 
 
 @time_game
@@ -105,12 +105,13 @@ def update_map():
         pyautogui.click(click)
 
 
+@time_game
 def greenhouse_search():
     """
     Определяем на карте оранжерею
     :return:
     """
-    click = pyautogui.locateOnScreen(greenery, confidence=0.5)
+    click = pyautogui.locateOnScreen(greenery, confidence=0.5, grayscale=True)
 
     if click:
         pyautogui.click(click)
@@ -125,7 +126,8 @@ def get_enemy():
     number_temp = 1
     my_strength = read_streng()
 
-    battle_click = list(pyautogui.locateAllOnScreen(battle_next1, confidence=0.8, grayscale=True))
+    battle_click = list(pyautogui.locateAllOnScreen(battle_next1, confidence=0.83, grayscale=True))
+
     for enemy in battle_click:
 
         path_temp = f'png/temp/{number_temp}.png'
@@ -139,10 +141,12 @@ def get_enemy():
             es_int = my_strength * 2
         # print(f"Первая проверка. моя сила {my_strength} противника {es_int} ")
         if my_strength >= es_int:
-            print(f"Вторая проверка. моя сила {my_strength} противника {es_int} ")
+            # print(f"Вторая проверка. моя сила {my_strength} противника {es_int} ")
             center = pyautogui.center(enemy)
             pyautogui.click(center)
             time.sleep(2)
+
+            # Дополнительная проверка на открытия окна
             click_fist = pyautogui.locateOnScreen(fist, confidence=0.7)
             if click_fist:
                 time.sleep(0.2)
@@ -182,9 +186,11 @@ def stop_battle():
     """
     battle_stop = pyautogui.locateOnScreen(stop, confidence=0.6)
     click2 = pyautogui.locateOnScreen(battle_next3, confidence=0.8)
-    # print('click2', click2)
-    # print('battle_stop', battle_stop)
     if battle_stop:
         pyautogui.press('esc')
     elif click2:
         pyautogui.click(click2)
+
+
+# greenhouse_search()
+boat_search()
