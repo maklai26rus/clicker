@@ -1,8 +1,6 @@
 import pyautogui
 import time
 
-from clicker_zero_city.exit_ZC import exit_zc
-
 import easyocr
 
 # Переход на глобальную карту и поиск лодки
@@ -92,6 +90,8 @@ def boat_search():
     if click:
         pyautogui.click(click)
         pyautogui.dragTo(click.left // 3, click.top, 1, button='left')
+    else:
+        boat_search()
 
 
 @time_game
@@ -190,7 +190,3 @@ def stop_battle():
         pyautogui.press('esc')
     elif click2:
         pyautogui.click(click2)
-
-
-# greenhouse_search()
-boat_search()
