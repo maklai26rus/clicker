@@ -25,7 +25,7 @@ path_joinery_room = [joinery + "/" + file for file in os.listdir(joinery)]
 
 
 class AdClicker:
-    KITCHEN_ROOM = True
+    KITCHEN_ROOM = False
     LAB_ROOM = True
     BANK_ROOM = False
     ZAL_ROOM = True

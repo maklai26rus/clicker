@@ -3,6 +3,8 @@ import time
 
 import easyocr
 
+from clicker_zero_city.exit_ZC import exit_mgl, exit_zc
+
 # Переход на глобальную карту и поиск лодки
 global_map = "png/greenery/global_maps.PNG"
 looking_boat = "png/greenery/boat.PNG"
@@ -23,7 +25,7 @@ fist = 'png/greenery/fist.PNG'
 
 # Первая строчка всегда сила
 my_strength_txt = 'my_strength.txt'
-
+crutch = 0.8
 try:
     reader = easyocr.Reader(['ru'])
 except UserWarning:
@@ -86,11 +88,14 @@ def boat_search():
     Ищем на карте катер и привязываемся к нему что бы перетащить мышкку
     :return:
     """
-    click = pyautogui.locateOnScreen(looking_boat, confidence=0.4)
+    global crutch
+    click = pyautogui.locateOnScreen(looking_boat, confidence=crutch)
     if click:
         pyautogui.click(click)
         pyautogui.dragTo(click.left // 3, click.top, 1, button='left')
     else:
+        crutch -= 0.1
+        print(crutch)
         boat_search()
 
 

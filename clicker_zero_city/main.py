@@ -18,8 +18,8 @@ def main():
     # schedule.every().seconds.do(run)
     # schedule.every(1).seconds.do(start_var_orangeria)
     # run()
-    # schedule.every().hour.do(run)
-    schedule.every(1).minutes.do(run)
+    schedule.every().hour.do(run)
+    # schedule.every(1).minutes.do(run)
     # schedule.every(90).minutes.do(run)
     while True:
         schedule.run_pending()
@@ -31,3 +31,6 @@ if __name__ == '__main__':
         main()
     except KeyboardInterrupt:
         print("Выключение программы")
+    except:
+        exit_mgl()
+        exit_zc()
