@@ -1,3 +1,5 @@
+import time
+
 from clicker_zero_city.clan_war import clan_war
 from game_openings import open_game
 from war_orangeria import start_war_orangeria
@@ -6,12 +8,14 @@ from clicker_zero_city.exit_ZC import exit_zc, exit_mgl
 
 
 def run():
+    print(time.strftime('%d/%m/%Y %H:%M:%S'))
     exit_mgl()
     exit_zc()
     open_game()
     clan_war()
     start_war_orangeria()
     exit_zc()
+    exit_mgl()
 
 
 def main():
