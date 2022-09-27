@@ -9,7 +9,7 @@ from clicker_zero_city.exit_ZC import exit_mgl, exit_zc
 global_map = "png/greenery/global_maps.PNG"
 looking_boat = "png/greenery/boat.PNG"
 # Поиск оранжереи
-greenery = "png/greenery/greenery.PNG"
+greenery = "png/greenery/greenery_text.PNG"
 
 # Обновление карты
 update = 'png/greenery/update.PNG'
@@ -30,6 +30,25 @@ try:
     reader = easyocr.Reader(['ru'])
 except UserWarning:
     print("ошибка модуля")
+
+
+def eternal_search(func):
+    """
+    Зацикленая функция для поиска координат
+    """
+
+    def search():
+        while True:
+            sh = func()
+            if sh:
+                center = pyautogui.center(sh)
+                pyautogui.click(center)
+                time.sleep(0.1)
+                break
+            else:
+                print(f'Не могу найти корданату. Проверте если она на месте? {func.__name__}')
+
+    return search
 
 
 def read_streng():
@@ -71,15 +90,18 @@ def start_war_orangeria():
     get_enemy()
 
 
+@time_game
+@eternal_search
 def global_maps():
     """
     Переходим на глобальную карту для поиска  оранжереи
     :return:
     """
     click = pyautogui.locateOnScreen(global_map, confidence=0.5)
-    if click:
-        pyautogui.click(click)
-    time.sleep(1)
+    return click
+    # if click:
+    #     pyautogui.click(click)
+    # time.sleep(1)
 
 
 @time_game
@@ -95,7 +117,6 @@ def boat_search():
         pyautogui.dragTo(click.left // 3, click.top, 1, button='left')
     else:
         crutch -= 0.1
-        print(crutch)
         boat_search()
 
 
@@ -116,10 +137,8 @@ def greenhouse_search():
     Определяем на карте оранжерею
     :return:
     """
-    click = pyautogui.locateOnScreen(greenery, confidence=0.5, grayscale=True)
-
-    if click:
-        pyautogui.click(click)
+    click = pyautogui.locateOnScreen(greenery, confidence=0.8, grayscale=True)
+    pyautogui.click(click.left + 50, click.top - 60)
 
 
 @time_game
@@ -131,12 +150,12 @@ def get_enemy():
     number_temp = 1
     my_strength = read_streng()
 
-    battle_click = list(pyautogui.locateAllOnScreen(battle_next1, confidence=0.83, grayscale=True))
+    battle_click = list(pyautogui.locateAllOnScreen(battle_next1, confidence=0.9, grayscale=True))
 
     for enemy in battle_click:
 
         path_temp = f'png/temp/{number_temp}.png'
-        pyautogui.screenshot(path_temp, region=(enemy.left - 390, enemy.top, enemy.width + 130, enemy.height + 10))
+        pyautogui.screenshot(path_temp, region=(enemy.left - 350, enemy.top, enemy.width + 50, enemy.height + 10))
         time.sleep(0.1)
 
         enemy_strength = reader.readtext(path_temp, detail=0)
@@ -146,7 +165,7 @@ def get_enemy():
             es_int = my_strength * 2
         # print(f"Первая проверка. моя сила {my_strength} противника {es_int} ")
         if my_strength >= es_int:
-            # print(f"Вторая проверка. моя сила {my_strength} противника {es_int} ")
+            print(f"Вторая проверка. моя сила {my_strength} противника {es_int} ")
             center = pyautogui.center(enemy)
             pyautogui.click(center)
             time.sleep(2)
@@ -195,3 +214,5 @@ def stop_battle():
         pyautogui.press('esc')
     elif click2:
         pyautogui.click(click2)
+
+# get_enemy()

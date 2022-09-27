@@ -11,15 +11,21 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
 
+from run_video import AdClicker
+
 
 class Ui_MainWindow(object):
+
+    def __init__(self):
+        self.preview = AdClicker()
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(310, 356)
+        MainWindow.resize(304, 382)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayoutWidget_2 = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(10, 10, 281, 301))
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(10, 10, 281, 323))
         self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -69,17 +75,26 @@ class Ui_MainWindow(object):
         self.forge_room = QtWidgets.QCheckBox(self.verticalLayoutWidget_2)
         self.forge_room.setObjectName("forge_room")
         self.verticalLayout.addWidget(self.forge_room)
+        self.zal_room = QtWidgets.QCheckBox(self.verticalLayoutWidget_2)
+        self.zal_room.setObjectName("zal_room")
+        self.verticalLayout.addWidget(self.zal_room)
         self.horizontalLayout.addLayout(self.verticalLayout)
         self.verticalLayout_4 = QtWidgets.QVBoxLayout()
         self.verticalLayout_4.setObjectName("verticalLayout_4")
         self.horizontalLayout.addLayout(self.verticalLayout_4)
         self.verticalLayout_5.addLayout(self.horizontalLayout)
+        self.verticalLayout_6 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_6.setObjectName("verticalLayout_6")
+        self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.start_rooms = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
         self.start_rooms.setStyleSheet("")
         self.start_rooms.setObjectName("start_rooms")
-        self.verticalLayout_5.addWidget(self.start_rooms)
-        self.verticalLayout_6 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_6.setObjectName("verticalLayout_6")
+        self.horizontalLayout_3.addWidget(self.start_rooms)
+        self.stop_rooms = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
+        self.stop_rooms.setObjectName("stop_rooms")
+        self.horizontalLayout_3.addWidget(self.stop_rooms)
+        self.verticalLayout_6.addLayout(self.horizontalLayout_3)
         self.label_tablet = QtWidgets.QLabel(self.verticalLayoutWidget_2)
         font = QtGui.QFont()
         font.setPointSize(10)
@@ -94,6 +109,15 @@ class Ui_MainWindow(object):
                                    "")
         self.label_X.setObjectName("label_X")
         self.verticalLayout_6.addWidget(self.label_X)
+        self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
+        self.start_tablet = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
+        self.start_tablet.setObjectName("start_tablet")
+        self.horizontalLayout_4.addWidget(self.start_tablet)
+        self.pushButton = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
+        self.pushButton.setObjectName("pushButton")
+        self.horizontalLayout_4.addWidget(self.pushButton)
+        self.verticalLayout_6.addLayout(self.horizontalLayout_4)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.verticalLayout_7 = QtWidgets.QVBoxLayout()
@@ -103,15 +127,12 @@ class Ui_MainWindow(object):
         self.verticalLayout_8.setObjectName("verticalLayout_8")
         self.horizontalLayout_2.addLayout(self.verticalLayout_8)
         self.verticalLayout_6.addLayout(self.horizontalLayout_2)
-        self.start_tablet = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
-        self.start_tablet.setObjectName("start_tablet")
-        self.verticalLayout_6.addWidget(self.start_tablet)
         self.verticalLayout_5.addLayout(self.verticalLayout_6)
         self.verticalLayout_3.addLayout(self.verticalLayout_5)
         self.verticalLayout_2.addLayout(self.verticalLayout_3)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 310, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 304, 21))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -120,8 +141,6 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
-        self.xxx()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -133,31 +152,45 @@ class Ui_MainWindow(object):
         self.bank_room.setText(_translate("MainWindow", "Банкир"))
         self.lab_room.setText(_translate("MainWindow", "Лаборатория"))
         self.forge_room.setText(_translate("MainWindow", "Кузница"))
+        self.zal_room.setText(_translate("MainWindow", "Спорт зал"))
         self.start_rooms.setText(_translate("MainWindow", "Старт"))
+        self.stop_rooms.setText(_translate("MainWindow", "Стоп"))
         self.label_tablet.setText(_translate("MainWindow", "Просмотреть рекламу на планшете"))
         self.label_X.setText(_translate("MainWindow", "Ручное отключение ALT+X"))
         self.start_tablet.setText(_translate("MainWindow", "Старт"))
+        self.pushButton.setText(_translate("MainWindow", "Стоп"))
 
     def xxx(self):
+        """Нажатие кнопки просмотр рекламы в комнатах"""
         self.start_rooms.clicked.connect(self.yyy)
 
+
     def yyy(self):
-        print(self.kitchen_room.isChecked())
-        print(self.sawmill_room.isChecked())
-        print(self.bank_room.isChecked())
-        print(self.lab_room.isChecked())
-        print(self.forge_room.isChecked())
+        # self.start_rooms.setText('Stop')
 
+        self.preview.KITCHEN_ROOM = self.kitchen_room.isChecked()
+        self.kitchen_room.setEnabled(False)
 
-# def run_main_see():
-#     app = QtWidgets.QApplication(sys.argv)
-#     MainWindow = QtWidgets.QMainWindow()
-#     ui = Ui_MainWindow()
-#     ui.setupUi(MainWindow)
-#     MainWindow.show()
-#     sys.exit(app.exec_())
+        self.preview.LAB_ROOM = self.lab_room.isChecked()
+        self.lab_room.setEnabled(False)
+        self.preview.BANK_ROOM = self.bank_room.isChecked()
+        self.bank_room.setEnabled(False)
+        # self.preview.ZAL_ROOM = self..isChecked()
+        self.preview.JOINERY_ROOM = self.sawmill_room.isChecked()
+        self.kitchen_room.setEnabled(False)
+        # #
+        # self.watch_ads()
 
-# if __name__ == "__main__":
-#     import sys
-#
-#     run_main()
+    def watch_ads(self):
+        self.start_rooms.setText('Stop')
+        while True:
+            if self.preview.KITCHEN_ROOM:
+                self.preview.kitchen_rooms()
+            elif self.preview.LAB_ROOM:
+                self.preview.laboratory_room()
+            elif self.preview.JOINERY_ROOM:
+                self.preview.joinery_room()
+            elif self.preview.ZAL_ROOM:
+                self.preview.zal_room()
+            elif self.preview.BANK_ROOM:
+                self.preview.bank_room()

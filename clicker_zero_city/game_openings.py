@@ -24,6 +24,9 @@ def time_game(func):
 
 
 def eternal_search(func):
+    """
+    Зацикленая функция для поиска координат
+    """
     def search():
         while True:
             sh = func()
