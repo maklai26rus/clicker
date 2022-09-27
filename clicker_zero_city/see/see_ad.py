@@ -18,6 +18,7 @@ class Ui_MainWindow(object):
 
     def __init__(self):
         self.preview = AdClicker()
+        self.x = False
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -141,6 +142,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.watch_ads_room()
+        self.stop_ads_room()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -160,30 +163,52 @@ class Ui_MainWindow(object):
         self.start_tablet.setText(_translate("MainWindow", "Старт"))
         self.pushButton.setText(_translate("MainWindow", "Стоп"))
 
-    def xxx(self):
-        """Нажатие кнопки просмотр рекламы в комнатах"""
-        self.start_rooms.clicked.connect(self.yyy)
+    def watch_ads_room(self):
+        """Нажатие кнопки для просмотра рекламы в комнатах"""
+        self.start_rooms.clicked.connect(self.when_viewing_ads)
 
+    def stop_ads_room(self):
+        self.stop_rooms.clicked.connect(self.when_viewing_ads_stop)
 
-    def yyy(self):
-        # self.start_rooms.setText('Stop')
+    def when_viewing_ads(self):
+        """
+        Начала просмотре рекламы
+        """
+        action = False
+        self.method_name(action)
+        self.x = True
 
         self.preview.KITCHEN_ROOM = self.kitchen_room.isChecked()
-        self.kitchen_room.setEnabled(False)
 
         self.preview.LAB_ROOM = self.lab_room.isChecked()
-        self.lab_room.setEnabled(False)
+
         self.preview.BANK_ROOM = self.bank_room.isChecked()
-        self.bank_room.setEnabled(False)
-        # self.preview.ZAL_ROOM = self..isChecked()
+
+        self.preview.ZAL_ROOM = self.zal_room.isChecked()
+
         self.preview.JOINERY_ROOM = self.sawmill_room.isChecked()
-        self.kitchen_room.setEnabled(False)
-        # #
+
         # self.watch_ads()
 
+    def when_viewing_ads_stop(self):
+        action = True
+        self.method_name(action)
+        self.x = False
+        # self.watch_ads()
+
+    def method_name(self, action):
+        self.kitchen_room.setEnabled(action)
+        self.lab_room.setEnabled(action)
+        self.bank_room.setEnabled(action)
+        self.zal_room.setEnabled(action)
+        self.sawmill_room.setEnabled(action)
+        self.forge_room.setEnabled(action)
+
     def watch_ads(self):
-        self.start_rooms.setText('Stop')
-        while True:
+        # while self.x:
+        #     # print('1')
+        print(self.x)
+        while self.x:
             if self.preview.KITCHEN_ROOM:
                 self.preview.kitchen_rooms()
             elif self.preview.LAB_ROOM:
@@ -194,3 +219,4 @@ class Ui_MainWindow(object):
                 self.preview.zal_room()
             elif self.preview.BANK_ROOM:
                 self.preview.bank_room()
+
