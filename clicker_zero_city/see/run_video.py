@@ -24,11 +24,11 @@ joinery = "png/study_rooms/joinery"
 
 
 class AdClicker:
-    KITCHEN_ROOM = False
-    LAB_ROOM = False
+    KITCHEN_ROOM = True
+    LAB_ROOM = True
     BANK_ROOM = False
     ZAL_ROOM = False
-    JOINERY_ROOM = False
+    JOINERY_ROOM = True
 
     def __init__(self):
         self.one_click_rk = True
@@ -48,14 +48,15 @@ class AdClicker:
         self.room_zal = None
         self.click_repetitions_rz = 1
 
-        self.path_dining_room = [dining + "/" + file for file in os.listdir(dining)]
-        self.path_lab_room = [lab + "/" + file for file in os.listdir(lab)]
-        self.path_bank_room = [bank + "/" + file for file in os.listdir(bank)]
-        self.path_zal_room = [zal + "/" + file for file in os.listdir(zal)]
-        self.path_joinery_room = [joinery + "/" + file for file in os.listdir(joinery)]
+        # self.path_dining_room = [dining + "/" + file for file in os.listdir(dining)]
+        # self.path_lab_room = [lab + "/" + file for file in os.listdir(lab)]
+        # self.path_bank_room = [bank + "/" + file for file in os.listdir(bank)]
+        # self.path_zal_room = [zal + "/" + file for file in os.listdir(zal)]
+        # self.path_joinery_room = [joinery + "/" + file for file in os.listdir(joinery)]
 
     def kitchen_rooms(self):
-        self.room_kitchen = list(filter(None, map(search_coordinate_ad, self.path_dining_room)))
+        path_dining_room = [dining + "/" + file for file in os.listdir(dining)]
+        self.room_kitchen = list(filter(None, map(search_coordinate_ad, path_dining_room)))
         time.sleep(1)
         if self.click_repetitions_rk > 3:
             AdClicker.KITCHEN_ROOM = False
@@ -95,7 +96,8 @@ class AdClicker:
             pyautogui.click(click)
 
     def laboratory_room(self):
-        self.room_lab = list(filter(None, map(search_coordinate_ad, self.path_lab_room)))
+        path_lab_room = [lab + "/" + file for file in os.listdir(lab)]
+        self.room_lab = list(filter(None, map(search_coordinate_ad, path_lab_room)))
         time.sleep(1)
         if self.click_repetitions_rl > 3:
             AdClicker.LAB_ROOM = False
@@ -115,7 +117,8 @@ class AdClicker:
             self.one_click_rk = True
 
     def joinery_room(self):
-        self.room_joinery = list(filter(None, map(search_coordinate_ad, self.path_joinery_room)))
+        path_joinery_room = [joinery + "/" + file for file in os.listdir(joinery)]
+        self.room_joinery = list(filter(None, map(search_coordinate_ad, path_joinery_room)))
         time.sleep(1)
         if self.click_repetitions_rj > 3:
             AdClicker.JOINERY_ROOM = False
@@ -135,7 +138,8 @@ class AdClicker:
             self.one_click_rk = True
 
     def bank_room(self):
-        self.room_bank = list(filter(None, map(search_coordinate_ad, self.path_bank_room)))
+        path_bank_room = [bank + "/" + file for file in os.listdir(bank)]
+        self.room_bank = list(filter(None, map(search_coordinate_ad, path_bank_room)))
         time.sleep(1)
         if self.click_repetitions_rb > 3:
             AdClicker.BANK_ROOM = False
@@ -155,7 +159,8 @@ class AdClicker:
             self.one_click_rk = True
 
     def zal_room(self):
-        self.room_zal = list(filter(None, map(search_coordinate_ad, self.path_zal_room)))
+        path_zal_room = [zal + "/" + file for file in os.listdir(zal)]
+        self.room_zal = list(filter(None, map(search_coordinate_ad, path_zal_room)))
         time.sleep(1)
         if self.click_repetitions_rb > 3:
             AdClicker.ZAL_ROOM = False
@@ -180,6 +185,7 @@ def watch_ads():
     keyboard.add_hotkey('ALT + X', advertising_tablet)
     preview = AdClicker()
     while True:
+        print('1')
         if choosing_action["rooms"]:
             if preview.KITCHEN_ROOM:
                 preview.kitchen_rooms()

@@ -65,7 +65,7 @@ def run_game():
     return click
 
 
-@time_game
+# @time_game
 def choose_closing_ads():
     """Закрытия рекламы
     Поиск рекламы. Берет из папки все рекламные привязки и ищет их координат
@@ -79,6 +79,7 @@ def choose_closing_ads():
     advertising_click_x = pyautogui.locateOnScreen(cross, confidence=0.65)
     try:
         if advertising_click_x:
+            print('Закрытия рекламы Х')
             center = pyautogui.center(advertising_click_x)
             pyautogui.click(advertising_click_x)
             time.sleep(10)
@@ -93,3 +94,5 @@ def choose_closing_ads():
             choose_closing_ads()
     except IndexError:
         pass
+
+# choose_closing_ads()
