@@ -16,6 +16,7 @@ bank = "png/study_rooms/bank_room"
 zal = "png/study_rooms/zal_room"
 joinery = "png/study_rooms/joinery"
 
+
 # path_dining_room = [dining + "/" + file for file in os.listdir(dining)]
 # path_lab_room = [lab + "/" + file for file in os.listdir(lab)]
 # path_bank_room = [bank + "/" + file for file in os.listdir(bank)]
@@ -48,14 +49,14 @@ class AdClicker:
         self.room_zal = None
         self.click_repetitions_rz = 1
 
-        # self.path_dining_room = [dining + "/" + file for file in os.listdir(dining)]
-        # self.path_lab_room = [lab + "/" + file for file in os.listdir(lab)]
-        # self.path_bank_room = [bank + "/" + file for file in os.listdir(bank)]
-        # self.path_zal_room = [zal + "/" + file for file in os.listdir(zal)]
-        # self.path_joinery_room = [joinery + "/" + file for file in os.listdir(joinery)]
 
     def kitchen_rooms(self):
+        """
+        Ищет координаты картинок для получение рекламы
+
+        """
         path_dining_room = [dining + "/" + file for file in os.listdir(dining)]
+
         self.room_kitchen = list(filter(None, map(search_coordinate_ad, path_dining_room)))
         time.sleep(1)
         if self.click_repetitions_rk > 3:

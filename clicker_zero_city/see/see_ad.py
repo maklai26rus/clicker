@@ -175,8 +175,7 @@ class Ui_MainWindow(object):
         Начала просмотре рекламы
         """
         action = False
-        self.method_name(action)
-        self.x = True
+        self.set_enabled(action)
 
         self.preview.KITCHEN_ROOM = self.kitchen_room.isChecked()
 
@@ -188,15 +187,11 @@ class Ui_MainWindow(object):
 
         self.preview.JOINERY_ROOM = self.sawmill_room.isChecked()
 
-        # self.watch_ads()
-
     def when_viewing_ads_stop(self):
         action = True
-        self.method_name(action)
-        self.x = False
-        # self.watch_ads()
+        self.set_enabled(action)
 
-    def method_name(self, action):
+    def set_enabled(self, action):
         self.kitchen_room.setEnabled(action)
         self.lab_room.setEnabled(action)
         self.bank_room.setEnabled(action)
@@ -205,18 +200,13 @@ class Ui_MainWindow(object):
         self.forge_room.setEnabled(action)
 
     def watch_ads(self):
-        # while self.x:
-        #     # print('1')
-        print(self.x)
-        while self.x:
-            if self.preview.KITCHEN_ROOM:
-                self.preview.kitchen_rooms()
-            elif self.preview.LAB_ROOM:
-                self.preview.laboratory_room()
-            elif self.preview.JOINERY_ROOM:
-                self.preview.joinery_room()
-            elif self.preview.ZAL_ROOM:
-                self.preview.zal_room()
-            elif self.preview.BANK_ROOM:
-                self.preview.bank_room()
-
+        if self.preview.KITCHEN_ROOM:
+            self.preview.kitchen_rooms()
+        elif self.preview.LAB_ROOM:
+            self.preview.laboratory_room()
+        elif self.preview.JOINERY_ROOM:
+            self.preview.joinery_room()
+        elif self.preview.ZAL_ROOM:
+            self.preview.zal_room()
+        elif self.preview.BANK_ROOM:
+            self.preview.bank_room()
