@@ -6,15 +6,16 @@ import os
 from clicker_zero_city.command_clicker import advertising_rooms, advertising_tablet, choosing_action
 from clicker_zero_city.search_coordinate import search_coordinate_ad
 
-video_rooms = 'png/marketing/marketing1.PNG'
+video_rooms = '..//png/marketing/marketing1.PNG'
 video_tablet = 'png/marketing/marketing2.PNG'
 prize = 'png/marketing/prize.PNG'
 
-dining = "png/study_rooms/dining_room"
-lab = "png/study_rooms/lab_room"
-bank = "png/study_rooms/bank_room"
-zal = "png/study_rooms/zal_room"
-joinery = "png/study_rooms/joinery"
+dining = "..//png/study_rooms/dining_room"
+lab = "..//png/study_rooms/lab_room"
+bank = "..//png/study_rooms/bank_room"
+zal = "..//png/study_rooms/zal_room"
+joinery = "..//png/study_rooms/joinery_room"
+forge = "..//png/study_rooms/forge_room"
 
 
 # path_dining_room = [dining + "/" + file for file in os.listdir(dining)]
@@ -25,56 +26,39 @@ joinery = "png/study_rooms/joinery"
 
 
 class AdClicker:
-    KITCHEN_ROOM = True
-    LAB_ROOM = True
-    BANK_ROOM = False
-    ZAL_ROOM = False
-    JOINERY_ROOM = True
+    # KITCHEN_ROOM = False
+    # LAB_ROOM = False
+    # BANK_ROOM = False
+    # ZAL_ROOM = False
+    # FORGE_ROOM = False
+    # JOINERY_ROOM = False
 
     def __init__(self):
+        self.KITCHEN_ROOM = False
+        self.LAB_ROOM = False
+        self.BANK_ROOM = False
+        self.ZAL_ROOM = False
+        self.FORGE_ROOM = False
+        self.JOINERY_ROOM = False
+
         self.one_click_rk = True
 
-        self.room_kitchen = None
-        self.click_repetitions_rk = 1
+        self.click_repetitions = 1
 
-        self.room_lab = None
-        self.click_repetitions_rl = 1
-
-        self.room_joinery = None
-        self.click_repetitions_rj = 1
-
-        self.room_bank = None
-        self.click_repetitions_rb = 1
-
-        self.room_zal = None
-        self.click_repetitions_rz = 1
-
-
-    def kitchen_rooms(self):
+    def path_png(self, path: list):
         """
-        Ищет координаты картинок для получение рекламы
+        Выбор по координате комнату
+        Если координата нашлась. наводит курсор мышки на нее и 1 раз кликает
 
         """
-        path_dining_room = [dining + "/" + file for file in os.listdir(dining)]
-
-        self.room_kitchen = list(filter(None, map(search_coordinate_ad, path_dining_room)))
-        time.sleep(1)
-        if self.click_repetitions_rk > 3:
-            AdClicker.KITCHEN_ROOM = False
-            self.one_click_rk = True
-        elif self.room_kitchen:
-            print('Кухня', self.room_kitchen[0])
-            center = pyautogui.center(self.room_kitchen[0])
+        if path:
+            center = pyautogui.center(path)
             pyautogui.moveTo(center)
             if self.one_click_rk:
                 pyautogui.click(center)
                 self.one_click_rk = False
-
-            self.click_repetitions_rk += 1
-            time.sleep(5)
-            self.preview_room()
-        else:
-            self.one_click_rk = True
+            else:
+                self.click_repetitions += 1
 
     def preview_room(self):
         """Предварительный просмотр рекламы"""
@@ -96,95 +80,141 @@ class AdClicker:
         if click:
             pyautogui.click(click)
 
-    def laboratory_room(self):
-        path_lab_room = [lab + "/" + file for file in os.listdir(lab)]
-        self.room_lab = list(filter(None, map(search_coordinate_ad, path_lab_room)))
-        time.sleep(1)
-        if self.click_repetitions_rl > 3:
-            AdClicker.LAB_ROOM = False
-            self.one_click_rk = True
-        elif self.room_lab:
-            print('Лаб')
-            center = pyautogui.center(self.room_lab[0])
-            pyautogui.moveTo(center)
-            if self.one_click_rk:
-                pyautogui.click(center)
-                self.one_click_rk = False
+    def path_normal(self, path):
+        """Модюль преобразующий в правильный путь для координат"""
+        _pn = os.path.normpath(os.path.join(path))
+        path_dining_room = [_pn + "\\" + file for file in os.listdir(_pn)]
+        path = list(filter(None, map(search_coordinate_ad, path_dining_room)))
+        return path[0]
 
-            self.click_repetitions_rl += 1
-            time.sleep(5)
-            self.preview_room()
-        else:
+    def kitchen_rooms(self):
+        """
+        Ищет координаты картинок для получение рекламы
+
+        """
+        path = self.path_normal(dining)
+        time.sleep(1)
+        if self.preview_room():
+            self.click_repetitions += 1
+        elif self.click_repetitions > 3:
+            self.KITCHEN_ROOM = False
             self.one_click_rk = True
+            self.click_repetitions = 1
+        elif self.KITCHEN_ROOM:
+            self.path_png(path)
+
+        print(f'Кухня', path, self.click_repetitions)
+
+        time.sleep(5)
+
+    def laboratory_room(self):
+        _pn = self.path_normal(joinery)
+        path = list(filter(None, map(search_coordinate_ad, _pn)))
+        time.sleep(1)
+        if self.click_repetitions > 3:
+            self.LAB_ROOM = False
+            self.one_click_rk = True
+            self.click_repetitions = 1
+
+        elif self.preview_room():
+            self.click_repetitions += 1
+
+        elif self.LAB_ROOM:
+            self.path_png(path)
+
+        print(f'Лаборатория', path[0], self.click_repetitions)
 
     def joinery_room(self):
+        """
+        Ищет координаты картинок для получение рекламы
+        Комната улучшения добычи дерева
+        """
         path_joinery_room = [joinery + "/" + file for file in os.listdir(joinery)]
-        self.room_joinery = list(filter(None, map(search_coordinate_ad, path_joinery_room)))
+        path = list(filter(None, map(search_coordinate_ad, path_joinery_room)))
         time.sleep(1)
-        if self.click_repetitions_rj > 3:
-            AdClicker.JOINERY_ROOM = False
-            self.one_click_rk = True
-        elif self.room_joinery:
-            print('Лесопилка')
-            center = pyautogui.center(self.room_joinery[0])
-            pyautogui.moveTo(center)
-            if self.one_click_rk:
-                pyautogui.click(center)
-                self.one_click_rk = False
+        if self.preview_room():
+            self.click_repetitions += 1
 
-            self.click_repetitions_rj += 1
-            time.sleep(5)
-            self.preview_room()
-        else:
+        elif self.click_repetitions > 3:
+            self.JOINERY_ROOM = False
             self.one_click_rk = True
+            self.click_repetitions = 1
+        elif self.JOINERY_ROOM:
+
+            self.path_png(path)
+        print(f'Лесопилка', path[0], self.click_repetitions)
 
     def bank_room(self):
+        """
+        Ищет координаты картинок для получение рекламы
+        Комната улучшения добычи денег
+        """
         path_bank_room = [bank + "/" + file for file in os.listdir(bank)]
-        self.room_bank = list(filter(None, map(search_coordinate_ad, path_bank_room)))
+        path = list(filter(None, map(search_coordinate_ad, path_bank_room)))
         time.sleep(1)
-        if self.click_repetitions_rb > 3:
+        if self.click_repetitions > 3:
             AdClicker.BANK_ROOM = False
             self.one_click_rk = True
-        elif self.room_bank:
-            print('BANK')
-            center = pyautogui.center(self.room_bank[0])
-            pyautogui.moveTo(center)
-            if self.one_click_rk:
-                pyautogui.click(center)
-                self.one_click_rk = False
+            self.click_repetitions = 1
 
-            self.click_repetitions_rb += 1
-            time.sleep(5)
-            self.preview_room()
-        else:
-            self.one_click_rk = True
+        elif self.preview_room():
+            self.click_repetitions += 1
+        elif self.BANK_ROOM:
+            self.path_png(path)
+
+        print(f'Банк', path[0], self.click_repetitions)
 
     def zal_room(self):
+        """
+        Ищет координаты картинок для получение рекламы
+        Комната по повышению силы
+        """
         path_zal_room = [zal + "/" + file for file in os.listdir(zal)]
-        self.room_zal = list(filter(None, map(search_coordinate_ad, path_zal_room)))
+        path = list(filter(None, map(search_coordinate_ad, path_zal_room)))
         time.sleep(1)
-        if self.click_repetitions_rb > 3:
+        if self.click_repetitions > 3:
             AdClicker.ZAL_ROOM = False
             self.one_click_rk = True
-        elif self.room_zal:
-            print('ZAL')
-            center = pyautogui.center(self.room_zal[0])
-            pyautogui.moveTo(center)
-            if self.one_click_rk:
-                pyautogui.click(center)
-                self.one_click_rk = False
+            self.click_repetitions = 1
 
-            self.click_repetitions_rb += 1
-            time.sleep(5)
-            self.preview_room()
-        else:
+        elif self.preview_room():
+            self.click_repetitions += 1
+        elif self.ZAL_ROOM:
+            self.path_png(path)
+        print(f'Спортзал', path[0], self.click_repetitions)
+        time.sleep(5)
+
+    def forge_room(self):
+        """
+        Ищет координаты картинок для получение рекламы
+        Комната улучшению добычи металла
+        """
+        path_forge_room = [forge + "/" + file for file in os.listdir(forge)]
+        path = list(filter(None, map(search_coordinate_ad, path_forge_room)))
+        time.sleep(1)
+        if self.preview_room():
+            self.click_repetitions += 1
+        elif self.click_repetitions > 3:
+            self.FORGE_ROOM = False
             self.one_click_rk = True
+            self.click_repetitions = 1
+        elif self.FORGE_ROOM:
+            self.path_png(path)
+        print(f'Кузниза', path[0], self.click_repetitions)
+
+        time.sleep(5)
 
 
 def watch_ads():
     keyboard.add_hotkey('ALT + Z', advertising_rooms)
     keyboard.add_hotkey('ALT + X', advertising_tablet)
     preview = AdClicker()
+    preview.KITCHEN_ROOM = True
+    preview.ZAL_ROOM = False
+    preview.BANK_ROOM = False
+    preview.LAB_ROOM = False
+    preview.FORGE_ROOM = False
+    preview.JOINERY_ROOM = False
     while True:
         print('1')
         if choosing_action["rooms"]:
@@ -198,7 +228,14 @@ def watch_ads():
                 preview.zal_room()
             elif preview.BANK_ROOM:
                 preview.bank_room()
+            elif preview.FORGE_ROOM:
+                preview.forge_room()
 
         if choosing_action['tablet']:
             preview.preview_tablet()
             preview.definition_prize()
+
+
+# preview = AdClicker()
+# preview.KITCHEN_ROOM = True
+# preview.kitchen_rooms()
