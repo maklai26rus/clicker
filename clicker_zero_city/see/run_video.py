@@ -39,7 +39,7 @@ class AdClicker:
 
         """
         if path:
-            center = pyautogui.center(path)
+            center = pyautogui.center(path[0])
             pyautogui.moveTo(center)
             if self.one_click_rk:
                 pyautogui.click(center)
@@ -72,7 +72,7 @@ class AdClicker:
         _pn = os.path.normpath(os.path.join(path))
         path_dining_room = [_pn + "\\" + file for file in os.listdir(_pn)]
         path = list(filter(None, map(search_coordinate_ad, path_dining_room)))
-        return path[0]
+        return path
 
     def kitchen_rooms(self):
         """
@@ -90,7 +90,7 @@ class AdClicker:
         elif self.KITCHEN_ROOM:
             self.path_png(path)
 
-        print(f'Кухня', path, self.click_repetitions)
+        print(f'Кухня найденый координат {len(path)}', self.click_repetitions)
 
         time.sleep(5)
 
@@ -108,7 +108,7 @@ class AdClicker:
         elif self.LAB_ROOM:
             self.path_png(path)
 
-        print(f'Лаборатория', path, self.click_repetitions)
+        print(f'Лаборатория найденый координат {len(path)}', self.click_repetitions)
 
     def joinery_room(self):
         """
@@ -127,7 +127,7 @@ class AdClicker:
         elif self.JOINERY_ROOM:
 
             self.path_png(path)
-        print(f'Лесопилка', path, self.click_repetitions)
+        print(f'Лесопилка найденый координат {len(path)}', self.click_repetitions)
 
     def bank_room(self):
         """
@@ -182,7 +182,7 @@ class AdClicker:
             self.click_repetitions = 1
         elif self.FORGE_ROOM:
             self.path_png(path)
-        print(f'Кузниза', path, self.click_repetitions)
+        print(f'Кузница найденый координат {len(path)}', self.click_repetitions)
 
         time.sleep(5)
 
@@ -216,7 +216,3 @@ def watch_ads():
         if choosing_action['tablet']:
             preview.preview_tablet()
             preview.definition_prize()
-
-# preview = AdClicker()
-# preview.KITCHEN_ROOM = True
-# preview.kitchen_rooms()
