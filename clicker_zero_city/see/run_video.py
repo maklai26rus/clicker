@@ -6,17 +6,6 @@ import os
 from clicker_zero_city.command_clicker import advertising_rooms, advertising_tablet, choosing_action
 from clicker_zero_city.search_coordinate import search_coordinate_ad
 
-video_rooms = '..//png/marketing/marketing1.PNG'
-video_tablet = 'png/marketing/marketing2.PNG'
-prize = 'png/marketing/prize.PNG'
-
-dining = "..//png/study_rooms/dining_room"
-lab = "..//png/study_rooms/lab_room"
-bank = "..//png/study_rooms/bank_room"
-zal = "..//png/study_rooms/zal_room"
-joinery = "..//png/study_rooms/joinery_room"
-forge = "..//png/study_rooms/forge_room"
-
 
 class AdClicker:
 
@@ -31,6 +20,17 @@ class AdClicker:
         self.one_click_rk = True
 
         self.click_repetitions = 1
+
+        self.video_rooms = '..//png/marketing/marketing1.PNG'
+        self.video_tablet = '..//png/marketing/marketing2.PNG'
+        self.prize = '..//png/marketing/prize.PNG'
+
+        self.dining = "..//png/study_rooms/dining_room"
+        self.lab = "..//png/study_rooms/lab_room"
+        self.bank = "..//png/study_rooms/bank_room"
+        self.zal = "..//png/study_rooms/zal_room"
+        self.joinery = "..//png/study_rooms/joinery_room"
+        self.forge = "..//png/study_rooms/forge_room"
 
     def path_png(self, path: list):
         """
@@ -49,21 +49,21 @@ class AdClicker:
 
     def preview_room(self):
         """Предварительный просмотр рекламы"""
-        get_vidio = pyautogui.locateOnScreen(video_rooms, confidence=0.8)
+        get_vidio = pyautogui.locateOnScreen(self.video_rooms, confidence=0.8)
         if get_vidio:
             pyautogui.click(get_vidio)
             time.sleep(40)
 
     def preview_tablet(self):
         """Предварительный просмотр рекламы"""
-        get_vidio = pyautogui.locateOnScreen(video_tablet, confidence=0.8)
+        get_vidio = pyautogui.locateOnScreen(self.video_tablet, confidence=0.8)
         if get_vidio:
             pyautogui.click(get_vidio)
             time.sleep(40)
 
     def definition_prize(self):
         """На планшете после просмотра рекламы нажать забрать приз"""
-        click = pyautogui.locateOnScreen(prize, confidence=0.8)
+        click = pyautogui.locateOnScreen(self.prize, confidence=0.8)
         if click:
             pyautogui.click(click)
 
@@ -79,7 +79,7 @@ class AdClicker:
         Ищет координаты картинок для получение рекламы
 
         """
-        path = self.path_normal(dining)
+        path = self.path_normal(self.dining)
         time.sleep(1)
         if self.preview_room():
             self.click_repetitions += 1
@@ -95,7 +95,7 @@ class AdClicker:
         time.sleep(5)
 
     def laboratory_room(self):
-        path = self.path_normal(lab)
+        path = self.path_normal(self.lab)
         time.sleep(1)
         if self.click_repetitions > 3:
             self.LAB_ROOM = False
@@ -108,14 +108,14 @@ class AdClicker:
         elif self.LAB_ROOM:
             self.path_png(path)
 
-        print(f'Лаборатория', path[0], self.click_repetitions)
+        print(f'Лаборатория', path, self.click_repetitions)
 
     def joinery_room(self):
         """
         Ищет координаты картинок для получение рекламы
         Комната улучшения добычи дерева
         """
-        path = self.path_normal(joinery)
+        path = self.path_normal(self.joinery)
         time.sleep(1)
         if self.preview_room():
             self.click_repetitions += 1
@@ -134,7 +134,7 @@ class AdClicker:
         Ищет координаты картинок для получение рекламы
         Комната улучшения добычи денег
         """
-        path = self.path_normal(bank)
+        path = self.path_normal(self.bank)
         time.sleep(1)
         if self.click_repetitions > 3:
             AdClicker.BANK_ROOM = False
@@ -153,8 +153,7 @@ class AdClicker:
         Ищет координаты картинок для получение рекламы
         Комната по повышению силы
         """
-        path_zal_room = [zal + "/" + file for file in os.listdir(zal)]
-        path = list(filter(None, map(search_coordinate_ad, path_zal_room)))
+        path = self.path_normal(self.zal)
         time.sleep(1)
         if self.click_repetitions > 3:
             AdClicker.ZAL_ROOM = False
@@ -173,7 +172,7 @@ class AdClicker:
         Ищет координаты картинок для получение рекламы
         Комната улучшению добычи металла
         """
-        path = self.path_normal(forge)
+        path = self.path_normal(self.forge)
         time.sleep(1)
         if self.preview_room():
             self.click_repetitions += 1
