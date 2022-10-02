@@ -18,20 +18,7 @@ joinery = "..//png/study_rooms/joinery_room"
 forge = "..//png/study_rooms/forge_room"
 
 
-# path_dining_room = [dining + "/" + file for file in os.listdir(dining)]
-# path_lab_room = [lab + "/" + file for file in os.listdir(lab)]
-# path_bank_room = [bank + "/" + file for file in os.listdir(bank)]
-# path_zal_room = [zal + "/" + file for file in os.listdir(zal)]
-# path_joinery_room = [joinery + "/" + file for file in os.listdir(joinery)]
-
-
 class AdClicker:
-    # KITCHEN_ROOM = False
-    # LAB_ROOM = False
-    # BANK_ROOM = False
-    # ZAL_ROOM = False
-    # FORGE_ROOM = False
-    # JOINERY_ROOM = False
 
     def __init__(self):
         self.KITCHEN_ROOM = False
@@ -108,8 +95,7 @@ class AdClicker:
         time.sleep(5)
 
     def laboratory_room(self):
-        _pn = self.path_normal(joinery)
-        path = list(filter(None, map(search_coordinate_ad, _pn)))
+        path = self.path_normal(lab)
         time.sleep(1)
         if self.click_repetitions > 3:
             self.LAB_ROOM = False
@@ -129,8 +115,7 @@ class AdClicker:
         Ищет координаты картинок для получение рекламы
         Комната улучшения добычи дерева
         """
-        path_joinery_room = [joinery + "/" + file for file in os.listdir(joinery)]
-        path = list(filter(None, map(search_coordinate_ad, path_joinery_room)))
+        path = self.path_normal(joinery)
         time.sleep(1)
         if self.preview_room():
             self.click_repetitions += 1
@@ -142,15 +127,14 @@ class AdClicker:
         elif self.JOINERY_ROOM:
 
             self.path_png(path)
-        print(f'Лесопилка', path[0], self.click_repetitions)
+        print(f'Лесопилка', path, self.click_repetitions)
 
     def bank_room(self):
         """
         Ищет координаты картинок для получение рекламы
         Комната улучшения добычи денег
         """
-        path_bank_room = [bank + "/" + file for file in os.listdir(bank)]
-        path = list(filter(None, map(search_coordinate_ad, path_bank_room)))
+        path = self.path_normal(bank)
         time.sleep(1)
         if self.click_repetitions > 3:
             AdClicker.BANK_ROOM = False
@@ -162,7 +146,7 @@ class AdClicker:
         elif self.BANK_ROOM:
             self.path_png(path)
 
-        print(f'Банк', path[0], self.click_repetitions)
+        print(f'Банк', path, self.click_repetitions)
 
     def zal_room(self):
         """
@@ -181,7 +165,7 @@ class AdClicker:
             self.click_repetitions += 1
         elif self.ZAL_ROOM:
             self.path_png(path)
-        print(f'Спортзал', path[0], self.click_repetitions)
+        print(f'Спортзал', path, self.click_repetitions)
         time.sleep(5)
 
     def forge_room(self):
@@ -189,8 +173,7 @@ class AdClicker:
         Ищет координаты картинок для получение рекламы
         Комната улучшению добычи металла
         """
-        path_forge_room = [forge + "/" + file for file in os.listdir(forge)]
-        path = list(filter(None, map(search_coordinate_ad, path_forge_room)))
+        path = self.path_normal(forge)
         time.sleep(1)
         if self.preview_room():
             self.click_repetitions += 1
@@ -200,7 +183,7 @@ class AdClicker:
             self.click_repetitions = 1
         elif self.FORGE_ROOM:
             self.path_png(path)
-        print(f'Кузниза', path[0], self.click_repetitions)
+        print(f'Кузниза', path, self.click_repetitions)
 
         time.sleep(5)
 
@@ -234,7 +217,6 @@ def watch_ads():
         if choosing_action['tablet']:
             preview.preview_tablet()
             preview.definition_prize()
-
 
 # preview = AdClicker()
 # preview.KITCHEN_ROOM = True
