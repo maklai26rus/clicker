@@ -72,25 +72,25 @@ class ActionsSee(Ui_MainWindow):
         self.preview = AdClicker()
         self.program_operation_switch = False
 
-        self.bar = Inspector(mainwindow=self)
+        self.inspector = Inspector(mainwindow=self)
 
     def bnt_watch_ads_room(self):
         """Нажатие кнопки для просмотра рекламы в комнатах"""
         self.btn_start_rooms.clicked.connect(self.when_viewing_ads)
 
     def when_viewing_ads_stop(self):
-        self.bar.action = True
-        self.bar.program_operation_switch = False
-        self.bar.is_checked()
+        self.inspector.action = True
+        self.inspector.program_operation_switch = False
+        self.inspector.is_checked()
 
     def when_viewing_ads(self):
         """
         Начала просмотре рекламы
         """
-        self.bar.action = False
-        self.bar.program_operation_switch = True
-        self.bar.start()
-        self.bar.is_checked()
+        self.inspector.action = False
+        self.inspector.program_operation_switch = True
+        self.inspector.is_checked()
+        self.inspector.start()
 
     def stop_ads_room(self):
         """
@@ -109,12 +109,84 @@ class ActionsSee(Ui_MainWindow):
         self.sawmill_room.setEnabled(action)
         self.forge_room.setEnabled(action)
 
+    def test_kitchen_room(self):
+        self.btn_kitchen_test.clicked.connect(self.test_kitchen)
+
+    def test_lab_room(self):
+        self.btn_lab_test.clicked.connect(self.test_lab)
+
+    def test_zal_room(self):
+        self.btn_zal_test.clicked.connect(self.test_zal)
+
+    def test_bank_room(self):
+        self.btn_bank_test.clicked.connect(self.test_bank)
+
+    def test_forge_room(self):
+        self.btn_forge_test.clicked.connect(self.test_forge)
+
+    def test_joinery_room(self):
+        self.btn_sawmill_test.clicked.connect(self.test_joinery)
+
+    def test_kitchen(self):
+        """Тест на проверку если комната"""
+        path = self.preview.path_normal(self.preview.dining)
+        self.preview.one_click_rk = True
+        self.go_to_room(path, btn=self.btn_kitchen_test)
+
+    def test_lab(self):
+        """Тест на проверку если комната"""
+        path = self.preview.path_normal(self.preview.lab)
+        self.preview.one_click_rk = True
+        self.go_to_room(path, btn=self.btn_lab_test)
+
+    def go_to_room(self, path, btn):
+        """
+        Определяет есть ли координата
+        Если есть то переходит на нее и окрашивает кнопку в зеленый цвет
+        Если же нет то в красный без перехода
+        """
+        if path:
+            btn.setStyleSheet("background-color : green;")
+            self.preview.path_png(path)
+        else:
+            btn.setStyleSheet("background-color : red;")
+
+    def test_bank(self):
+        """Тест на проверку если комната"""
+        path = self.preview.path_normal(self.preview.bank)
+        self.preview.one_click_rk = True
+        self.go_to_room(path, btn=self.btn_bank_test)
+
+    def test_zal(self):
+        """Тест на проверку если комната"""
+        path = self.preview.path_normal(self.preview.zal)
+        self.preview.one_click_rk = True
+        self.go_to_room(path, btn=self.btn_zal_test)
+
+    def test_joinery(self):
+        """Тест на проверку если комната"""
+        path = self.preview.path_normal(self.preview.joinery)
+        self.preview.one_click_rk = True
+        self.go_to_room(path, btn=self.btn_sawmill_test)
+
+    def test_forge(self):
+        """Тест на проверку если комната"""
+        path = self.preview.path_normal(self.preview.forge)
+        self.preview.one_click_rk = True
+        self.go_to_room(path, btn=self.btn_forge_test)
+
 
 def actions_see(MainWindow):
     ui = ActionsSee()
     ui.setupUi(MainWindow)
     ui.bnt_watch_ads_room()
     ui.stop_ads_room()
+    ui.test_kitchen_room()
+    ui.test_lab_room()
+    ui.test_zal_room()
+    ui.test_bank_room()
+    ui.test_joinery_room()
+    ui.test_forge_room()
 
 
 def main():
