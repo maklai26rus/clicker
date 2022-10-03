@@ -7,7 +7,11 @@ from PyQt5.QtCore import QThread
 import sys
 
 
-class ProgresBar(QThread):
+class Inspector(QThread):
+    """
+    Проверящий класс. на нажите клавиши страт и отмены стоп
+
+    """
 
     def __init__(self, mainwindow):
         super().__init__()
@@ -20,6 +24,9 @@ class ProgresBar(QThread):
         self.watch_ads()
 
     def watch_ads(self):
+        """
+        Выполняется обработка просмотра рекламы в комнатах
+        """
         while self.program_operation_switch:
             time.sleep(0.5)
             if self.mainwindow.preview.KITCHEN_ROOM:
@@ -36,7 +43,13 @@ class ProgresBar(QThread):
                 self.mainwindow.preview.forge_room()
 
     def is_checked(self):
-        self.mainwindow._set_enabled(self.action)
+        """
+        self.mainwindow.set_enabled(self.action) определяет возможность выбора комнат
+        Дальше передает выбраные комнаты для просмотра рекламмы
+
+        """
+
+        self.mainwindow.set_enabled(self.action)
         self.mainwindow.preview.KITCHEN_ROOM = self.mainwindow.kitchen_room.isChecked()
         self.mainwindow.preview.LAB_ROOM = self.mainwindow.lab_room.isChecked()
         self.mainwindow.preview.BANK_ROOM = self.mainwindow.bank_room.isChecked()
@@ -46,17 +59,24 @@ class ProgresBar(QThread):
 
 
 class ActionsSee(Ui_MainWindow):
+    """
+    Запуск простмора рекламы в комнатах/планшете
+
+
+    Подключается к формам. Вся логика форм прописана в этом классе
+
+    """
 
     def __init__(self):
         super().__init__()
         self.preview = AdClicker()
         self.program_operation_switch = False
 
-        self.bar = ProgresBar(mainwindow=self)
+        self.bar = Inspector(mainwindow=self)
 
-    def watch_ads_room(self):
+    def bnt_watch_ads_room(self):
         """Нажатие кнопки для просмотра рекламы в комнатах"""
-        self.start_rooms.clicked.connect(self.when_viewing_ads)
+        self.btn_start_rooms.clicked.connect(self.when_viewing_ads)
 
     def when_viewing_ads_stop(self):
         self.bar.action = True
@@ -73,9 +93,15 @@ class ActionsSee(Ui_MainWindow):
         self.bar.is_checked()
 
     def stop_ads_room(self):
-        self.stop_rooms.clicked.connect(self.when_viewing_ads_stop)
+        """
+        Стоп. Остановится при просмотри рекламы
+        """
+        self.btn_stop_rooms.clicked.connect(self.when_viewing_ads_stop)
 
-    def _set_enabled(self, action):
+    def set_enabled(self, action):
+        """Переключатель блокирует выбор комнат после нажатие СТАРТ
+            Разблакирет после нажатие СТОП
+        """
         self.kitchen_room.setEnabled(action)
         self.lab_room.setEnabled(action)
         self.bank_room.setEnabled(action)
@@ -84,13 +110,17 @@ class ActionsSee(Ui_MainWindow):
         self.forge_room.setEnabled(action)
 
 
+def actions_see(MainWindow):
+    ui = ActionsSee()
+    ui.setupUi(MainWindow)
+    ui.bnt_watch_ads_room()
+    ui.stop_ads_room()
+
+
 def main():
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = ActionsSee()
-    ui.setupUi(MainWindow)
-    ui.watch_ads_room()
-    ui.stop_ads_room()
+    actions_see(MainWindow)
 
     MainWindow.show()
     sys.exit(app.exec_())
