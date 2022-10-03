@@ -19,6 +19,11 @@ class Inspector(QThread):
         self.action = True
         self.program_operation_switch = False
         self.mainwindow = mainwindow
+        self.choosing_action = {"rooms": False, 'tablet': False}
+
+    def shutdown_click(self):
+        for k in self.choosing_action.keys():
+            self.choosing_action[k] = False
 
     def run(self):
         self.watch_ads()
@@ -29,18 +34,25 @@ class Inspector(QThread):
         """
         while self.program_operation_switch:
             time.sleep(0.5)
-            if self.mainwindow.preview.KITCHEN_ROOM:
-                self.mainwindow.preview.kitchen_rooms()
-            elif self.mainwindow.preview.LAB_ROOM:
-                self.mainwindow.preview.laboratory_room()
-            elif self.mainwindow.preview.JOINERY_ROOM:
-                self.mainwindow.preview.joinery_room()
-            elif self.mainwindow.preview.ZAL_ROOM:
-                self.mainwindow.preview.zal_room()
-            elif self.mainwindow.preview.BANK_ROOM:
-                self.mainwindow.preview.bank_room()
-            elif self.mainwindow.preview.FORGE_ROOM:
-                self.mainwindow.preview.forge_room()
+            if self.choosing_action["rooms"]:
+                print(1)
+                if self.mainwindow.preview.KITCHEN_ROOM:
+                    self.mainwindow.preview.kitchen_rooms()
+                elif self.mainwindow.preview.LAB_ROOM:
+                    self.mainwindow.preview.laboratory_room()
+                elif self.mainwindow.preview.JOINERY_ROOM:
+                    self.mainwindow.preview.joinery_room()
+                elif self.mainwindow.preview.ZAL_ROOM:
+                    self.mainwindow.preview.zal_room()
+                elif self.mainwindow.preview.BANK_ROOM:
+                    self.mainwindow.preview.bank_room()
+                elif self.mainwindow.preview.FORGE_ROOM:
+                    self.mainwindow.preview.forge_room()
+
+            if self.choosing_action['tablet']:
+                print(2)
+                self.mainwindow.preview.preview_tablet()
+                self.mainwindow.preview.definition_prize()
 
     def is_checked(self):
         """
@@ -71,7 +83,6 @@ class ActionsSee(Ui_MainWindow):
         super().__init__()
         self.preview = AdClicker()
         self.program_operation_switch = False
-
         self.inspector = Inspector(mainwindow=self)
 
     def bnt_watch_ads_room(self):
@@ -81,6 +92,8 @@ class ActionsSee(Ui_MainWindow):
     def when_viewing_ads_stop(self):
         self.inspector.action = True
         self.inspector.program_operation_switch = False
+        self.inspector.choosing_action['rooms'] = False
+        self.inspector.choosing_action['tablet'] = False
         self.inspector.is_checked()
 
     def when_viewing_ads(self):
@@ -89,14 +102,28 @@ class ActionsSee(Ui_MainWindow):
         """
         self.inspector.action = False
         self.inspector.program_operation_switch = True
+        self.inspector.choosing_action['tablet'] = False
+        self.inspector.choosing_action['rooms'] = True
         self.inspector.is_checked()
         self.inspector.start()
 
-    def stop_ads_room(self):
+    def btn_stop_ads_room(self):
         """
         Стоп. Остановится при просмотри рекламы
         """
         self.btn_stop_rooms.clicked.connect(self.when_viewing_ads_stop)
+
+    def btn_tablet_stop(self):
+        self.btn_stop_tabtet.clicked.connect(self.when_viewing_ads_stop)
+    def btn_tablet_start(self):
+        self.btn_start_tablet.clicked.connect(self.btn_ts)
+
+    def btn_ts(self):
+        self.inspector.choosing_action['tablet'] = True
+        self.inspector.choosing_action['rooms'] = False
+        self.inspector.program_operation_switch = True
+
+        self.inspector.start()
 
     def set_enabled(self, action):
         """Переключатель блокирует выбор комнат после нажатие СТАРТ
@@ -180,7 +207,11 @@ def actions_see(MainWindow):
     ui = ActionsSee()
     ui.setupUi(MainWindow)
     ui.bnt_watch_ads_room()
-    ui.stop_ads_room()
+    ui.btn_stop_ads_room()
+
+    ui.btn_tablet_start()
+    ui.btn_tablet_stop()
+
     ui.test_kitchen_room()
     ui.test_lab_room()
     ui.test_zal_room()
