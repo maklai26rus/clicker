@@ -35,7 +35,6 @@ class Inspector(QThread):
         while self.program_operation_switch:
             time.sleep(0.5)
             if self.choosing_action["rooms"]:
-                print(1)
                 if self.mainwindow.preview.KITCHEN_ROOM:
                     self.mainwindow.preview.kitchen_rooms()
                 elif self.mainwindow.preview.LAB_ROOM:
@@ -50,7 +49,6 @@ class Inspector(QThread):
                     self.mainwindow.preview.forge_room()
 
             if self.choosing_action['tablet']:
-                print(2)
                 self.mainwindow.preview.preview_tablet()
                 self.mainwindow.preview.definition_prize()
 
