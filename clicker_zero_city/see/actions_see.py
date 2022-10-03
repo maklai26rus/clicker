@@ -1,7 +1,7 @@
 import time
 
 from run_video import AdClicker
-from see_ad import Ui_MainWindow
+from see import Ui_MainWindow
 from PyQt5 import QtGui, QtWidgets
 from PyQt5.QtCore import QThread
 import sys
@@ -21,27 +21,21 @@ class ProgresBar(QThread):
 
     def watch_ads(self):
         while self.program_operation_switch:
-            print(self.mainwindow.preview.KITCHEN_ROOM, 'Kitchen')
-            print(self.mainwindow.preview.LAB_ROOM, 'LAB_ROOM')
-            print(self.mainwindow.preview.JOINERY_ROOM, 'JOINERY_ROOM')
-            print(self.mainwindow.preview.ZAL_ROOM, 'ZAL_ROOM')
-            print(self.mainwindow.preview.BANK_ROOM, 'BANK_ROOM')
-            print(self.mainwindow.preview.FORGE_ROOM, 'FORGE_ROOM')
-            time.sleep(3)
-            # if self.preview.KITCHEN_ROOM:
-            #     self.preview.kitchen_rooms()
-            # elif self.preview.LAB_ROOM:
-            #     self.preview.laboratory_room()
-            # elif self.preview.JOINERY_ROOM:
-            #     self.preview.joinery_room()
-            # elif self.preview.ZAL_ROOM:
-            #     self.preview.zal_room()
-            # elif self.preview.BANK_ROOM:
-            #     self.preview.bank_room()
-            # elif self.preview.FORGE_ROOM:
-            #     self.preview.forge_room()
+            time.sleep(0.5)
+            if self.mainwindow.preview.KITCHEN_ROOM:
+                self.mainwindow.preview.kitchen_rooms()
+            elif self.mainwindow.preview.LAB_ROOM:
+                self.mainwindow.preview.laboratory_room()
+            elif self.mainwindow.preview.JOINERY_ROOM:
+                self.mainwindow.preview.joinery_room()
+            elif self.mainwindow.preview.ZAL_ROOM:
+                self.mainwindow.preview.zal_room()
+            elif self.mainwindow.preview.BANK_ROOM:
+                self.mainwindow.preview.bank_room()
+            elif self.mainwindow.preview.FORGE_ROOM:
+                self.mainwindow.preview.forge_room()
 
-    def method_name(self):
+    def is_checked(self):
         self.mainwindow._set_enabled(self.action)
         self.mainwindow.preview.KITCHEN_ROOM = self.mainwindow.kitchen_room.isChecked()
         self.mainwindow.preview.LAB_ROOM = self.mainwindow.lab_room.isChecked()
@@ -67,7 +61,7 @@ class ActionsSee(Ui_MainWindow):
     def when_viewing_ads_stop(self):
         self.bar.action = True
         self.bar.program_operation_switch = False
-        self.bar.method_name()
+        self.bar.is_checked()
 
     def when_viewing_ads(self):
         """
@@ -76,7 +70,7 @@ class ActionsSee(Ui_MainWindow):
         self.bar.action = False
         self.bar.program_operation_switch = True
         self.bar.start()
-        self.bar.method_name()
+        self.bar.is_checked()
 
     def stop_ads_room(self):
         self.stop_rooms.clicked.connect(self.when_viewing_ads_stop)
@@ -95,6 +89,8 @@ def main():
     MainWindow = QtWidgets.QMainWindow()
     ui = ActionsSee()
     ui.setupUi(MainWindow)
+    ui.watch_ads_room()
+    ui.stop_ads_room()
 
     MainWindow.show()
     sys.exit(app.exec_())

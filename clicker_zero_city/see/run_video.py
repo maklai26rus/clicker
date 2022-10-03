@@ -188,6 +188,7 @@ class AdClicker:
 
 
 def watch_ads():
+    """Ручной запуск"""
     keyboard.add_hotkey('ALT + Z', advertising_rooms)
     keyboard.add_hotkey('ALT + X', advertising_tablet)
     preview = AdClicker()
