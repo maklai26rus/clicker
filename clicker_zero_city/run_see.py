@@ -1,5 +1,4 @@
-from actions_see import main_actions_see
-from run_video import watch_ads
+from clicker_zero_city.see.actions_see import main_actions_see
 
 if __name__ == '__main__':
     try:

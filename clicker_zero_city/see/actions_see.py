@@ -1,7 +1,8 @@
 import time
 
-from run_video import AdClicker
-from see import Ui_MainWindow
+from clicker_zero_city.see.run_video import AdClicker
+from clicker_zero_city.see.see import Ui_MainWindow
+
 from PyQt5 import QtGui, QtWidgets
 from PyQt5.QtCore import QThread
 import sys
@@ -85,7 +86,6 @@ class ActionsSee(Ui_MainWindow):
 
     def bnt_watch_ads_room(self):
         """Нажатие кнопки для просмотра рекламы в комнатах"""
-        self.preview.one_click_rk = True
         self.btn_start_rooms.clicked.connect(self.when_viewing_ads)
 
     def when_viewing_ads_stop(self):
@@ -99,6 +99,7 @@ class ActionsSee(Ui_MainWindow):
         """
         Начала просмотре рекламы
         """
+        self.preview.one_click_rk = True
         self.inspector.action = False
         self.inspector.program_operation_switch = True
         self.inspector.choosing_action['tablet'] = False
@@ -236,7 +237,6 @@ def main_actions_see():
 
     MainWindow.show()
     sys.exit(app.exec_())
-
 
 # if __name__ == "__main__":
 #     main_actions_see()
