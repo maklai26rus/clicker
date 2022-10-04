@@ -85,6 +85,7 @@ class ActionsSee(Ui_MainWindow):
 
     def bnt_watch_ads_room(self):
         """Нажатие кнопки для просмотра рекламы в комнатах"""
+        self.preview.one_click_rk = True
         self.btn_start_rooms.clicked.connect(self.when_viewing_ads)
 
     def when_viewing_ads_stop(self):
