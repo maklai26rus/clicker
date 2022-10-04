@@ -113,6 +113,7 @@ class ActionsSee(Ui_MainWindow):
 
     def btn_tablet_stop(self):
         self.btn_stop_tabtet.clicked.connect(self.when_viewing_ads_stop)
+
     def btn_tablet_start(self):
         self.btn_start_tablet.clicked.connect(self.btn_ts)
 
@@ -218,7 +219,7 @@ def actions_see(MainWindow):
     ui.test_forge_room()
 
 
-def main():
+def main_actions_see():
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     actions_see(MainWindow)
@@ -227,5 +228,5 @@ def main():
     sys.exit(app.exec_())
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main_actions_see()

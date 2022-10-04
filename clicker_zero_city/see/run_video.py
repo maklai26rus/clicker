@@ -21,16 +21,17 @@ class AdClicker:
 
         self.click_repetitions = 1
 
-        self.video_rooms = '..//png/marketing/marketing1.PNG'
-        self.video_tablet = '..//png/marketing/marketing2.PNG'
-        self.prize = '..//png/marketing/prize.PNG'
+        self.video_rooms = 'png/marketing/marketing1.PNG'
+        self.video_tablet = 'png/marketing/marketing2.PNG'
+        self.prize = 'png/marketing/prize.PNG'
 
-        self.dining = "..//png/study_rooms/dining_room"
-        self.lab = "..//png/study_rooms/lab_room"
-        self.bank = "..//png/study_rooms/bank_room"
-        self.zal = "..//png/study_rooms/zal_room"
-        self.joinery = "..//png/study_rooms/joinery_room"
-        self.forge = "..//png/study_rooms/forge_room"
+        # self.dining = "..//png/study_rooms/dining_room"
+        self.dining = "png/study_rooms/dining_room"
+        self.lab = "png/study_rooms/lab_room"
+        self.bank = "png/study_rooms/bank_room"
+        self.zal = "png/study_rooms/zal_room"
+        self.joinery = "png/study_rooms/joinery_room"
+        self.forge = "png/study_rooms/forge_room"
 
     def path_png(self, path: list):
         """
