@@ -18,6 +18,8 @@ class AdClicker:
         self.JOINERY_ROOM = False
 
         self.one_click_rk = True
+        # Время просмотра рекламы. Хочу сделать регулируемое
+        self.waiting_for_end = 40
 
         self.click_repetitions = 1
 
@@ -53,14 +55,14 @@ class AdClicker:
         get_vidio = pyautogui.locateOnScreen(self.video_rooms, confidence=0.8)
         if get_vidio:
             pyautogui.click(get_vidio)
-            time.sleep(40)
+            time.sleep(self.waiting_for_end)
 
     def preview_tablet(self):
         """Предварительный просмотр рекламы"""
         get_vidio = pyautogui.locateOnScreen(self.video_tablet, confidence=0.8)
         if get_vidio:
             pyautogui.click(get_vidio)
-            time.sleep(40)
+            time.sleep(self.waiting_for_end)
 
     def definition_prize(self):
         """На планшете после просмотра рекламы нажать забрать приз"""
