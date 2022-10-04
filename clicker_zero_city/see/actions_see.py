@@ -85,6 +85,7 @@ class ActionsSee(Ui_MainWindow):
 
     def bnt_watch_ads_room(self):
         """Нажатие кнопки для просмотра рекламы в комнатах"""
+        self.preview.one_click_rk = True
         self.btn_start_rooms.clicked.connect(self.when_viewing_ads)
 
     def when_viewing_ads_stop(self):
@@ -112,11 +113,15 @@ class ActionsSee(Ui_MainWindow):
         self.btn_stop_rooms.clicked.connect(self.when_viewing_ads_stop)
 
     def btn_tablet_stop(self):
+        """Кнопка для остановки просмотра рекламы с планшета"""
         self.btn_stop_tabtet.clicked.connect(self.when_viewing_ads_stop)
+
     def btn_tablet_start(self):
+        """Кнопка для запуск просмотра рекламы с планшета """
         self.btn_start_tablet.clicked.connect(self.btn_ts)
 
     def btn_ts(self):
+        """Действие выполнения кнопка btn_start_tablet"""
         self.inspector.choosing_action['tablet'] = True
         self.inspector.choosing_action['rooms'] = False
         self.inspector.program_operation_switch = True
@@ -135,21 +140,27 @@ class ActionsSee(Ui_MainWindow):
         self.forge_room.setEnabled(action)
 
     def test_kitchen_room(self):
+        """Запуск кнопки на проверка если комната """
         self.btn_kitchen_test.clicked.connect(self.test_kitchen)
 
     def test_lab_room(self):
+        """Запуск кнопки на проверка если комната """
         self.btn_lab_test.clicked.connect(self.test_lab)
 
     def test_zal_room(self):
+        """Запуск кнопки на проверка если комната """
         self.btn_zal_test.clicked.connect(self.test_zal)
 
     def test_bank_room(self):
+        """Запуск кнопки на проверка если комната """
         self.btn_bank_test.clicked.connect(self.test_bank)
 
     def test_forge_room(self):
+        """Запуск кнопки на проверка если комната """
         self.btn_forge_test.clicked.connect(self.test_forge)
 
     def test_joinery_room(self):
+        """Запуск кнопки на проверка если комната """
         self.btn_sawmill_test.clicked.connect(self.test_joinery)
 
     def test_kitchen(self):
@@ -218,7 +229,7 @@ def actions_see(MainWindow):
     ui.test_forge_room()
 
 
-def main():
+def main_actions_see():
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     actions_see(MainWindow)
@@ -227,5 +238,5 @@ def main():
     sys.exit(app.exec_())
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main_actions_see()

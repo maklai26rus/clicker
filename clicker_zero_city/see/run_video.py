@@ -18,19 +18,22 @@ class AdClicker:
         self.JOINERY_ROOM = False
 
         self.one_click_rk = True
+        # Время просмотра рекламы. Хочу сделать регулируемое
+        self.waiting_for_end = 40
 
         self.click_repetitions = 1
 
-        self.video_rooms = '..//png/marketing/marketing1.PNG'
-        self.video_tablet = '..//png/marketing/marketing2.PNG'
-        self.prize = '..//png/marketing/prize.PNG'
+        self.video_rooms = 'png/marketing/marketing1.PNG'
+        self.video_tablet = 'png/marketing/marketing2.PNG'
+        self.prize = 'png/marketing/prize.PNG'
 
-        self.dining = "..//png/study_rooms/dining_room"
-        self.lab = "..//png/study_rooms/lab_room"
-        self.bank = "..//png/study_rooms/bank_room"
-        self.zal = "..//png/study_rooms/zal_room"
-        self.joinery = "..//png/study_rooms/joinery_room"
-        self.forge = "..//png/study_rooms/forge_room"
+        # self.dining = "..//png/study_rooms/dining_room"
+        self.dining = "png/study_rooms/dining_room"
+        self.lab = "png/study_rooms/lab_room"
+        self.bank = "png/study_rooms/bank_room"
+        self.zal = "png/study_rooms/zal_room"
+        self.joinery = "png/study_rooms/joinery_room"
+        self.forge = "png/study_rooms/forge_room"
 
     def path_png(self, path: list):
         """
@@ -52,14 +55,14 @@ class AdClicker:
         get_vidio = pyautogui.locateOnScreen(self.video_rooms, confidence=0.8)
         if get_vidio:
             pyautogui.click(get_vidio)
-            time.sleep(40)
+            time.sleep(self.waiting_for_end)
 
     def preview_tablet(self):
         """Предварительный просмотр рекламы"""
         get_vidio = pyautogui.locateOnScreen(self.video_tablet, confidence=0.8)
         if get_vidio:
             pyautogui.click(get_vidio)
-            time.sleep(40)
+            time.sleep(self.waiting_for_end)
 
     def definition_prize(self):
         """На планшете после просмотра рекламы нажать забрать приз"""
