@@ -3,8 +3,6 @@ import time
 
 import easyocr
 
-from clicker_zero_city.exit_ZC import exit_mgl, exit_zc
-
 # Переход на глобальную карту и поиск лодки
 global_map = "png/greenery/global_maps.PNG"
 looking_boat = "png/greenery/boat.PNG"

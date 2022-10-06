@@ -1,10 +1,11 @@
 import time
 
-from clicker_zero_city.clan_war import clan_war
-from game_openings import open_game
-from war_orangeria import start_war_orangeria
 import schedule
-from clicker_zero_city.exit_ZC import exit_zc, exit_mgl
+
+from war_botany.clan_war import clan_war
+from war_botany.exit_ZC import exit_mgl, exit_zc
+from war_botany.game_openings import open_game
+from war_botany.war_orangeria import start_war_orangeria
 
 
 def run():
@@ -21,8 +22,8 @@ def run():
 def main():
     # schedule.every().seconds.do(run)
     # schedule.every(1).seconds.do(start_var_orangeria)
-    # run()
-    schedule.every().hour.do(run)
+    run()
+    # schedule.every().hour.do(run)
     # schedule.every(1).minutes.do(run)
     # schedule.every(90).minutes.do(run)
     while True:

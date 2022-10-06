@@ -3,7 +3,7 @@ import pyautogui
 import time
 import os
 
-from clicker_zero_city.command_clicker import advertising_rooms, advertising_tablet, choosing_action
+# from clicker_zero_city.command_clicker import advertising_rooms, advertising_tablet, choosing_action
 from clicker_zero_city.search_coordinate import search_coordinate_ad
 
 
@@ -187,33 +187,35 @@ class AdClicker:
         time.sleep(5)
 
 
-def watch_ads():
-    """Ручной запуск"""
-    keyboard.add_hotkey('ALT + Z', advertising_rooms)
-    keyboard.add_hotkey('ALT + X', advertising_tablet)
-    preview = AdClicker()
-    preview.KITCHEN_ROOM = True
-    preview.ZAL_ROOM = False
-    preview.BANK_ROOM = False
-    preview.LAB_ROOM = False
-    preview.FORGE_ROOM = False
-    preview.JOINERY_ROOM = False
-    while True:
-        print('1')
-        if choosing_action["rooms"]:
-            if preview.KITCHEN_ROOM:
-                preview.kitchen_rooms()
-            elif preview.LAB_ROOM:
-                preview.laboratory_room()
-            elif preview.JOINERY_ROOM:
-                preview.joinery_room()
-            elif preview.ZAL_ROOM:
-                preview.zal_room()
-            elif preview.BANK_ROOM:
-                preview.bank_room()
-            elif preview.FORGE_ROOM:
-                preview.forge_room()
-
-        if choosing_action['tablet']:
-            preview.preview_tablet()
-            preview.definition_prize()
+# def watch_ads():
+#     """Ручной запуск
+#     только если не работает виндоус окно
+#     """
+#     keyboard.add_hotkey('ALT + Z', advertising_rooms)
+#     keyboard.add_hotkey('ALT + X', advertising_tablet)
+#     preview = AdClicker()
+#     preview.KITCHEN_ROOM = True
+#     preview.ZAL_ROOM = False
+#     preview.BANK_ROOM = False
+#     preview.LAB_ROOM = False
+#     preview.FORGE_ROOM = False
+#     preview.JOINERY_ROOM = False
+#     while True:
+#         print('1')
+#         if choosing_action["rooms"]:
+#             if preview.KITCHEN_ROOM:
+#                 preview.kitchen_rooms()
+#             elif preview.LAB_ROOM:
+#                 preview.laboratory_room()
+#             elif preview.JOINERY_ROOM:
+#                 preview.joinery_room()
+#             elif preview.ZAL_ROOM:
+#                 preview.zal_room()
+#             elif preview.BANK_ROOM:
+#                 preview.bank_room()
+#             elif preview.FORGE_ROOM:
+#                 preview.forge_room()
+#
+#         if choosing_action['tablet']:
+#             preview.preview_tablet()
+#             preview.definition_prize()
