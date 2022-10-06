@@ -100,14 +100,12 @@ class AdClicker:
     def laboratory_room(self):
         path = self.path_normal(self.lab)
         time.sleep(1)
-        if self.click_repetitions > 3:
+        if self.preview_room():
+            self.click_repetitions += 1
+        elif self.click_repetitions > 3:
             self.LAB_ROOM = False
             self.one_click_rk = True
             self.click_repetitions = 1
-
-        elif self.preview_room():
-            self.click_repetitions += 1
-
         elif self.LAB_ROOM:
             self.path_png(path)
 
@@ -139,13 +137,12 @@ class AdClicker:
         """
         path = self.path_normal(self.bank)
         time.sleep(1)
-        if self.click_repetitions > 3:
+        if self.preview_room():
+            self.click_repetitions += 1
+        elif self.click_repetitions > 3:
             AdClicker.BANK_ROOM = False
             self.one_click_rk = True
             self.click_repetitions = 1
-
-        elif self.preview_room():
-            self.click_repetitions += 1
         elif self.BANK_ROOM:
             self.path_png(path)
 
@@ -158,13 +155,13 @@ class AdClicker:
         """
         path = self.path_normal(self.zal)
         time.sleep(1)
-        if self.click_repetitions > 3:
+        if self.preview_room():
+            self.click_repetitions += 1
+
+        elif self.click_repetitions > 3:
             AdClicker.ZAL_ROOM = False
             self.one_click_rk = True
             self.click_repetitions = 1
-
-        elif self.preview_room():
-            self.click_repetitions += 1
         elif self.ZAL_ROOM:
             self.path_png(path)
         print(f'Спортзал', path, self.click_repetitions)
