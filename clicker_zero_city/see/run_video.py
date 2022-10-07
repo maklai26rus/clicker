@@ -140,7 +140,7 @@ class AdClicker:
         if self.preview_room():
             self.click_repetitions += 1
         elif self.click_repetitions > 3:
-            AdClicker.BANK_ROOM = False
+            self.BANK_ROOM = False
             self.one_click_rk = True
             self.click_repetitions = 1
         elif self.BANK_ROOM:
@@ -159,7 +159,7 @@ class AdClicker:
             self.click_repetitions += 1
 
         elif self.click_repetitions > 3:
-            AdClicker.ZAL_ROOM = False
+            self.ZAL_ROOM = False
             self.one_click_rk = True
             self.click_repetitions = 1
         elif self.ZAL_ROOM:
