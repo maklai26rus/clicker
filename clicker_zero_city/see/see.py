@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'see.ui'
+# Form implementation generated from reading ui file '.\see.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.7
 #
@@ -11,14 +11,14 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(294, 367)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
+class Ui_Za_City(object):
+    def setupUi(self, Za_City):
+        Za_City.setObjectName("Za_City")
+        Za_City.setFixedSize(300, 385)
+        self.centralwidget = QtWidgets.QWidget(Za_City)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayoutWidget_2 = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(10, 10, 271, 311))
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(10, 10, 277, 311))
         self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -36,7 +36,7 @@ class Ui_MainWindow(object):
         self.label_rooms.setFont(font)
         self.label_rooms.setToolTip("")
         self.label_rooms.setStyleSheet("margin-left : 20\n"
-"")
+                                       "")
         self.label_rooms.setTextFormat(QtCore.Qt.PlainText)
         self.label_rooms.setScaledContents(False)
         self.label_rooms.setTextInteractionFlags(QtCore.Qt.TextEditable)
@@ -132,46 +132,68 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.addLayout(self.verticalLayout_6)
         self.verticalLayout_3.addLayout(self.verticalLayout_5)
         self.verticalLayout_2.addLayout(self.verticalLayout_3)
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 294, 21))
+        self.version = QtWidgets.QLabel(self.centralwidget)
+        self.version.setGeometry(QtCore.QRect(170, 326, 41, 20))
+        self.version.setObjectName("version")
+        self.version_number = QtWidgets.QLabel(self.centralwidget)
+        self.version_number.setGeometry(QtCore.QRect(220, 330, 47, 13))
+        self.version_number.setObjectName("version_number")
+        Za_City.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(Za_City)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 301, 21))
         self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.menu = QtWidgets.QMenu(self.menubar)
+        self.menu.setObjectName("menu")
+        Za_City.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(Za_City)
         self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        Za_City.setStatusBar(self.statusbar)
+        self.action = QtWidgets.QAction(Za_City)
+        self.action.setObjectName("action")
+        self.actionExit = QtWidgets.QAction(Za_City)
+        self.actionExit.setObjectName("actionExit")
+        self.menu.addAction(self.action)
+        self.menu.addSeparator()
+        self.menu.addAction(self.actionExit)
+        self.menubar.addAction(self.menu.menuAction())
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi(Za_City)
+        QtCore.QMetaObject.connectSlotsByName(Za_City)
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self, Za_City):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label_rooms.setText(_translate("MainWindow", "Просмотреть рекламу в комнатах"))
-        self.kitchen_room.setText(_translate("MainWindow", "Кухня"))
-        self.sawmill_room.setText(_translate("MainWindow", "Лесопилка"))
-        self.bank_room.setText(_translate("MainWindow", "Банк"))
-        self.lab_room.setText(_translate("MainWindow", "Лаборатория"))
-        self.forge_room.setText(_translate("MainWindow", "Кузница"))
-        self.zal_room.setText(_translate("MainWindow", "Спорт зал"))
-        self.btn_kitchen_test.setText(_translate("MainWindow", "тест кухня"))
-        self.btn_sawmill_test.setText(_translate("MainWindow", "тест лесопилка"))
-        self.btn_bank_test.setText(_translate("MainWindow", "тест банк"))
-        self.btn_lab_test.setText(_translate("MainWindow", "тест лаборатория"))
-        self.btn_forge_test.setText(_translate("MainWindow", "тест кузница"))
-        self.btn_zal_test.setText(_translate("MainWindow", "тест спорт зал"))
-        self.btn_start_rooms.setText(_translate("MainWindow", "Старт"))
-        self.btn_stop_rooms.setText(_translate("MainWindow", "Стоп"))
-        self.label_tablet.setText(_translate("MainWindow", "Просмотреть рекламу на планшете"))
-        self.btn_start_tablet.setText(_translate("MainWindow", "Старт"))
-        self.btn_stop_tabtet.setText(_translate("MainWindow", "Стоп"))
+        Za_City.setWindowTitle(_translate("Za_City", "Za_City"))
+        self.label_rooms.setText(_translate("Za_City", "Просмотреть рекламу в комнатах"))
+        self.kitchen_room.setText(_translate("Za_City", "Кухня"))
+        self.sawmill_room.setText(_translate("Za_City", "Лесопилка"))
+        self.bank_room.setText(_translate("Za_City", "Банк"))
+        self.lab_room.setText(_translate("Za_City", "Лаборатория"))
+        self.forge_room.setText(_translate("Za_City", "Кузница"))
+        self.zal_room.setText(_translate("Za_City", "Спорт зал"))
+        self.btn_kitchen_test.setText(_translate("Za_City", "тест кухня"))
+        self.btn_sawmill_test.setText(_translate("Za_City", "тест лесопилка"))
+        self.btn_bank_test.setText(_translate("Za_City", "тест банк"))
+        self.btn_lab_test.setText(_translate("Za_City", "тест лаборатория"))
+        self.btn_forge_test.setText(_translate("Za_City", "тест кузница"))
+        self.btn_zal_test.setText(_translate("Za_City", "тест спорт зал"))
+        self.btn_start_rooms.setText(_translate("Za_City", "Старт"))
+        self.btn_stop_rooms.setText(_translate("Za_City", "Стоп"))
+        self.label_tablet.setText(_translate("Za_City", "Просмотреть рекламу на планшете"))
+        self.btn_start_tablet.setText(_translate("Za_City", "Старт"))
+        self.btn_stop_tabtet.setText(_translate("Za_City", "Стоп"))
+        self.version.setText(_translate("Za_City", "Версия:"))
+        self.version_number.setText(_translate("Za_City", "0"))
+        self.menu.setTitle(_translate("Za_City", "Меню"))
+        self.action.setText(_translate("Za_City", "О кликере"))
+        self.actionExit.setText(_translate("Za_City", "Exit"))
 
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+    Za_City = QtWidgets.QMainWindow()
+    ui = Ui_Za_City()
+    ui.setupUi(Za_City)
+    Za_City.show()
     sys.exit(app.exec_())

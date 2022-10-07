@@ -1,10 +1,12 @@
 import time
 
 from clicker_zero_city.see.run_video import AdClicker
-from clicker_zero_city.see.see import Ui_MainWindow
+from clicker_zero_city.see.see import Ui_Za_City
+from wind_menu.info import Ui_info
 
 from PyQt5 import QtGui, QtWidgets
 from PyQt5.QtCore import QThread
+from PyQt5.QtWidgets import qApp, QDialog
 import sys
 
 
@@ -69,7 +71,7 @@ class Inspector(QThread):
         self.mainwindow.preview.FORGE_ROOM = self.mainwindow.forge_room.isChecked()
 
 
-class ActionsSee(Ui_MainWindow):
+class ActionsSee(Ui_Za_City):
     """
     Запуск простмора рекламы в комнатах/планшете
 
@@ -78,11 +80,41 @@ class ActionsSee(Ui_MainWindow):
 
     """
 
-    def __init__(self):
+    def __init__(self, main_window):
         super().__init__()
+        self.main_window = main_window
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_info()
+
         self.preview = AdClicker()
         self.program_operation_switch = False
+
         self.inspector = Inspector(mainwindow=self)
+
+        self.setupUi(self.main_window)
+        # MainWindow.setFixedSize(298, 384) при обновлении платформы не забуддь в ручную. поставить setFixedSize
+        self.bnt_watch_ads_room()
+        self.btn_stop_ads_room()
+
+        self.action.triggered.connect(self.open_window)
+
+        self.btn_tablet_start()
+        self.btn_tablet_stop()
+
+        self.test_kitchen_room()
+        self.test_lab_room()
+        self.test_zal_room()
+        self.test_bank_room()
+        self.test_joinery_room()
+        self.test_forge_room()
+
+        self.version_number.setText('0.071022')
+        self.actionExit.triggered.connect(qApp.quit)
+
+    def open_window(self):
+        """Открывает окно инфо """
+        self.ui.setupUi(self.window)
+        self.window.show()
 
     def bnt_watch_ads_room(self):
         """Нажатие кнопки для просмотра рекламы в комнатах"""
@@ -213,30 +245,9 @@ class ActionsSee(Ui_MainWindow):
         self.go_to_room(path, btn=self.btn_forge_test)
 
 
-def actions_see(MainWindow):
-    ui = ActionsSee()
-    ui.setupUi(MainWindow)
-    ui.bnt_watch_ads_room()
-    ui.btn_stop_ads_room()
-
-    ui.btn_tablet_start()
-    ui.btn_tablet_stop()
-
-    ui.test_kitchen_room()
-    ui.test_lab_room()
-    ui.test_zal_room()
-    ui.test_bank_room()
-    ui.test_joinery_room()
-    ui.test_forge_room()
-
-
 def main_actions_see():
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    actions_see(MainWindow)
-
+    ActionsSee(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
-
-# if __name__ == "__main__":
-#     main_actions_see()
