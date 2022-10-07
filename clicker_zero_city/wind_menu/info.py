@@ -14,16 +14,16 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_info(object):
     def setupUi(self, info):
         info.setObjectName("info")
-        info.resize(357, 236)
+        info.setFixedSize(385, 255)
         self.centralwidget = QtWidgets.QWidget(info)
         self.centralwidget.setObjectName("centralwidget")
         self.info_cliker = QtWidgets.QTextBrowser(self.centralwidget)
         self.info_cliker.setEnabled(False)
-        self.info_cliker.setGeometry(QtCore.QRect(10, 10, 340, 180))
+        self.info_cliker.setGeometry(QtCore.QRect(10, 10, 371, 191))
         self.info_cliker.setObjectName("info_cliker")
         info.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(info)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 357, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 383, 21))
         self.menubar.setObjectName("menubar")
         info.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(info)
@@ -36,29 +36,25 @@ class Ui_info(object):
     def retranslateUi(self, info):
         _translate = QtCore.QCoreApplication.translate
         info.setWindowTitle(_translate("info", "info"))
-        self.info_cliker.setHtml(_translate("info",
-                                            "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-                                            "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-                                            "p, li { white-space: pre-wrap; }\n"
-                                            "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-                                            "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:16pt;\">По всем вопросом обращайтесь</span></p>\n"
-                                            "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:16pt;\">maklai26rus@mail.ru</span></p>\n"
-                                            "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:16pt;\"><br /></p>\n"
-                                            "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:16pt;\">Потдержка проекта:</span></p>\n"
-                                            "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt; font-weight:600;\">410014427230795</span></p>\n"
-                                            "<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:600;\"><br /></p>\n"
-                                            "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+        self.info_cliker.setHtml(_translate("info", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt;\">Кликер предназначен для просмотра рекламы в игре Зеро Сити</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt;\">По всем вопросом обращайтся</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt;\">maklai26rus@mail.ru</span></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt;\"><br /></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt;\">Потдержка проекта:</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">410014427230795</span></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:600;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
 
 
-# if __name__ == "__main__":
-#     import sys
-#
-
-# def xxxx():
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     info = QtWidgets.QMainWindow()
-#     ui = Ui_info()
-#     ui.setupUi(info)
-#     info.show()
-#     sys.exit(app.exec_())
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    info = QtWidgets.QMainWindow()
+    ui = Ui_info()
+    ui.setupUi(info)
+    info.show()
+    sys.exit(app.exec_())
