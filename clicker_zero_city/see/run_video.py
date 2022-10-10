@@ -92,6 +92,7 @@ class AdClicker:
             time.sleep(1)
             get_movie2 = pyautogui.locateOnScreen(self.path_movie2, confidence=0.8)
             pyautogui.click(get_movie2)
+            time.sleep(1)
 
     def kitchen_rooms(self):
         """
