@@ -1,9 +1,6 @@
-import keyboard
 import pyautogui
 import time
 import os
-
-# from clicker_zero_city.command_clicker import advertising_rooms, advertising_tablet, choosing_action
 from clicker_zero_city.search_coordinate import search_coordinate_ad
 
 
@@ -93,7 +90,7 @@ class AdClicker:
         elif self.KITCHEN_ROOM:
             self.path_png(path)
 
-        print(f'Кухня найденый координат {len(path)}', self.click_repetitions)
+        # print(f'Кухня найденый координат {len(path)}', self.click_repetitions)
 
         time.sleep(5)
 
@@ -109,7 +106,7 @@ class AdClicker:
         elif self.LAB_ROOM:
             self.path_png(path)
 
-        print(f'Лаборатория найденый координат {len(path)}', self.click_repetitions)
+        # print(f'Лаборатория найденый координат {len(path)}', self.click_repetitions)
 
     def joinery_room(self):
         """
@@ -128,7 +125,7 @@ class AdClicker:
         elif self.JOINERY_ROOM:
 
             self.path_png(path)
-        print(f'Лесопилка найденый координат {len(path)}', self.click_repetitions)
+        # print(f'Лесопилка найденый координат {len(path)}', self.click_repetitions)
 
     def bank_room(self):
         """
@@ -146,7 +143,7 @@ class AdClicker:
         elif self.BANK_ROOM:
             self.path_png(path)
 
-        print(f'Банк', path, self.click_repetitions)
+        # print(f'Банк', path, self.click_repetitions)
 
     def zal_room(self):
         """
@@ -164,7 +161,7 @@ class AdClicker:
             self.click_repetitions = 1
         elif self.ZAL_ROOM:
             self.path_png(path)
-        print(f'Спортзал', path, self.click_repetitions)
+        # print(f'Спортзал', path, self.click_repetitions)
         time.sleep(5)
 
     def forge_room(self):
@@ -182,10 +179,9 @@ class AdClicker:
             self.click_repetitions = 1
         elif self.FORGE_ROOM:
             self.path_png(path)
-        print(f'Кузница найденый координат {len(path)}', self.click_repetitions)
+        # print(f'Кузница найденый координат {len(path)}', self.click_repetitions)
 
         time.sleep(5)
-
 
 # def watch_ads():
 #     """Ручной запуск
