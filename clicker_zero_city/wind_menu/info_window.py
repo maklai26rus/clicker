@@ -50,11 +50,3 @@ class Ui_info(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
 
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    info = QtWidgets.QMainWindow()
-    ui = Ui_info()
-    ui.setupUi(info)
-    info.show()
-    sys.exit(app.exec_())

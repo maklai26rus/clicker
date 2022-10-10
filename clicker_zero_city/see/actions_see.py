@@ -2,11 +2,11 @@ import time
 
 from clicker_zero_city.see.run_video import AdClicker
 from clicker_zero_city.see.see import Ui_Za_City
-from wind_menu.info import Ui_info
+from clicker_zero_city.wind_menu.info_window import Ui_info
 
 from PyQt5 import QtGui, QtWidgets
 from PyQt5.QtCore import QThread
-from PyQt5.QtWidgets import qApp, QDialog
+from PyQt5.QtWidgets import qApp
 import sys
 
 
