@@ -52,6 +52,8 @@ class Inspector(QThread):
                     self.mainwindow.preview.forge_room()
 
             if self.choosing_action['tablet']:
+                #TODO буду провидить тест
+                self.mainwindow.preview.cheking_tablet()
                 self.mainwindow.preview.preview_tablet()
                 self.mainwindow.preview.definition_prize()
 

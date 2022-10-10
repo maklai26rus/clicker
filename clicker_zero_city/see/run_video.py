@@ -31,6 +31,9 @@ class AdClicker:
         self.zal = "png/study_rooms/zal_room"
         self.joinery = "png/study_rooms/joinery_room"
         self.forge = "png/study_rooms/forge_room"
+        self.path_movie = ""
+        self.path_movie1 = ""
+        self.path_movie2 = ""
 
     def path_png(self, path: list):
         """
@@ -73,6 +76,22 @@ class AdClicker:
         path_dining_room = [_pn + "\\" + file for file in os.listdir(_pn)]
         path = list(filter(None, map(search_coordinate_ad, path_dining_room)))
         return path
+
+    def cheking_tablet(self):
+        """Проверка на рекламу в планшете. если непоявилась снопка крекламы но есть возможостить смотреть ее.
+        то делает клик по вверхней иконке и назад
+         ....
+        """
+        get_movie = pyautogui.locateOnScreen(self.path_movie, confidence=0.8)
+        get_vidio = pyautogui.locateOnScreen(self.video_tablet, confidence=0.8)
+        if get_movie and get_vidio:
+            return True
+        else:
+            get_movie1 = pyautogui.locateOnScreen(self.path_movie1, confidence=0.8)
+            pyautogui.click(get_movie1)
+            time.sleep(1)
+            get_movie2 = pyautogui.locateOnScreen(self.path_movie2, confidence=0.8)
+            pyautogui.click(get_movie2)
 
     def kitchen_rooms(self):
         """
