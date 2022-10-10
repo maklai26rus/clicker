@@ -32,8 +32,8 @@ class AdClicker:
         self.joinery = "png/study_rooms/joinery_room"
         self.forge = "png/study_rooms/forge_room"
         self.path_movie = ""
-        self.path_movie1 = ""
-        self.path_movie2 = ""
+        self.path_step1 = "png/marketing/step1.PNG"
+        self.path_step2 = "png/marketing/step2.PNG"
 
     def path_png(self, path: list):
         """
@@ -87,10 +87,10 @@ class AdClicker:
         if get_movie and get_vidio:
             return True
         else:
-            get_movie1 = pyautogui.locateOnScreen(self.path_movie1, confidence=0.8)
+            get_movie1 = pyautogui.locateOnScreen(self.path_step1, confidence=0.8)
             pyautogui.click(get_movie1)
             time.sleep(1)
-            get_movie2 = pyautogui.locateOnScreen(self.path_movie2, confidence=0.8)
+            get_movie2 = pyautogui.locateOnScreen(self.path_step2, confidence=0.8)
             pyautogui.click(get_movie2)
             time.sleep(1)
 
