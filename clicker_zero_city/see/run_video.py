@@ -92,7 +92,7 @@ class AdClicker:
 
         # print(f'Кухня найденый координат {len(path)}', self.click_repetitions)
 
-        time.sleep(5)
+        # time.sleep(5)
 
     def laboratory_room(self):
         path = self.path_normal(self.lab)
@@ -162,7 +162,7 @@ class AdClicker:
         elif self.ZAL_ROOM:
             self.path_png(path)
         # print(f'Спортзал', path, self.click_repetitions)
-        time.sleep(5)
+        # time.sleep(5)
 
     def forge_room(self):
         """
@@ -181,7 +181,7 @@ class AdClicker:
             self.path_png(path)
         # print(f'Кузница найденый координат {len(path)}', self.click_repetitions)
 
-        time.sleep(5)
+        # time.sleep(5)
 
 # def watch_ads():
 #     """Ручной запуск
