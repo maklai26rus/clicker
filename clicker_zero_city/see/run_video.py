@@ -5,7 +5,6 @@ from clicker_zero_city.search_coordinate import search_coordinate_ad
 
 
 class AdClicker:
-
     """
     Класс отвечающий за просмотр рекламы
 
@@ -94,7 +93,7 @@ class AdClicker:
         get_vidio = pyautogui.locateOnScreen(self.video_tablet, confidence=0.8)
         if get_movie and get_vidio:
             return True
-        else:
+        elif get_movie:
             get_movie1 = pyautogui.locateOnScreen(self.path_step1, confidence=0.8)
             pyautogui.click(get_movie1)
             time.sleep(1)
