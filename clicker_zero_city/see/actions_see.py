@@ -19,7 +19,10 @@ class Inspector(QThread):
     def __init__(self, mainwindow):
         super().__init__()
         QThread.__init__(self)
+        # Активная или не активная комната
         self.action = True
+
+        # Определят на запуск цикла.
         self.program_operation_switch = False
         self.mainwindow = mainwindow
         self.choosing_action = {"rooms": False, 'tablet': False}
@@ -51,8 +54,21 @@ class Inspector(QThread):
                 elif self.mainwindow.preview.FORGE_ROOM:
                     self.mainwindow.preview.forge_room()
 
+                self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.KITCHEN_ROOM,
+                                                          self.mainwindow.btn_kitchen_test)
+                self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.LAB_ROOM,
+                                                          self.mainwindow.btn_lab_test)
+                self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.JOINERY_ROOM,
+                                                          self.mainwindow.btn_sawmill_test)
+                self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.ZAL_ROOM,
+                                                          self.mainwindow.btn_zal_test)
+                self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.BANK_ROOM,
+                                                          self.mainwindow.btn_bank_test)
+                self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.FORGE_ROOM,
+                                                          self.mainwindow.btn_forge_test)
+
             if self.choosing_action['tablet']:
-                #TODO буду провидить тест
+                # TODO буду провидить тест
                 self.mainwindow.preview.cheking_tablet()
                 self.mainwindow.preview.preview_tablet()
                 self.mainwindow.preview.definition_prize()
@@ -123,6 +139,7 @@ class ActionsSee(Ui_Za_City):
         self.btn_start_rooms.clicked.connect(self.when_viewing_ads)
 
     def when_viewing_ads_stop(self):
+        """Ручная остановка просмотра рекламы"""
         self.inspector.action = True
         self.inspector.program_operation_switch = False
         self.inspector.choosing_action['rooms'] = False
@@ -139,6 +156,14 @@ class ActionsSee(Ui_Za_City):
         self.inspector.choosing_action['tablet'] = False
         self.inspector.choosing_action['rooms'] = True
         self.inspector.is_checked()
+
+        self.btn_changes_color_startup(self.preview.KITCHEN_ROOM, self.btn_kitchen_test)
+        self.btn_changes_color_startup(self.preview.ZAL_ROOM, self.btn_zal_test)
+        self.btn_changes_color_startup(self.preview.BANK_ROOM, self.btn_bank_test)
+        self.btn_changes_color_startup(self.preview.LAB_ROOM, self.btn_lab_test)
+        self.btn_changes_color_startup(self.preview.JOINERY_ROOM, self.btn_sawmill_test)
+        self.btn_changes_color_startup(self.preview.FORGE_ROOM, self.btn_forge_test)
+
         self.inspector.start()
 
     def btn_stop_ads_room(self):
@@ -209,6 +234,15 @@ class ActionsSee(Ui_Za_City):
         path = self.preview.path_normal(self.preview.lab)
         self.preview.one_click_rk = True
         self.go_to_room(path, btn=self.btn_lab_test)
+
+    def btn_changes_color_startup(self, room, btn):
+        """
+        Если комната активна кнопка становится желтого цвета, иначе зеленного
+        """
+        if room:
+            btn.setStyleSheet("background-color : yellow;")
+        else:
+            btn.setStyleSheet("background-color : green;")
 
     def go_to_room(self, path, btn):
         """

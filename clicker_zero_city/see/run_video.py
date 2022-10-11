@@ -6,6 +6,11 @@ from clicker_zero_city.search_coordinate import search_coordinate_ad
 
 class AdClicker:
 
+    """
+    Класс отвечающий за просмотр рекламы
+
+    """
+
     def __init__(self):
         self.KITCHEN_ROOM = False
         self.LAB_ROOM = False
@@ -14,6 +19,7 @@ class AdClicker:
         self.FORGE_ROOM = False
         self.JOINERY_ROOM = False
 
+        # Разовое нажатие на выбранную комнату
         self.one_click_rk = True
         # Время просмотра рекламы. Хочу сделать регулируемое
         self.waiting_for_end = 40
@@ -49,6 +55,8 @@ class AdClicker:
                 self.one_click_rk = False
             else:
                 self.click_repetitions += 1
+        else:
+            self.click_repetitions += 1
 
     def preview_room(self):
         """Предварительный просмотр рекламы"""
