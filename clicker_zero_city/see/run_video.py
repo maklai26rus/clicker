@@ -31,7 +31,7 @@ class AdClicker:
         self.zal = "png/study_rooms/zal_room"
         self.joinery = "png/study_rooms/joinery_room"
         self.forge = "png/study_rooms/forge_room"
-        self.path_movie = ""
+        self.path_movie = "png/marketing/movie.PNG"
         self.path_step1 = "png/marketing/step1.PNG"
         self.path_step2 = "png/marketing/step2.PNG"
 
