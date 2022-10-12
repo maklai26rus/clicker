@@ -29,15 +29,21 @@ class AdClicker:
         self.path_video_tablet = 'png/marketing/marketing2.PNG'
         self.path_prize = 'png/marketing/prize.PNG'
 
-        self.path_kitchen = "png/study_rooms/dining_room"
-        self.path_lab = "png/study_rooms/lab_room"
-        self.path_bank = "png/study_rooms/bank_room"
-        self.path_zal = "png/study_rooms/zal_room"
-        self.path_joinery = "png/study_rooms/joinery_room"
-        self.path_forge = "png/study_rooms/forge_room"
+        self.path_room_kitchen = "png/study_rooms/dining_room"
+        self.path_room_lab = "png/study_rooms/lab_room"
+        self.path_room_bank = "png/study_rooms/bank_room"
+        self.path_room_zal = "png/study_rooms/zal_room"
+        self.path_room_joinery = "png/study_rooms/joinery_room"
+        self.path_room_forge = "png/study_rooms/forge_room"
         self.path_movie = "png/marketing/movie.PNG"
         self.path_step1 = "png/marketing/step1.PNG"
         self.path_step2 = "png/marketing/step2.PNG"
+
+        self.path_food = "png/marketing/food.PNG"
+        self.path_baks = "png/marketing/baks.PNG"
+        self.path_metal = "png/marketing/metal.PNG"
+        self.path_vial = "png/marketing/vial.PNG"
+        self.path_wood = "png/marketing/wood.PNG"
 
     def get_room_list(self, path: list):
         """
@@ -113,7 +119,7 @@ class AdClicker:
             self.one_click_rk = True
             self.click_repetitions = 1
         elif self.KITCHEN_ROOM:
-            path = self.path_normal(self.path_kitchen)
+            path = self.path_normal(self.path_room_kitchen)
             time.sleep(1)
             self.get_room_list(path)
 
@@ -133,7 +139,7 @@ class AdClicker:
             self.one_click_rk = True
             self.click_repetitions = 1
         elif self.LAB_ROOM:
-            path = self.path_normal(self.path_lab)
+            path = self.path_normal(self.path_room_lab)
             time.sleep(1)
             self.get_room_list(path)
 
@@ -151,7 +157,7 @@ class AdClicker:
             self.one_click_rk = True
             self.click_repetitions = 1
         elif self.JOINERY_ROOM:
-            path = self.path_normal(self.path_joinery)
+            path = self.path_normal(self.path_room_joinery)
             time.sleep(1)
             self.get_room_list(path)
         # print(f'Лесопилка найденый координат {len(path)}', self.click_repetitions)
@@ -168,7 +174,7 @@ class AdClicker:
             self.one_click_rk = True
             self.click_repetitions = 1
         elif self.BANK_ROOM:
-            path = self.path_normal(self.path_bank)
+            path = self.path_normal(self.path_room_bank)
             time.sleep(1)
             self.get_room_list(path)
 
@@ -186,7 +192,7 @@ class AdClicker:
             self.one_click_rk = True
             self.click_repetitions = 1
         elif self.ZAL_ROOM:
-            path = self.path_normal(self.path_zal)
+            path = self.path_normal(self.path_room_zal)
             time.sleep(1)
             self.get_room_list(path)
         # print(f'Спортзал', path, self.click_repetitions)
@@ -204,7 +210,7 @@ class AdClicker:
             self.one_click_rk = True
             self.click_repetitions = 1
         elif self.FORGE_ROOM:
-            path = self.path_normal(self.path_forge)
+            path = self.path_normal(self.path_room_forge)
             time.sleep(1)
             self.get_room_list(path)
         # print(f'Кузница найденый координат {len(path)}', self.click_repetitions)
