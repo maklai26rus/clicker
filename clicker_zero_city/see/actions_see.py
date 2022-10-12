@@ -117,12 +117,12 @@ class ActionsSee(Ui_Za_City):
         self.setupUi(self.main_window)
         # MainWindow.setFixedSize(298, 384) при обновлении платформы не забуддь в ручную. поставить setFixedSize
         self.bnt_watch_ads_room()
-        self.btn_stop_ads_room()
 
         self.action.triggered.connect(self.open_window)
 
         self.btn_tablet_start()
-        self.btn_tablet_stop()
+
+        self.btn_running_stop()
 
         self.btn_resources()
 
@@ -166,7 +166,9 @@ class ActionsSee(Ui_Za_City):
         self.inspector.program_operation_switch = False
         self.inspector.choosing_action['rooms'] = False
         self.inspector.choosing_action['tablet'] = False
+        self.inspector.choosing_action['resourcer'] = False
         self.inspector.is_checked_rooms()
+        self.inspector.is_checked_resources()
 
     def when_viewing_ads(self):
         """
@@ -188,15 +190,9 @@ class ActionsSee(Ui_Za_City):
 
         self.inspector.start()
 
-    def btn_stop_ads_room(self):
-        """
-        Стоп. Остановится при просмотри рекламы
-        """
-        self.btn_stop_rooms.clicked.connect(self.when_viewing_ads_stop)
-
-    def btn_tablet_stop(self):
+    def btn_running_stop(self):
         """Кнопка для остановки просмотра рекламы с планшета"""
-        self.btn_stop_tabtet.clicked.connect(self.when_viewing_ads_stop)
+        self.btn_stop_program.clicked.connect(self.when_viewing_ads_stop)
 
     def btn_tablet_start(self):
         """Кнопка для запуск просмотра рекламы с планшета """
