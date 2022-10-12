@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>321</width>
-    <height>482</height>
+    <width>366</width>
+    <height>480</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>301</width>
+      <width>347</width>
       <height>422</height>
      </rect>
     </property>
@@ -27,48 +27,50 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
+        <widget class="QLabel" name="label_rooms">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Просмотреть Рекламу в комнатах&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>Просмотреть Рекламу в комнатах</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="scaledContents">
+          <bool>false</bool>
+         </property>
+         <property name="margin">
+          <number>0</number>
+         </property>
+         <property name="textInteractionFlags">
+          <set>Qt::TextEditable</set>
+         </property>
+        </widget>
+       </item>
+       <item>
         <layout class="QVBoxLayout" name="verticalLayout_5">
-         <item>
-          <widget class="QLabel" name="label_rooms">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>10</pointsize>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="toolTip">
-            <string/>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">margin-left : 20
-</string>
-           </property>
-           <property name="text">
-            <string>Просмотреть Рекламу в комнатах</string>
-           </property>
-           <property name="textFormat">
-            <enum>Qt::PlainText</enum>
-           </property>
-           <property name="scaledContents">
-            <bool>false</bool>
-           </property>
-           <property name="margin">
-            <number>0</number>
-           </property>
-           <property name="textInteractionFlags">
-            <set>Qt::TextEditable</set>
-           </property>
-          </widget>
-         </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout">
            <item>
             <layout class="QGridLayout" name="gridLayout_3">
-             <item row="0" column="0">
+             <item row="2" column="0">
               <widget class="QCheckBox" name="kitchen_room">
                <property name="mouseTracking">
                 <bool>true</bool>
@@ -81,14 +83,14 @@
                </property>
               </widget>
              </item>
-             <item row="1" column="0">
+             <item row="3" column="0">
               <widget class="QCheckBox" name="sawmill_room">
                <property name="text">
                 <string>Лесопилка</string>
                </property>
               </widget>
              </item>
-             <item row="0" column="1">
+             <item row="2" column="1">
               <widget class="QPushButton" name="btn_kitchen_test">
                <property name="styleSheet">
                 <string notr="true"/>
@@ -98,70 +100,70 @@
                </property>
               </widget>
              </item>
-             <item row="2" column="0">
+             <item row="4" column="0">
               <widget class="QCheckBox" name="bank_room">
                <property name="text">
                 <string>Банк</string>
                </property>
               </widget>
              </item>
-             <item row="3" column="0">
+             <item row="5" column="0">
               <widget class="QCheckBox" name="lab_room">
                <property name="text">
                 <string>Лаборатория</string>
                </property>
               </widget>
              </item>
-             <item row="1" column="1">
+             <item row="3" column="1">
               <widget class="QPushButton" name="btn_sawmill_test">
                <property name="text">
                 <string>тест лесопилка</string>
                </property>
               </widget>
              </item>
-             <item row="4" column="0">
+             <item row="6" column="0">
               <widget class="QCheckBox" name="forge_room">
                <property name="text">
                 <string>Кузница</string>
                </property>
               </widget>
              </item>
-             <item row="5" column="0">
+             <item row="7" column="0">
               <widget class="QCheckBox" name="zal_room">
                <property name="text">
                 <string>Спорт зал</string>
                </property>
               </widget>
              </item>
-             <item row="3" column="1">
+             <item row="5" column="1">
               <widget class="QPushButton" name="btn_lab_test">
                <property name="text">
                 <string>тест лаборатория</string>
                </property>
               </widget>
              </item>
-             <item row="2" column="1">
+             <item row="4" column="1">
               <widget class="QPushButton" name="btn_bank_test">
                <property name="text">
                 <string>тест банк</string>
                </property>
               </widget>
              </item>
-             <item row="5" column="1">
+             <item row="7" column="1">
               <widget class="QPushButton" name="btn_zal_test">
                <property name="text">
                 <string>тест спорт зал</string>
                </property>
               </widget>
              </item>
-             <item row="4" column="1">
+             <item row="6" column="1">
               <widget class="QPushButton" name="btn_forge_test">
                <property name="text">
                 <string>тест кузница</string>
                </property>
               </widget>
              </item>
-             <item row="6" column="0">
+             <item row="8" column="0">
               <widget class="QPushButton" name="btn_start_rooms">
                <property name="styleSheet">
                 <string notr="true"/>
@@ -171,7 +173,7 @@
                </property>
               </widget>
              </item>
-             <item row="6" column="1">
+             <item row="8" column="1">
               <widget class="QPushButton" name="btn_stop_rooms">
                <property name="text">
                 <string>Стоп</string>
@@ -197,10 +199,10 @@
               </font>
              </property>
              <property name="styleSheet">
-              <string notr="true">margin-left : 20</string>
+              <string notr="true"/>
              </property>
              <property name="text">
-              <string>П/Р Планшете</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;П/Р Планшете&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -221,6 +223,26 @@
               </widget>
              </item>
             </layout>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_resources">
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;П/р Получение ресурсов&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::TextEditable</set>
+             </property>
+            </widget>
            </item>
            <item>
             <layout class="QGridLayout" name="gridLayout">
@@ -253,7 +275,13 @@
               </widget>
              </item>
              <item row="3" column="1">
-              <widget class="QPushButton" name="pushButton">
+              <widget class="QPushButton" name="btn_start_resources">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="whatsThis">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
                <property name="text">
                 <string>Старт</string>
                </property>
@@ -266,34 +294,17 @@
                </property>
               </widget>
              </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_resources">
-               <property name="font">
-                <font>
-                 <pointsize>10</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">margin-left : 20</string>
-               </property>
-               <property name="text">
-                <string>П/р Получение ресурсов</string>
-               </property>
-               <property name="textInteractionFlags">
-                <set>Qt::TextEditable</set>
-               </property>
-              </widget>
-             </item>
             </layout>
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_5">
              <item>
               <widget class="QLabel" name="version">
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
                <property name="text">
-                <string>Версия:</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Версия:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
               </widget>
              </item>
@@ -303,16 +314,6 @@
                 <string>0</string>
                </property>
               </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_2">
-             <item>
-              <layout class="QVBoxLayout" name="verticalLayout_7"/>
-             </item>
-             <item>
-              <layout class="QVBoxLayout" name="verticalLayout_8"/>
              </item>
             </layout>
            </item>
@@ -330,7 +331,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>321</width>
+     <width>366</width>
      <height>21</height>
     </rect>
    </property>

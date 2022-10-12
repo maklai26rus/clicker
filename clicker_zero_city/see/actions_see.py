@@ -25,7 +25,7 @@ class Inspector(QThread):
         # Определят на запуск цикла.
         self.program_operation_switch = False
         self.mainwindow = mainwindow
-        self.choosing_action = {"rooms": False, 'tablet': False}
+        self.choosing_action = {"rooms": False, 'tablet': False, 'resourcer': False}
 
     def shutdown_click(self):
         for k in self.choosing_action.keys():
@@ -67,12 +67,15 @@ class Inspector(QThread):
                 self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.FORGE_ROOM,
                                                           self.mainwindow.btn_forge_test)
 
-            if self.choosing_action['tablet']:
+            elif self.choosing_action['tablet']:
                 self.mainwindow.preview.cheking_tablet()
                 self.mainwindow.preview.preview_tablet()
                 self.mainwindow.preview.definition_prize()
 
-    def is_checked(self):
+            elif self.choosing_action['resourcer']:
+                self.mainwindow.set_enabled_resourcer(self.action)
+
+    def is_checked_rooms(self):
         """
         self.mainwindow.set_enabled(self.action) определяет возможность выбора комнат
         Дальше передает выбраные комнаты для просмотра рекламмы
@@ -86,6 +89,9 @@ class Inspector(QThread):
         self.mainwindow.preview.ZAL_ROOM = self.mainwindow.zal_room.isChecked()
         self.mainwindow.preview.JOINERY_ROOM = self.mainwindow.sawmill_room.isChecked()
         self.mainwindow.preview.FORGE_ROOM = self.mainwindow.forge_room.isChecked()
+
+    def is_checked_resources(self):
+        self.mainwindow.set_enabled_resourcer(self.action)
 
 
 class ActionsSee(Ui_Za_City):
@@ -118,6 +124,8 @@ class ActionsSee(Ui_Za_City):
         self.btn_tablet_start()
         self.btn_tablet_stop()
 
+        self.btn_resources()
+
         self.test_kitchen_room()
         self.test_lab_room()
         self.test_zal_room()
@@ -133,6 +141,21 @@ class ActionsSee(Ui_Za_City):
         self.ui_info.setupUi(self.window)
         self.window.show()
 
+    def btn_resources(self):
+        """
+        Кнопка нажатия сбор ресурсво
+        """
+        self.btn_start_resources.clicked.connect(self.resourcer)
+
+    def resourcer(self):
+        """Начала сбора. после нажатия  """
+        self.inspector.action = False
+        self.inspector.program_operation_switch = True
+        self.inspector.choosing_action['resourcer'] = True
+
+        self.inspector.is_checked_resources()
+        self.inspector.start()
+
     def bnt_watch_ads_room(self):
         """Нажатие кнопки для просмотра рекламы в комнатах"""
         self.btn_start_rooms.clicked.connect(self.when_viewing_ads)
@@ -143,7 +166,7 @@ class ActionsSee(Ui_Za_City):
         self.inspector.program_operation_switch = False
         self.inspector.choosing_action['rooms'] = False
         self.inspector.choosing_action['tablet'] = False
-        self.inspector.is_checked()
+        self.inspector.is_checked_rooms()
 
     def when_viewing_ads(self):
         """
@@ -154,7 +177,7 @@ class ActionsSee(Ui_Za_City):
         self.inspector.program_operation_switch = True
         self.inspector.choosing_action['tablet'] = False
         self.inspector.choosing_action['rooms'] = True
-        self.inspector.is_checked()
+        self.inspector.is_checked_rooms()
 
         self.btn_changes_color_startup(self.preview.KITCHEN_ROOM, self.btn_kitchen_test)
         self.btn_changes_color_startup(self.preview.ZAL_ROOM, self.btn_zal_test)
@@ -197,6 +220,13 @@ class ActionsSee(Ui_Za_City):
         self.zal_room.setEnabled(action)
         self.sawmill_room.setEnabled(action)
         self.forge_room.setEnabled(action)
+
+    def set_enabled_resourcer(self, action):
+        self.check_wood.setEnabled(action)
+        self.check_foot.setEnabled(action)
+        self.check_forge.setEnabled(action)
+        self.check_baks.setEnabled(action)
+        self.check_reagent.setEnabled(action)
 
     def test_kitchen_room(self):
         """Запуск кнопки на проверка если комната """
