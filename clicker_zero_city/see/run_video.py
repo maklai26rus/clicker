@@ -46,7 +46,7 @@ class AdClicker:
         Если координата нашлась. наводит курсор мышки на нее и 1 раз кликает
 
         """
-        time.sleep(2)
+        # time.sleep(2)
         if path:
             center = pyautogui.center(path[0])
             pyautogui.moveTo(center)
@@ -55,8 +55,8 @@ class AdClicker:
                 self.one_click_rk = False
             else:
                 self.click_repetitions += 1
-        else:
-            self.click_repetitions += 1
+        # else:
+        #     self.click_repetitions += 1
 
     def preview_room(self):
         """Предварительный просмотр рекламы"""
@@ -78,7 +78,7 @@ class AdClicker:
         if click:
             pyautogui.click(click)
 
-    def path_normal(self, path):
+    def path_normal(self, path) -> list:
         """Модюль преобразующий в правильный путь для координат"""
         _pn = os.path.normpath(os.path.join(path))
         path_dining_room = [_pn + "\\" + file for file in os.listdir(_pn)]
