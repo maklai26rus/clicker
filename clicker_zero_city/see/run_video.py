@@ -46,6 +46,7 @@ class AdClicker:
         Если координата нашлась. наводит курсор мышки на нее и 1 раз кликает
 
         """
+        time.sleep(2)
         if path:
             center = pyautogui.center(path[0])
             pyautogui.moveTo(center)
