@@ -25,22 +25,21 @@ class AdClicker:
 
         self.click_repetitions = 1
 
-        self.video_rooms = 'png/marketing/marketing1.PNG'
-        self.video_tablet = 'png/marketing/marketing2.PNG'
-        self.prize = 'png/marketing/prize.PNG'
+        self.path_video_rooms = 'png/marketing/marketing1.PNG'
+        self.path_video_tablet = 'png/marketing/marketing2.PNG'
+        self.path_prize = 'png/marketing/prize.PNG'
 
-        # self.dining = "..//png/study_rooms/dining_room"
-        self.dining = "png/study_rooms/dining_room"
-        self.lab = "png/study_rooms/lab_room"
-        self.bank = "png/study_rooms/bank_room"
-        self.zal = "png/study_rooms/zal_room"
-        self.joinery = "png/study_rooms/joinery_room"
-        self.forge = "png/study_rooms/forge_room"
+        self.path_kitchen = "png/study_rooms/dining_room"
+        self.path_lab = "png/study_rooms/lab_room"
+        self.path_bank = "png/study_rooms/bank_room"
+        self.path_zal = "png/study_rooms/zal_room"
+        self.path_joinery = "png/study_rooms/joinery_room"
+        self.path_forge = "png/study_rooms/forge_room"
         self.path_movie = "png/marketing/movie.PNG"
         self.path_step1 = "png/marketing/step1.PNG"
         self.path_step2 = "png/marketing/step2.PNG"
 
-    def path_png(self, path: list):
+    def get_room_list(self, path: list):
         """
         Выбор по координате комнату
         Если координата нашлась. наводит курсор мышки на нее и 1 раз кликает
@@ -60,21 +59,21 @@ class AdClicker:
 
     def preview_room(self):
         """Предварительный просмотр рекламы"""
-        get_vidio = pyautogui.locateOnScreen(self.video_rooms, confidence=0.8)
+        get_vidio = pyautogui.locateOnScreen(self.path_video_rooms, confidence=0.8)
         if get_vidio:
             pyautogui.click(get_vidio)
             time.sleep(self.waiting_for_end)
 
     def preview_tablet(self):
         """Предварительный просмотр рекламы"""
-        get_vidio = pyautogui.locateOnScreen(self.video_tablet, confidence=0.8)
+        get_vidio = pyautogui.locateOnScreen(self.path_video_tablet, confidence=0.8)
         if get_vidio:
             pyautogui.click(get_vidio)
             time.sleep(self.waiting_for_end)
 
     def definition_prize(self):
         """На планшете после просмотра рекламы нажать забрать приз"""
-        click = pyautogui.locateOnScreen(self.prize, confidence=0.8)
+        click = pyautogui.locateOnScreen(self.path_prize, confidence=0.8)
         if click:
             pyautogui.click(click)
 
@@ -91,7 +90,7 @@ class AdClicker:
          ....
         """
         get_movie = pyautogui.locateOnScreen(self.path_movie, confidence=0.8)
-        get_vidio = pyautogui.locateOnScreen(self.video_tablet, confidence=0.8)
+        get_vidio = pyautogui.locateOnScreen(self.path_video_tablet, confidence=0.8)
         if get_movie and get_vidio:
             return True
         elif get_movie:
@@ -107,8 +106,6 @@ class AdClicker:
         Ищет координаты картинок для получение рекламы
 
         """
-        path = self.path_normal(self.dining)
-        time.sleep(1)
         if self.preview_room():
             self.click_repetitions += 1
         elif self.click_repetitions > 3:
@@ -116,15 +113,19 @@ class AdClicker:
             self.one_click_rk = True
             self.click_repetitions = 1
         elif self.KITCHEN_ROOM:
-            self.path_png(path)
+            path = self.path_normal(self.path_kitchen)
+            time.sleep(1)
+            self.get_room_list(path)
 
         # print(f'Кухня найденый координат {len(path)}', self.click_repetitions)
 
         # time.sleep(5)
 
     def laboratory_room(self):
-        path = self.path_normal(self.lab)
-        time.sleep(1)
+        """
+        Ищет координаты картинок для получение рекламы
+        Комната улучшения знаний в лаборатории
+        """
         if self.preview_room():
             self.click_repetitions += 1
         elif self.click_repetitions > 3:
@@ -132,7 +133,9 @@ class AdClicker:
             self.one_click_rk = True
             self.click_repetitions = 1
         elif self.LAB_ROOM:
-            self.path_png(path)
+            path = self.path_normal(self.path_lab)
+            time.sleep(1)
+            self.get_room_list(path)
 
         # print(f'Лаборатория найденый координат {len(path)}', self.click_repetitions)
 
@@ -141,18 +144,16 @@ class AdClicker:
         Ищет координаты картинок для получение рекламы
         Комната улучшения добычи дерева
         """
-        path = self.path_normal(self.joinery)
-        time.sleep(1)
         if self.preview_room():
             self.click_repetitions += 1
-
         elif self.click_repetitions > 3:
             self.JOINERY_ROOM = False
             self.one_click_rk = True
             self.click_repetitions = 1
         elif self.JOINERY_ROOM:
-
-            self.path_png(path)
+            path = self.path_normal(self.path_joinery)
+            time.sleep(1)
+            self.get_room_list(path)
         # print(f'Лесопилка найденый координат {len(path)}', self.click_repetitions)
 
     def bank_room(self):
@@ -160,8 +161,6 @@ class AdClicker:
         Ищет координаты картинок для получение рекламы
         Комната улучшения добычи денег
         """
-        path = self.path_normal(self.bank)
-        time.sleep(1)
         if self.preview_room():
             self.click_repetitions += 1
         elif self.click_repetitions > 3:
@@ -169,7 +168,9 @@ class AdClicker:
             self.one_click_rk = True
             self.click_repetitions = 1
         elif self.BANK_ROOM:
-            self.path_png(path)
+            path = self.path_normal(self.path_bank)
+            time.sleep(1)
+            self.get_room_list(path)
 
         # print(f'Банк', path, self.click_repetitions)
 
@@ -178,17 +179,16 @@ class AdClicker:
         Ищет координаты картинок для получение рекламы
         Комната по повышению силы
         """
-        path = self.path_normal(self.zal)
-        time.sleep(1)
         if self.preview_room():
             self.click_repetitions += 1
-
         elif self.click_repetitions > 3:
             self.ZAL_ROOM = False
             self.one_click_rk = True
             self.click_repetitions = 1
         elif self.ZAL_ROOM:
-            self.path_png(path)
+            path = self.path_normal(self.path_zal)
+            time.sleep(1)
+            self.get_room_list(path)
         # print(f'Спортзал', path, self.click_repetitions)
         # time.sleep(5)
 
@@ -197,8 +197,6 @@ class AdClicker:
         Ищет координаты картинок для получение рекламы
         Комната улучшению добычи металла
         """
-        path = self.path_normal(self.forge)
-        time.sleep(1)
         if self.preview_room():
             self.click_repetitions += 1
         elif self.click_repetitions > 3:
@@ -206,7 +204,9 @@ class AdClicker:
             self.one_click_rk = True
             self.click_repetitions = 1
         elif self.FORGE_ROOM:
-            self.path_png(path)
+            path = self.path_normal(self.path_forge)
+            time.sleep(1)
+            self.get_room_list(path)
         # print(f'Кузница найденый координат {len(path)}', self.click_repetitions)
 
         # time.sleep(5)

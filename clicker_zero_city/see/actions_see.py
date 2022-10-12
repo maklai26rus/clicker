@@ -102,7 +102,7 @@ class ActionsSee(Ui_Za_City):
         super().__init__()
         self.main_window = main_window
         self.window = QtWidgets.QMainWindow()
-        self.ui = Ui_info()
+        self.ui_info = Ui_info()
 
         self.preview = AdClicker()
         self.program_operation_switch = False
@@ -131,7 +131,7 @@ class ActionsSee(Ui_Za_City):
 
     def open_window(self):
         """Открывает окно инфо """
-        self.ui.setupUi(self.window)
+        self.ui_info.setupUi(self.window)
         self.window.show()
 
     def bnt_watch_ads_room(self):
@@ -225,13 +225,13 @@ class ActionsSee(Ui_Za_City):
 
     def test_kitchen(self):
         """Тест на проверку если комната"""
-        path = self.preview.path_normal(self.preview.dining)
+        path = self.preview.path_normal(self.preview.path_kitchen)
         self.preview.one_click_rk = True
         self.go_to_room(path, btn=self.btn_kitchen_test)
 
     def test_lab(self):
         """Тест на проверку если комната"""
-        path = self.preview.path_normal(self.preview.lab)
+        path = self.preview.path_normal(self.preview.path_lab)
         self.preview.one_click_rk = True
         self.go_to_room(path, btn=self.btn_lab_test)
 
@@ -252,31 +252,31 @@ class ActionsSee(Ui_Za_City):
         """
         if path:
             btn.setStyleSheet("background-color : green;")
-            self.preview.path_png(path)
+            self.preview.get_room_list(path)
         else:
             btn.setStyleSheet("background-color : red;")
 
     def test_bank(self):
         """Тест на проверку если комната"""
-        path = self.preview.path_normal(self.preview.bank)
+        path = self.preview.path_normal(self.preview.path_bank)
         self.preview.one_click_rk = True
         self.go_to_room(path, btn=self.btn_bank_test)
 
     def test_zal(self):
         """Тест на проверку если комната"""
-        path = self.preview.path_normal(self.preview.zal)
+        path = self.preview.path_normal(self.preview.path_zal)
         self.preview.one_click_rk = True
         self.go_to_room(path, btn=self.btn_zal_test)
 
     def test_joinery(self):
         """Тест на проверку если комната"""
-        path = self.preview.path_normal(self.preview.joinery)
+        path = self.preview.path_normal(self.preview.path_joinery)
         self.preview.one_click_rk = True
         self.go_to_room(path, btn=self.btn_sawmill_test)
 
     def test_forge(self):
         """Тест на проверку если комната"""
-        path = self.preview.path_normal(self.preview.forge)
+        path = self.preview.path_normal(self.preview.path_forge)
         self.preview.one_click_rk = True
         self.go_to_room(path, btn=self.btn_forge_test)
 
