@@ -73,7 +73,10 @@ class Inspector(QThread):
                 self.mainwindow.preview.definition_prize()
 
             elif self.choosing_action['resourcer']:
-                ...
+                print("hi1")
+                if self.mainwindow.preview.res_food:
+                    self.mainwindow.preview.get_resources_rv(self.mainwindow.preview.path_food)
+                    print("hi2")
                 # self.mainwindow.set_enabled_resourcer(self.action)
 
     def is_checked_rooms(self):
@@ -93,6 +96,7 @@ class Inspector(QThread):
 
     def is_checked_resources(self):
         self.mainwindow.set_enabled_resourcer(self.action)
+        self.mainwindow.preview.res_food = self.mainwindow.check_foot.isChecked()
 
 
 class ActionsSee(Ui_Za_City):

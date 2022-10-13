@@ -18,6 +18,12 @@ class AdClicker:
         self.FORGE_ROOM = False
         self.JOINERY_ROOM = False
 
+        self.res_food = False
+        self.res_metal = False
+        self.res_baks = False
+        self.res_wood = False
+        self.res_vial = False
+
         # Разовое нажатие на выбранную комнату
         self.one_click_rk = True
         # Время просмотра рекламы. Хочу сделать регулируемое
@@ -46,7 +52,7 @@ class AdClicker:
         self.path_vial = "png/marketing/vial.PNG"
         self.path_wood = "png/marketing/wood.PNG"
 
-    def get_resources(self, path_resources):
+    def get_resources_rv(self, path_resources):
         """Смотрим рекламу для получение ресурсов"""
         get_res = pyautogui.locateOnScreen(path_resources, confidence=0.8)
         if get_res:
@@ -62,7 +68,6 @@ class AdClicker:
         Если координата нашлась. наводит курсор мышки на нее и 1 раз кликает
 
         """
-        # time.sleep(2)
         if path:
             center = pyautogui.center(path[0])
             pyautogui.moveTo(center)
@@ -71,8 +76,6 @@ class AdClicker:
                 self.one_click_rk = False
             else:
                 self.click_repetitions += 1
-        # else:
-        #     self.click_repetitions += 1
 
     def preview_room(self):
         """Предварительный просмотр рекламы"""
