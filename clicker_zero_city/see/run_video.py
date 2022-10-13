@@ -36,6 +36,7 @@ class AdClicker:
         self.path_room_joinery = "png/study_rooms/joinery_room"
         self.path_room_forge = "png/study_rooms/forge_room"
         self.path_movie = "png/marketing/movie.PNG"
+        self.path_add_res = "png/marketing/add_res.PNG"
         self.path_step1 = "png/marketing/step1.PNG"
         self.path_step2 = "png/marketing/step2.PNG"
 
@@ -44,6 +45,16 @@ class AdClicker:
         self.path_metal = "png/marketing/metal.PNG"
         self.path_vial = "png/marketing/vial.PNG"
         self.path_wood = "png/marketing/wood.PNG"
+
+    def get_resources(self, path_resources):
+        """Смотрим рекламу для получение ресурсов"""
+        get_res = pyautogui.locateOnScreen(path_resources, confidence=0.8)
+        if get_res:
+            pyautogui.click(get_res)
+            time.sleep(2)
+            add_res = pyautogui.locateOnScreen(self.path_add_res, confidence=0.8)
+            time.sleep(1)
+            pyautogui.click(add_res)
 
     def get_room_list(self, path: list):
         """

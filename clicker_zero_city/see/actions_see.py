@@ -73,7 +73,8 @@ class Inspector(QThread):
                 self.mainwindow.preview.definition_prize()
 
             elif self.choosing_action['resourcer']:
-                self.mainwindow.set_enabled_resourcer(self.action)
+                ...
+                # self.mainwindow.set_enabled_resourcer(self.action)
 
     def is_checked_rooms(self):
         """
@@ -155,7 +156,6 @@ class ActionsSee(Ui_Za_City):
         self.inspector.choosing_action['rooms'] = False
         self.inspector.choosing_action['tablet'] = False
 
-
         self.inspector.is_checked_resources()
         self.inspector.start()
 
@@ -221,6 +221,9 @@ class ActionsSee(Ui_Za_City):
         self.forge_room.setEnabled(action)
 
     def set_enabled_resourcer(self, action):
+        """
+        Блокировка чекбокса просмотр рекламы для получение ресурсов
+        """
         self.check_wood.setEnabled(action)
         self.check_foot.setEnabled(action)
         self.check_forge.setEnabled(action)
