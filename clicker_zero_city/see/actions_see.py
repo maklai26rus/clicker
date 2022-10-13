@@ -73,11 +73,20 @@ class Inspector(QThread):
                 self.mainwindow.preview.definition_prize()
 
             elif self.choosing_action['resourcer']:
-                print("hi1")
                 if self.mainwindow.preview.res_food:
-                    self.mainwindow.preview.get_resources_rv(self.mainwindow.preview.path_food)
-                    print("hi2")
-                # self.mainwindow.set_enabled_resourcer(self.action)
+                    self.mainwindow.preview.get_metal_res(path=self.mainwindow.preview.path_food)
+
+                if self.mainwindow.preview.res_vial:
+                    self.mainwindow.preview.get_metal_res(path=self.mainwindow.preview.path_vial)
+
+                if self.mainwindow.preview.res_wood:
+                    self.mainwindow.preview.get_metal_res(path=self.mainwindow.preview.path_wood)
+
+                if self.mainwindow.preview.res_baks:
+                    self.mainwindow.preview.get_metal_res(path=self.mainwindow.preview.path_baks)
+
+                if self.mainwindow.preview.res_metal:
+                    self.mainwindow.preview.get_metal_res(path=self.mainwindow.preview.path_metal)
 
     def is_checked_rooms(self):
         """
@@ -97,6 +106,10 @@ class Inspector(QThread):
     def is_checked_resources(self):
         self.mainwindow.set_enabled_resourcer(self.action)
         self.mainwindow.preview.res_food = self.mainwindow.check_foot.isChecked()
+        self.mainwindow.preview.res_metal = self.mainwindow.check_forge.isChecked()
+        self.mainwindow.preview.res_baks = self.mainwindow.check_baks.isChecked()
+        self.mainwindow.preview.res_wood = self.mainwindow.check_wood.isChecked()
+        self.mainwindow.preview.res_vial = self.mainwindow.check_reagent.isChecked()
 
 
 class ActionsSee(Ui_Za_City):

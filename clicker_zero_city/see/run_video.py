@@ -52,15 +52,24 @@ class AdClicker:
         self.path_vial = "png/marketing/vial.PNG"
         self.path_wood = "png/marketing/wood.PNG"
 
-    def get_resources_rv(self, path_resources):
-        """Смотрим рекламу для получение ресурсов"""
-        get_res = pyautogui.locateOnScreen(path_resources, confidence=0.8)
+    def get_metal_res(self, path):
+        """
+        Смотрим рекламу для получение ресурсов
+
+        """
+        _pn = os.path.normpath(os.path.join(path))
+        get_res = pyautogui.locateOnScreen(_pn, confidence=0.8)
         if get_res:
             pyautogui.click(get_res)
             time.sleep(2)
-            add_res = pyautogui.locateOnScreen(self.path_add_res, confidence=0.8)
-            time.sleep(1)
-            pyautogui.click(add_res)
+            self.preview_res()
+        time.sleep(3)
+
+    def preview_res(self):
+        """Предварительный просмотр рекламы"""
+        get_vidio = pyautogui.locateOnScreen(self.path_add_res, confidence=0.8)
+        if get_vidio:
+            pyautogui.click(get_vidio)
 
     def get_room_list(self, path: list):
         """
