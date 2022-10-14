@@ -41,18 +41,6 @@ class Inspector(QThread):
         while self.program_operation_switch:
             time.sleep(0.5)
             if self.choosing_action["rooms"]:
-                if self.mainwindow.preview.KITCHEN_ROOM:
-                    self.mainwindow.preview.kitchen_rooms()
-                elif self.mainwindow.preview.LAB_ROOM:
-                    self.mainwindow.preview.laboratory_room()
-                elif self.mainwindow.preview.JOINERY_ROOM:
-                    self.mainwindow.preview.joinery_room()
-                elif self.mainwindow.preview.ZAL_ROOM:
-                    self.mainwindow.preview.zal_room()
-                elif self.mainwindow.preview.BANK_ROOM:
-                    self.mainwindow.preview.bank_room()
-                elif self.mainwindow.preview.FORGE_ROOM:
-                    self.mainwindow.preview.forge_room()
 
                 self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.KITCHEN_ROOM,
                                                           self.mainwindow.btn_kitchen_test)
@@ -66,6 +54,21 @@ class Inspector(QThread):
                                                           self.mainwindow.btn_bank_test)
                 self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.FORGE_ROOM,
                                                           self.mainwindow.btn_forge_test)
+
+                if self.mainwindow.preview.KITCHEN_ROOM:
+                    self.mainwindow.preview.kitchen_rooms()
+                elif self.mainwindow.preview.LAB_ROOM:
+                    self.mainwindow.preview.laboratory_room()
+                elif self.mainwindow.preview.JOINERY_ROOM:
+                    self.mainwindow.preview.joinery_room()
+                elif self.mainwindow.preview.ZAL_ROOM:
+                    self.mainwindow.preview.zal_room()
+                elif self.mainwindow.preview.BANK_ROOM:
+                    self.mainwindow.preview.bank_room()
+                elif self.mainwindow.preview.FORGE_ROOM:
+                    self.mainwindow.preview.forge_room()
+
+
 
             elif self.choosing_action['tablet']:
                 self.mainwindow.preview.cheking_tablet()
