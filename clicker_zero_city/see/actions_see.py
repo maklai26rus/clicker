@@ -283,7 +283,7 @@ class ActionsSee(Ui_Za_City):
 
     def test_joinery_room(self):
         """Запуск кнопки на проверка если комната """
-        self.btn_sawmill_test.clicked.connect(self.test_joinery)
+        self.btn_sawmill_test.clicked.connect(self.test_sawmill)
 
     def test_kitchen(self):
         """Тест на проверку если комната"""
@@ -330,7 +330,7 @@ class ActionsSee(Ui_Za_City):
         self.preview.one_click_rk = True
         self.go_to_room(path, btn=self.btn_zal_test)
 
-    def test_joinery(self):
+    def test_sawmill(self):
         """Тест на проверку если комната"""
         path = self.preview.path_normal(self.preview.path_room_sawmill)
         self.preview.one_click_rk = True
