@@ -68,35 +68,33 @@ class Inspector(QThread):
                 elif self.mainwindow.preview.FORGE_ROOM:
                     self.mainwindow.preview.forge_room()
 
-
-
             elif self.choosing_action['tablet']:
                 self.mainwindow.preview.cheking_tablet()
                 self.mainwindow.preview.preview_tablet()
                 self.mainwindow.preview.definition_prize()
 
             elif self.choosing_action['resourcer']:
-                if self.mainwindow.preview.res_food:
+                if self.mainwindow.preview.res_food and self.choosing_action['resourcer']:
                     self.mainwindow.preview.get_metal_res(path=self.mainwindow.preview.path_food,
                                                           counter=self.mainwindow.preview.res_food_counter,
                                                           resource="food")
 
-                if self.mainwindow.preview.res_vial:
+                if self.mainwindow.preview.res_vial and self.choosing_action['resourcer']:
                     self.mainwindow.preview.get_metal_res(path=self.mainwindow.preview.path_vial,
                                                           counter=self.mainwindow.preview.res_vial_counter,
                                                           resource="vial")
 
-                if self.mainwindow.preview.res_wood:
+                if self.mainwindow.preview.res_wood and self.choosing_action['resourcer']:
                     self.mainwindow.preview.get_metal_res(path=self.mainwindow.preview.path_wood,
                                                           counter=self.mainwindow.preview.res_wood_counter,
                                                           resource="wood")
 
-                if self.mainwindow.preview.res_baks:
+                if self.mainwindow.preview.res_baks and self.choosing_action['resourcer']:
                     self.mainwindow.preview.get_metal_res(path=self.mainwindow.preview.path_baks,
                                                           counter=self.mainwindow.preview.res_baks_counter,
                                                           resource="baks")
 
-                if self.mainwindow.preview.res_metal:
+                if self.mainwindow.preview.res_metal and self.choosing_action['resourcer']:
                     self.mainwindow.preview.get_metal_res(path=self.mainwindow.preview.path_metal,
                                                           counter=self.mainwindow.preview.res_metal_counter,
                                                           resource="metal")
