@@ -33,8 +33,10 @@ class AdClicker:
         self.one_click_rk = True
         # Время просмотра рекламы. Хочу сделать регулируемое
         self.waiting_for_end = 40
-
+        # click_repetitions клик сколько раз нажали на рекаламу
         self.click_repetitions = 1
+        # Максимальное кол-во просмотра рекламы
+        self.max_see = 3
 
         self.path_video_rooms = 'png/marketing/marketing1.PNG'
         self.path_video_tablet = 'png/marketing/marketing2.PNG'
@@ -67,7 +69,7 @@ class AdClicker:
         if get_res and counter > 0:
             if resource == 'metal':
                 self.res_metal_counter -= 1
-            elif resource == 'foot':
+            elif resource == 'food':
                 self.res_food_counter -= 1
             elif resource == 'wood':
                 self.res_wood_counter -= 1
@@ -156,7 +158,7 @@ class AdClicker:
         """
         if self.preview_room():
             self.click_repetitions += 1
-        elif self.click_repetitions > 3:
+        elif self.click_repetitions > self.max_see:
             self.KITCHEN_ROOM = False
             self.one_click_rk = True
             self.click_repetitions = 1
@@ -176,7 +178,7 @@ class AdClicker:
         """
         if self.preview_room():
             self.click_repetitions += 1
-        elif self.click_repetitions > 3:
+        elif self.click_repetitions > self.max_see:
             self.LAB_ROOM = False
             self.one_click_rk = True
             self.click_repetitions = 1
@@ -194,7 +196,7 @@ class AdClicker:
         """
         if self.preview_room():
             self.click_repetitions += 1
-        elif self.click_repetitions > 3:
+        elif self.click_repetitions > self.max_see:
             self.SAWMILL_ROOM = False
             self.one_click_rk = True
             self.click_repetitions = 1
@@ -211,7 +213,7 @@ class AdClicker:
         """
         if self.preview_room():
             self.click_repetitions += 1
-        elif self.click_repetitions > 3:
+        elif self.click_repetitions > self.max_see:
             self.BANK_ROOM = False
             self.one_click_rk = True
             self.click_repetitions = 1
@@ -229,7 +231,7 @@ class AdClicker:
         """
         if self.preview_room():
             self.click_repetitions += 1
-        elif self.click_repetitions > 3:
+        elif self.click_repetitions > self.max_see:
             self.ZAL_ROOM = False
             self.one_click_rk = True
             self.click_repetitions = 1
@@ -247,7 +249,7 @@ class AdClicker:
         """
         if self.preview_room():
             self.click_repetitions += 1
-        elif self.click_repetitions > 3:
+        elif self.click_repetitions > self.max_see:
             self.FORGE_ROOM = False
             self.one_click_rk = True
             self.click_repetitions = 1
