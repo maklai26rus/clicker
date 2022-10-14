@@ -78,23 +78,28 @@ class Inspector(QThread):
             elif self.choosing_action['resourcer']:
                 if self.mainwindow.preview.res_food:
                     self.mainwindow.preview.get_metal_res(path=self.mainwindow.preview.path_food,
-                                                          counter=self.mainwindow.preview.res_food_counter)
+                                                          counter=self.mainwindow.preview.res_food_counter,
+                                                          resource="food")
 
                 if self.mainwindow.preview.res_vial:
                     self.mainwindow.preview.get_metal_res(path=self.mainwindow.preview.path_vial,
-                                                          counter=self.mainwindow.preview.res_vial_counter)
+                                                          counter=self.mainwindow.preview.res_vial_counter,
+                                                          resource="vial")
 
                 if self.mainwindow.preview.res_wood:
                     self.mainwindow.preview.get_metal_res(path=self.mainwindow.preview.path_wood,
-                                                          counter=self.mainwindow.preview.res_wood_counter)
+                                                          counter=self.mainwindow.preview.res_wood_counter,
+                                                          resource="wood")
 
                 if self.mainwindow.preview.res_baks:
                     self.mainwindow.preview.get_metal_res(path=self.mainwindow.preview.path_baks,
-                                                          counter=self.mainwindow.preview.res_baks_counter)
+                                                          counter=self.mainwindow.preview.res_baks_counter,
+                                                          resource="baks")
 
                 if self.mainwindow.preview.res_metal:
-                    self.mainwindow.preview.get_metal_res(path=self.mainwindow.preview.res_metal,
-                                                          counter=self.mainwindow.preview.res_metal_counter)
+                    self.mainwindow.preview.get_metal_res(path=self.mainwindow.preview.path_metal,
+                                                          counter=self.mainwindow.preview.res_metal_counter,
+                                                          resource="metal")
 
     def is_checked_rooms(self):
         """

@@ -19,15 +19,15 @@ class AdClicker:
         self.SAWMILL_ROOM = False
 
         self.res_food = False
-        self.res_food_counter = 1
+        self.res_food_counter = 2
         self.res_metal = False
-        self.res_metal_counter = 1
+        self.res_metal_counter = 2
         self.res_baks = False
-        self.res_baks_counter = 1
+        self.res_baks_counter = 2
         self.res_wood = False
-        self.res_wood_counter = 1
+        self.res_wood_counter = 2
         self.res_vial = False
-        self.res_vial_counter = 1
+        self.res_vial_counter = 2
 
         # Разовое нажатие на выбранную комнату
         self.one_click_rk = True
@@ -57,19 +57,31 @@ class AdClicker:
         self.path_vial = "png/marketing/vial.PNG"
         self.path_wood = "png/marketing/wood.PNG"
 
-    def get_metal_res(self, path, counter=1):
+    def get_metal_res(self, path, counter, resource):
         """
         Смотрим рекламу для получение ресурсов
 
         """
         _pn = os.path.normpath(os.path.join(path))
         get_res = pyautogui.locateOnScreen(_pn, confidence=0.8)
-        if get_res and counter <= 2:
-            print(counter)
+        if get_res and counter > 0:
+            if resource == 'metal':
+                self.res_metal_counter -= 1
+            elif resource == 'foot':
+                self.res_food_counter -= 1
+            elif resource == 'wood':
+                self.res_wood_counter -= 1
+            elif resource == 'baks':
+                self.res_baks_counter -= 1
+            elif resource == 'vial':
+                self.res_vial_counter -= 1
             pyautogui.click(get_res)
             time.sleep(2)
             self.preview_res()
-            counter += 1
+        # if counter > 0:
+        #     print(counter, 'self.res_metal_counter')
+        #     counter -= 1
+
         time.sleep(3)
 
     def preview_res(self):
