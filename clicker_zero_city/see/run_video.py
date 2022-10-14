@@ -16,7 +16,7 @@ class AdClicker:
         self.BANK_ROOM = False
         self.ZAL_ROOM = False
         self.FORGE_ROOM = False
-        self.JOINERY_ROOM = False
+        self.SAWMILL_ROOM = False
 
         self.res_food = False
         self.res_food_counter = 1
@@ -44,7 +44,7 @@ class AdClicker:
         self.path_room_lab = "png/study_rooms/lab_room"
         self.path_room_bank = "png/study_rooms/bank_room"
         self.path_room_zal = "png/study_rooms/zal_room"
-        self.path_room_joinery = "png/study_rooms/joinery_room"
+        self.path_room_sawmill = "png/study_rooms/sawmill_room"
         self.path_room_forge = "png/study_rooms/forge_room"
         self.path_movie = "png/marketing/movie.PNG"
         self.path_add_res = "png/marketing/add_res.PNG"
@@ -183,11 +183,11 @@ class AdClicker:
         if self.preview_room():
             self.click_repetitions += 1
         elif self.click_repetitions > 3:
-            self.JOINERY_ROOM = False
+            self.SAWMILL_ROOM = False
             self.one_click_rk = True
             self.click_repetitions = 1
-        elif self.JOINERY_ROOM:
-            path = self.path_normal(self.path_room_joinery)
+        elif self.SAWMILL_ROOM:
+            path = self.path_normal(self.path_room_sawmill)
             time.sleep(1)
             self.get_room_list(path)
         # print(f'Лесопилка найденый координат {len(path)}', self.click_repetitions)
@@ -268,7 +268,7 @@ class AdClicker:
 #             elif preview.LAB_ROOM:
 #                 preview.laboratory_room()
 #             elif preview.JOINERY_ROOM:
-#                 preview.joinery_room()
+#                 preview.sawmill_room()
 #             elif preview.ZAL_ROOM:
 #                 preview.zal_room()
 #             elif preview.BANK_ROOM:

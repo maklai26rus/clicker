@@ -46,7 +46,7 @@ class Inspector(QThread):
                                                           self.mainwindow.btn_kitchen_test)
                 self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.LAB_ROOM,
                                                           self.mainwindow.btn_lab_test)
-                self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.JOINERY_ROOM,
+                self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.SAWMILL_ROOM,
                                                           self.mainwindow.btn_sawmill_test)
                 self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.ZAL_ROOM,
                                                           self.mainwindow.btn_zal_test)
@@ -59,7 +59,7 @@ class Inspector(QThread):
                     self.mainwindow.preview.kitchen_rooms()
                 elif self.mainwindow.preview.LAB_ROOM:
                     self.mainwindow.preview.laboratory_room()
-                elif self.mainwindow.preview.JOINERY_ROOM:
+                elif self.mainwindow.preview.SAWMILL_ROOM:
                     self.mainwindow.preview.joinery_room()
                 elif self.mainwindow.preview.ZAL_ROOM:
                     self.mainwindow.preview.zal_room()
@@ -108,7 +108,7 @@ class Inspector(QThread):
         self.mainwindow.preview.LAB_ROOM = self.mainwindow.lab_room.isChecked()
         self.mainwindow.preview.BANK_ROOM = self.mainwindow.bank_room.isChecked()
         self.mainwindow.preview.ZAL_ROOM = self.mainwindow.zal_room.isChecked()
-        self.mainwindow.preview.JOINERY_ROOM = self.mainwindow.sawmill_room.isChecked()
+        self.mainwindow.preview.SAWMILL_ROOM = self.mainwindow.sawmill_room.isChecked()
         self.mainwindow.preview.FORGE_ROOM = self.mainwindow.forge_room.isChecked()
 
     def is_checked_resources(self):
@@ -213,7 +213,7 @@ class ActionsSee(Ui_Za_City):
         self.btn_changes_color_startup(self.preview.ZAL_ROOM, self.btn_zal_test)
         self.btn_changes_color_startup(self.preview.BANK_ROOM, self.btn_bank_test)
         self.btn_changes_color_startup(self.preview.LAB_ROOM, self.btn_lab_test)
-        self.btn_changes_color_startup(self.preview.JOINERY_ROOM, self.btn_sawmill_test)
+        self.btn_changes_color_startup(self.preview.SAWMILL_ROOM, self.btn_sawmill_test)
         self.btn_changes_color_startup(self.preview.FORGE_ROOM, self.btn_forge_test)
 
         self.inspector.start()
@@ -239,11 +239,17 @@ class ActionsSee(Ui_Za_City):
             Разблакирет после нажатие СТОП
         """
         self.kitchen_room.setEnabled(action)
+        self.btn_kitchen_test.setEnabled(action)
         self.lab_room.setEnabled(action)
+        self.btn_lab_test.setEnabled(action)
         self.bank_room.setEnabled(action)
+        self.btn_bank_test.setEnabled(action)
         self.zal_room.setEnabled(action)
+        self.btn_zal_test.setEnabled(action)
         self.sawmill_room.setEnabled(action)
+        self.btn_sawmill_test.setEnabled(action)
         self.forge_room.setEnabled(action)
+        self.btn_forge_test.setEnabled(action)
 
     def set_enabled_resourcer(self, action):
         """
@@ -326,7 +332,7 @@ class ActionsSee(Ui_Za_City):
 
     def test_joinery(self):
         """Тест на проверку если комната"""
-        path = self.preview.path_normal(self.preview.path_room_joinery)
+        path = self.preview.path_normal(self.preview.path_room_sawmill)
         self.preview.one_click_rk = True
         self.go_to_room(path, btn=self.btn_sawmill_test)
 
