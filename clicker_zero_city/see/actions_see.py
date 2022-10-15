@@ -12,7 +12,9 @@ import sys
 
 class Inspector(QThread):
     """
-    Проверящий класс. на нажите клавиши страт и отмены стоп
+    Проверящий класс. на нажите клавиши старт и отмены стоп
+
+    Потоковый класс
 
     """
 
@@ -41,7 +43,6 @@ class Inspector(QThread):
         while self.program_operation_switch:
             time.sleep(0.5)
             if self.choosing_action["rooms"]:
-
                 self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.KITCHEN_ROOM,
                                                           self.mainwindow.btn_kitchen_test)
                 self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.LAB_ROOM,
@@ -212,13 +213,6 @@ class ActionsSee(Ui_Za_City):
         self.inspector.choosing_action['rooms'] = True
         self.inspector.is_checked_rooms()
 
-        self.btn_changes_color_startup(self.preview.KITCHEN_ROOM, self.btn_kitchen_test)
-        self.btn_changes_color_startup(self.preview.ZAL_ROOM, self.btn_zal_test)
-        self.btn_changes_color_startup(self.preview.BANK_ROOM, self.btn_bank_test)
-        self.btn_changes_color_startup(self.preview.LAB_ROOM, self.btn_lab_test)
-        self.btn_changes_color_startup(self.preview.SAWMILL_ROOM, self.btn_sawmill_test)
-        self.btn_changes_color_startup(self.preview.FORGE_ROOM, self.btn_forge_test)
-
         self.inspector.start()
 
     def btn_running_stop(self):
@@ -304,8 +298,9 @@ class ActionsSee(Ui_Za_City):
         """
         Если комната активна кнопка становится желтого цвета, иначе зеленного
         """
+
         if room:
-            btn.setStyleSheet("background-color : yellow;")
+            btn.setStyleSheet(f"background-color : yellow;")
         else:
             btn.setStyleSheet("background-color : green;")
 
