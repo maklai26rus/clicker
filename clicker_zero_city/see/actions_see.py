@@ -184,15 +184,16 @@ class ActionsSee(Ui_Za_City):
         self.inspector.choosing_action['resourcer'] = True
         self.inspector.choosing_action['rooms'] = False
         self.inspector.choosing_action['tablet'] = False
+        self.inspector.choosing_action['resourcer'] = False
 
         self.inspector.is_checked_resources()
         self.inspector.start()
 
     def bnt_watch_ads_room(self):
         """Нажатие кнопки для просмотра рекламы в комнатах"""
-        self.btn_start_rooms.clicked.connect(self.when_viewing_ads)
+        self.btn_start_rooms.clicked.connect(self.viewing_ads)
 
-    def when_viewing_ads_stop(self):
+    def viewing_ads_stop(self):
         """Ручная остановка просмотра рекламы"""
         self.inspector.action = True
         self.inspector.program_operation_switch = False
@@ -202,22 +203,23 @@ class ActionsSee(Ui_Za_City):
         self.inspector.is_checked_rooms()
         self.inspector.is_checked_resources()
 
-    def when_viewing_ads(self):
+    def viewing_ads(self):
         """
-        Начала просмотре рекламы
+        Просмотр обявлений (рекламы)
         """
         self.preview.one_click_rk = True
         self.inspector.action = False
         self.inspector.program_operation_switch = True
         self.inspector.choosing_action['tablet'] = False
         self.inspector.choosing_action['rooms'] = True
+        self.inspector.choosing_action['resourcer'] = False
         self.inspector.is_checked_rooms()
 
         self.inspector.start()
 
     def btn_running_stop(self):
         """Кнопка для остановки просмотра рекламы с планшета"""
-        self.btn_stop_program.clicked.connect(self.when_viewing_ads_stop)
+        self.btn_stop_program.clicked.connect(self.viewing_ads_stop)
 
     def btn_tablet_start(self):
         """Кнопка для запуск просмотра рекламы с планшета """
@@ -227,6 +229,7 @@ class ActionsSee(Ui_Za_City):
         """Действие выполнения кнопка btn_start_tablet"""
         self.inspector.choosing_action['tablet'] = True
         self.inspector.choosing_action['rooms'] = False
+        self.inspector.choosing_action['resourcer'] = False
         self.inspector.program_operation_switch = True
 
         self.inspector.start()
