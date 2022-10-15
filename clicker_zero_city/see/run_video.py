@@ -62,35 +62,30 @@ class AdClicker:
     def get_metal_res(self, path, counter, resource):
         """
         Смотрим рекламу для получение ресурсов
+        введения счечика просмотра рекламы
 
         """
         _pn = os.path.normpath(os.path.join(path))
-        get_res = pyautogui.locateOnScreen(_pn, confidence=0.8)
-        if get_res and counter > 0:
-            if resource == 'metal':
-                self.res_metal_counter -= 1
-            elif resource == 'food':
-                self.res_food_counter -= 1
-            elif resource == 'wood':
-                self.res_wood_counter -= 1
-            elif resource == 'baks':
-                self.res_baks_counter -= 1
-            elif resource == 'vial':
-                self.res_vial_counter -= 1
-            pyautogui.click(get_res)
-            time.sleep(2)
-            self.preview_res()
-        # if counter > 0:
-        #     print(counter, 'self.res_metal_counter')
-        #     counter -= 1
+        get_pn = pyautogui.locateOnScreen(_pn, confidence=0.8)
+        if get_pn and counter > 0:
+            pyautogui.click(get_pn)
+            time.sleep(1)
+
+            get_par = pyautogui.locateOnScreen(self.path_add_res, confidence=0.8)
+            if get_par:
+                pyautogui.click(get_par)
+                if resource == 'metal':
+                    self.res_metal_counter -= 1
+                elif resource == 'food':
+                    self.res_food_counter -= 1
+                elif resource == 'wood':
+                    self.res_wood_counter -= 1
+                elif resource == 'baks':
+                    self.res_baks_counter -= 1
+                elif resource == 'vial':
+                    self.res_vial_counter -= 1
 
         time.sleep(3)
-
-    def preview_res(self):
-        """Предварительный просмотр рекламы"""
-        get_vidio = pyautogui.locateOnScreen(self.path_add_res, confidence=0.8)
-        if get_vidio:
-            pyautogui.click(get_vidio)
 
     def get_room_list(self, path: list):
         """
