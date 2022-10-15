@@ -48,6 +48,8 @@ class AdClicker:
         self.path_room_zal = "png/study_rooms/zal_room"
         self.path_room_sawmill = "png/study_rooms/sawmill_room"
         self.path_room_forge = "png/study_rooms/forge_room"
+
+        self.path_tablet = "png/marketing/tablet.PNG"
         self.path_movie = "png/marketing/movie.PNG"
         self.path_add_res = "png/marketing/add_res.PNG"
         self.path_step1 = "png/marketing/step1.PNG"
@@ -128,6 +130,14 @@ class AdClicker:
         path_dining_room = [_pn + "\\" + file for file in os.listdir(_pn)]
         path = list(filter(None, map(search_coordinate_ad, path_dining_room)))
         return path
+
+    def tablet_search(self):
+        get_tablet = pyautogui.locateOnScreen(self.path_tablet, confidence=0.8)
+        if get_tablet:
+            pyautogui.click(get_tablet)
+            time.sleep(1)
+            get_movie2 = pyautogui.locateOnScreen(self.path_step2, confidence=0.8)
+            pyautogui.click(get_movie2)
 
     def cheking_tablet(self):
         """Проверка на рекламу в планшете. если непоявилась снопка крекламы но есть возможостить смотреть ее.

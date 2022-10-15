@@ -70,6 +70,7 @@ class Inspector(QThread):
                                                               self.mainwindow.btn_forge_test)
 
             elif self.choosing_action['tablet']:
+                self.mainwindow.preview.tablet_search()
                 self.mainwindow.preview.cheking_tablet()
                 self.mainwindow.preview.preview_tablet()
                 self.mainwindow.preview.definition_prize()
