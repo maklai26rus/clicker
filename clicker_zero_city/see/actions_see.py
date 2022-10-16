@@ -185,7 +185,6 @@ class ActionsSee(Ui_Za_City):
         self.inspector.choosing_action['resourcer'] = True
         self.inspector.choosing_action['rooms'] = False
         self.inspector.choosing_action['tablet'] = False
-        self.inspector.choosing_action['resourcer'] = False
 
         self.inspector.is_checked_resources()
         self.inspector.start()

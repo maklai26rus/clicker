@@ -68,7 +68,7 @@ class AdClicker:
 
         """
         _pn = os.path.normpath(os.path.join(path))
-        get_pn = pyautogui.locateOnScreen(_pn, confidence=0.8)
+        get_pn = pyautogui.locateOnScreen(_pn, confidence=0.7)
         if get_pn and counter > 0:
             pyautogui.click(get_pn)
             time.sleep(1)
@@ -132,7 +132,7 @@ class AdClicker:
         return path
 
     def tablet_search(self):
-        get_tablet = pyautogui.locateOnScreen(self.path_tablet, confidence=0.8)
+        get_tablet = pyautogui.locateOnScreen(self.path_tablet, confidence=0.9)
         if get_tablet:
             pyautogui.click(get_tablet)
             time.sleep(1)
