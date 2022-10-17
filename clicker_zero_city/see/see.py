@@ -14,7 +14,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Za_City(object):
     def setupUi(self, Za_City):
         Za_City.setObjectName("Za_City")
-        Za_City.setFixedSize(370, 500)
+        Za_City.setFixedSize(369, 496)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(".\\1.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        Za_City.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(Za_City)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayoutWidget_2 = QtWidgets.QWidget(self.centralwidget)
@@ -215,7 +218,7 @@ class Ui_Za_City(object):
         self.action.setText(_translate("Za_City", "О кликере"))
         self.actionExit.setText(_translate("Za_City", "Exit"))
 
-#
+
 # if __name__ == "__main__":
 #     import sys
 #     app = QtWidgets.QApplication(sys.argv)

@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Za_City</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>1.ico</normaloff>1.ico</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
