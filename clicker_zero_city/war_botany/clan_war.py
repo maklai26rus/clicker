@@ -63,6 +63,7 @@ def ab_next():
     :return:
     """
     click = pyautogui.locateOnScreen(next_av, confidence=0.7)
+    print(click)
     if click:
         print('Начала войны')
         pyautogui.click(click)
