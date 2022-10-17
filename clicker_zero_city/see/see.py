@@ -215,12 +215,12 @@ class Ui_Za_City(object):
         self.action.setText(_translate("Za_City", "О кликере"))
         self.actionExit.setText(_translate("Za_City", "Exit"))
 
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Za_City = QtWidgets.QMainWindow()
-    ui = Ui_Za_City()
-    ui.setupUi(Za_City)
-    Za_City.show()
-    sys.exit(app.exec_())
+#
+# if __name__ == "__main__":
+#     import sys
+#     app = QtWidgets.QApplication(sys.argv)
+#     Za_City = QtWidgets.QMainWindow()
+#     ui = Ui_Za_City()
+#     ui.setupUi(Za_City)
+#     Za_City.show()
+#     sys.exit(app.exec_())

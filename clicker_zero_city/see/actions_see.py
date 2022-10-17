@@ -164,7 +164,7 @@ class ActionsSee(Ui_Za_City):
         self.test_joinery_room()
         self.test_forge_room()
 
-        self.version_number.setText('0.071022')
+        self.version_number.setText('0.171022')
         self.actionExit.triggered.connect(qApp.quit)
 
     def open_window(self):
