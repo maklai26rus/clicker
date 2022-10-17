@@ -27,7 +27,7 @@ class Inspector(QThread):
         # Определят на запуск цикла.
         self.program_operation_switch = False
         self.mainwindow = mainwindow
-        self.choosing_action = {"rooms": False, 'tablet': False, 'resourcer': False}
+        self.choosing_action = {"rooms": False, 'tablet': False, 'resourcer': False, 'location': False}
 
     def shutdown_click(self):
         for k in self.choosing_action.keys():
@@ -44,62 +44,89 @@ class Inspector(QThread):
             time.sleep(0.5)
             if self.choosing_action["rooms"]:
 
-                if self.mainwindow.preview.KITCHEN_ROOM:
-                    self.mainwindow.preview.kitchen_rooms()
-                    self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.KITCHEN_ROOM,
-                                                              self.mainwindow.btn_kitchen_test)
-                elif self.mainwindow.preview.LAB_ROOM:
-                    self.mainwindow.preview.laboratory_room()
-                    self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.LAB_ROOM,
-                                                              self.mainwindow.btn_lab_test)
-                elif self.mainwindow.preview.SAWMILL_ROOM:
-                    self.mainwindow.preview.joinery_room()
-                    self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.SAWMILL_ROOM,
-                                                              self.mainwindow.btn_sawmill_test)
-                elif self.mainwindow.preview.ZAL_ROOM:
-                    self.mainwindow.preview.zal_room()
-                    self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.ZAL_ROOM,
-                                                              self.mainwindow.btn_zal_test)
-                elif self.mainwindow.preview.BANK_ROOM:
-                    self.mainwindow.preview.bank_room()
-                    self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.BANK_ROOM,
-                                                              self.mainwindow.btn_bank_test)
-                elif self.mainwindow.preview.FORGE_ROOM:
-                    self.mainwindow.preview.forge_room()
-                    self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.FORGE_ROOM,
-                                                              self.mainwindow.btn_forge_test)
+                self.viewing_ads_in_rooms()
 
             elif self.choosing_action['tablet']:
-                self.mainwindow.preview.tablet_search()
-                self.mainwindow.preview.cheking_tablet()
-                self.mainwindow.preview.preview_tablet()
-                self.mainwindow.preview.definition_prize()
+
+                self.viewing_ads_on_a_tablet()
+
+            elif self.choosing_action['location']:
+                self.viewing_ads_in_location()
 
             elif self.choosing_action['resourcer']:
-                if self.mainwindow.preview.res_food and self.choosing_action['resourcer']:
-                    self.mainwindow.preview.get_metal_res(path=self.mainwindow.preview.path_food,
-                                                          counter=self.mainwindow.preview.res_food_counter,
-                                                          resource="food")
 
-                if self.mainwindow.preview.res_vial and self.choosing_action['resourcer']:
-                    self.mainwindow.preview.get_metal_res(path=self.mainwindow.preview.path_vial,
-                                                          counter=self.mainwindow.preview.res_vial_counter,
-                                                          resource="vial")
+                self.viewing_ads_for_resources()
 
-                if self.mainwindow.preview.res_wood and self.choosing_action['resourcer']:
-                    self.mainwindow.preview.get_metal_res(path=self.mainwindow.preview.path_wood,
-                                                          counter=self.mainwindow.preview.res_wood_counter,
-                                                          resource="wood")
+    def viewing_ads_in_location(self):
+        """Просмотре рекламы в локации
+        Арена , Бункер, Вокзал, Тунель
+        """
+        ...
 
-                if self.mainwindow.preview.res_baks and self.choosing_action['resourcer']:
-                    self.mainwindow.preview.get_metal_res(path=self.mainwindow.preview.path_baks,
-                                                          counter=self.mainwindow.preview.res_baks_counter,
-                                                          resource="baks")
+    def viewing_ads_for_resources(self):
+        """Метод для просмотра рекламы для получение ресурсов
+        жележзо, дерева, реагенты, еда, деньги
+        """
+        if self.mainwindow.preview.res_food and self.choosing_action['resourcer']:
+            self.mainwindow.preview.getting_resources(path=self.mainwindow.preview.path_food,
+                                                      counter=self.mainwindow.preview.res_food_counter,
+                                                      resource="food")
+        if self.mainwindow.preview.res_vial and self.choosing_action['resourcer']:
+            self.mainwindow.preview.getting_resources(path=self.mainwindow.preview.path_vial,
+                                                      counter=self.mainwindow.preview.res_vial_counter,
+                                                      resource="vial")
+        if self.mainwindow.preview.res_wood and self.choosing_action['resourcer']:
+            self.mainwindow.preview.getting_resources(path=self.mainwindow.preview.path_wood,
+                                                      counter=self.mainwindow.preview.res_wood_counter,
+                                                      resource="wood")
+        if self.mainwindow.preview.res_baks and self.choosing_action['resourcer']:
+            self.mainwindow.preview.getting_resources(path=self.mainwindow.preview.path_baks,
+                                                      counter=self.mainwindow.preview.res_baks_counter,
+                                                      resource="baks")
+        if self.mainwindow.preview.res_metal and self.choosing_action['resourcer']:
+            self.mainwindow.preview.getting_resources(path=self.mainwindow.preview.path_metal,
+                                                      counter=self.mainwindow.preview.res_metal_counter,
+                                                      resource="metal")
 
-                if self.mainwindow.preview.res_metal and self.choosing_action['resourcer']:
-                    self.mainwindow.preview.get_metal_res(path=self.mainwindow.preview.path_metal,
-                                                          counter=self.mainwindow.preview.res_metal_counter,
-                                                          resource="metal")
+    def viewing_ads_on_a_tablet(self):
+        """
+        Для просмотра рекламы с планшета, для получения крипто денег
+        """
+        self.mainwindow.preview.tablet_search()
+        self.mainwindow.preview.cheking_tablet()
+        self.mainwindow.preview.preview_tablet()
+        self.mainwindow.preview.definition_prize()
+
+    def viewing_ads_in_rooms(self):
+        """
+
+        Просмотр рекламы с комнат. для ускорения прокачки персонажей
+
+        """
+        if self.mainwindow.preview.KITCHEN_ROOM:
+            self.mainwindow.preview.kitchen_rooms()
+            self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.KITCHEN_ROOM,
+                                                      self.mainwindow.btn_kitchen_test)
+        elif self.mainwindow.preview.LAB_ROOM:
+            self.mainwindow.preview.laboratory_room()
+            self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.LAB_ROOM,
+                                                      self.mainwindow.btn_lab_test)
+        elif self.mainwindow.preview.SAWMILL_ROOM:
+            self.mainwindow.preview.joinery_room()
+            self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.SAWMILL_ROOM,
+                                                      self.mainwindow.btn_sawmill_test)
+        elif self.mainwindow.preview.ZAL_ROOM:
+            self.mainwindow.preview.zal_room()
+            self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.ZAL_ROOM,
+                                                      self.mainwindow.btn_zal_test)
+        elif self.mainwindow.preview.BANK_ROOM:
+            self.mainwindow.preview.bank_room()
+            self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.BANK_ROOM,
+                                                      self.mainwindow.btn_bank_test)
+        elif self.mainwindow.preview.FORGE_ROOM:
+            self.mainwindow.preview.forge_room()
+            self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.FORGE_ROOM,
+                                                      self.mainwindow.btn_forge_test)
 
     def is_checked_rooms(self):
         """
@@ -200,6 +227,7 @@ class ActionsSee(Ui_Za_City):
         self.inspector.choosing_action['rooms'] = False
         self.inspector.choosing_action['tablet'] = False
         self.inspector.choosing_action['resourcer'] = False
+        self.inspector.choosing_action['location'] = False
         self.inspector.is_checked_rooms()
         self.inspector.is_checked_resources()
 

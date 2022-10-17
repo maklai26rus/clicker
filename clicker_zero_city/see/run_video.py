@@ -29,6 +29,15 @@ class AdClicker:
         self.res_vial = False
         self.res_vial_counter = 2
 
+        self.ads_in_arena = False
+        self.ads_in_arena_counter = 2
+        self.ads_in_tunnel = False
+        self.ads_in_tunnel_counter = 4
+        self.ads_in_bunker = False
+        self.ads_in_bunker_counter = 2
+        self.ads_in_terminal = False
+        self.ads_in_terminal_counter = 2
+
         # Разовое нажатие на выбранную комнату
         self.one_click_rk = True
         # Время просмотра рекламы. Хочу сделать регулируемое
@@ -61,10 +70,48 @@ class AdClicker:
         self.path_vial = "png/marketing/vial.PNG"
         self.path_wood = "png/marketing/wood.PNG"
 
-    def get_metal_res(self, path, counter, resource):
+        self.path_arena = "png/marketing/arena.PNG"
+        self.path_terminal = "png/marketing/terminal.PNG"
+        self.path_bunker = "png/marketing/bunker.PNG"
+        self.path_tunnel = "png/marketing/tunel.PNG"
+        # self.path_add_res = "png/marketing/add_res.PNG"
+
+    def getting_resources_location(self, path, counter, resource):
         """
         Смотрим рекламу для получение ресурсов
         введения счечика просмотра рекламы
+        path = путь к картинке получения ресурса
+        counter = счечик. сколько раз просмотреть рекламу
+        resource= что за выбраный ресурс
+
+        """
+        _pn = os.path.normpath(os.path.join(path))
+        get_pn = pyautogui.locateOnScreen(_pn, confidence=0.7)
+        if get_pn and counter > 0:
+            pyautogui.click(get_pn)
+            time.sleep(1)
+
+            get_par = pyautogui.locateOnScreen(self.path_video_tablet, confidence=0.8)
+            if get_par:
+                pyautogui.click(get_par)
+                if resource == 'arena':
+                    self.res_metal_counter -= 1
+                elif resource == 'terminal':
+                    self.res_food_counter -= 1
+                elif resource == 'bunker':
+                    self.res_wood_counter -= 1
+                elif resource == 'tunnel':
+                    self.res_baks_counter -= 1
+
+        time.sleep(3)
+
+    def getting_resources(self, path, counter, resource):
+        """
+        Смотрим рекламу для получение ресурсов
+        введения счечика просмотра рекламы
+        path = путь к картинке получения ресурса
+        counter = счечик. сколько раз просмотреть рекламу
+        resource= что за выбраный ресурс
 
         """
         _pn = os.path.normpath(os.path.join(path))
