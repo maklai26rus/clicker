@@ -103,37 +103,37 @@ class Inspector(QThread):
         Просмотр рекламы с комнат. для ускорения прокачки персонажей
 
         """
-        if self.mainwindow.preview.checking_room_kitchen:
+        if self.mainwindow.preview.checking_room_kitchen and self.choosing_action["rooms"]:
             self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.counter_room_kitchen,
                                                path_room=self.mainwindow.preview.path_room_kitchen, resource='kitchen')
             # self.mainwindow.preview.kitchen_rooms()
             self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.checking_room_kitchen,
                                                       self.mainwindow.btn_kitchen_test)
-        if self.mainwindow.preview.checking_room_lab:
+        if self.mainwindow.preview.checking_room_lab and self.choosing_action["rooms"]:
             self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.counter_room_lab,
                                                path_room=self.mainwindow.preview.path_room_lab, resource='lab')
             # self.mainwindow.preview.laboratory_room()
             self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.checking_room_lab,
                                                       self.mainwindow.btn_lab_test)
-        if self.mainwindow.preview.checking_room_sawmill:
+        if self.mainwindow.preview.checking_room_sawmill and self.choosing_action["rooms"]:
             self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.counter_room_sawmill,
                                                path_room=self.mainwindow.preview.path_room_sawmill, resource='sawmill')
             # self.mainwindow.preview.joinery_room()
             self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.checking_room_sawmill,
                                                       self.mainwindow.btn_sawmill_test)
-        if self.mainwindow.preview.checking_room_zal:
+        if self.mainwindow.preview.checking_room_zal and self.choosing_action["rooms"]:
             self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.counter_room_zal,
                                                path_room=self.mainwindow.preview.path_room_zal, resource='zal')
             # self.mainwindow.preview.zal_room()
             self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.checking_room_zal,
                                                       self.mainwindow.btn_zal_test)
-        if self.mainwindow.preview.checking_room_bank:
+        if self.mainwindow.preview.checking_room_bank and self.choosing_action["rooms"]:
             self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.counter_room_bank,
                                                path_room=self.mainwindow.preview.path_room_bank, resource='bank')
             # self.mainwindow.preview.bank_room()
             self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.checking_room_bank,
                                                       self.mainwindow.btn_bank_test)
-        if self.mainwindow.preview.checking_room_forge:
+        if self.mainwindow.preview.checking_room_forge and self.choosing_action["rooms"]:
             self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.counter_room_forge,
                                                path_room=self.mainwindow.preview.path_room_forge, resource='forge')
             # self.mainwindow.preview.forge_room()

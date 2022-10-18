@@ -30,6 +30,8 @@ class AdClicker:
         self.checking_room_sawmill = False
         self.counter_room_sawmill = 3
 
+        self.previous_room = ''
+
         self.res_food = False
         self.counter_res_food = 2
         self.res_metal = False
@@ -97,9 +99,9 @@ class AdClicker:
         resource= что за выбраный ресурс
 
         """
-        if counter > 0:
-            _pn = os.path.normpath(os.path.join(path))
-            get_pn = pyautogui.locateOnScreen(_pn, confidence=0.7)
+        _pn = os.path.normpath(os.path.join(path))
+        get_pn = pyautogui.locateOnScreen(_pn, confidence=0.7)
+        if get_pn and counter > 0:
             pyautogui.click(get_pn)
             time.sleep(1)
 
@@ -126,10 +128,10 @@ class AdClicker:
         resource= что за выбраный ресурс
 
         """
-        # if get_pn and counter > 0:
-        if counter > 0:
-            _pn = os.path.normpath(os.path.join(path))
-            get_pn = pyautogui.locateOnScreen(_pn, confidence=0.7)
+        _pn = os.path.normpath(os.path.join(path))
+        get_pn = pyautogui.locateOnScreen(_pn, confidence=0.7)
+        if get_pn and counter > 0:
+            # if counter > 0:
             pyautogui.click(get_pn)
             time.sleep(1)
 
@@ -157,10 +159,10 @@ class AdClicker:
         """
         if path:
             center = pyautogui.center(path[0])
-            pyautogui.moveTo(center)
+            # pyautogui.moveTo(center)
             if self.one_click_rk:
                 pyautogui.click(center)
-                self.one_click_rk = False
+                # self.one_click_rk = False
             # else:
             #     self.click_repetitions += 1
 
@@ -169,7 +171,7 @@ class AdClicker:
         get_vidio = pyautogui.locateOnScreen(self.path_video_rooms, confidence=0.8)
         if get_vidio:
             pyautogui.click(get_vidio)
-            time.sleep(self.waiting_for_end)
+            # time.sleep(self.waiting_for_end)
 
     def preview_tablet(self):
         """Предварительный просмотр рекламы"""
@@ -223,28 +225,31 @@ class AdClicker:
         counter кол-во раз смотреть рекламу
         path_room путь к деректории
         """
-        if counter > 0:
-            get_pn = self.path_normal(path_room)
-            pyautogui.click(get_pn[0])
-            time.sleep(1)
+        get_pvr = pyautogui.locateOnScreen(self.path_video_rooms, confidence=0.8)
 
-            get_pvr = pyautogui.locateOnScreen(self.path_video_rooms, confidence=0.8)
+        if get_pvr and counter > 0:
 
-            time.sleep(5)
-            if get_pvr:
-                pyautogui.click(get_pvr)
-                if resource == 'kitchen':
-                    self.counter_room_kitchen -= 1
-                elif resource == 'sawmill':
-                    self.counter_room_sawmill -= 1
-                elif resource == 'lab':
-                    self.counter_room_lab -= 1
-                elif resource == 'bank':
-                    self.counter_room_bank -= 1
-                elif resource == 'zal':
-                    self.counter_room_zal -= 1
-                elif resource == 'forge':
-                    self.counter_room_forge -= 1
+            pyautogui.click(get_pvr)
+
+            if resource == 'kitchen':
+                self.counter_room_kitchen -= 1
+            elif resource == 'sawmill':
+                self.counter_room_sawmill -= 1
+            elif resource == 'lab':
+                self.counter_room_lab -= 1
+            elif resource == 'bank':
+                self.counter_room_bank -= 1
+            elif resource == 'zal':
+                self.counter_room_zal -= 1
+            elif resource == 'forge':
+                self.counter_room_forge -= 1
+        else:
+            if self.previous_room != resource:
+                get_pn = self.path_normal(path_room)
+
+                self.get_room_list(get_pn)
+                self.previous_room = resource
+                time.sleep(5)
 
     # def kitchen_rooms(self):
     #     """
