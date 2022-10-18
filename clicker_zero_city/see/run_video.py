@@ -239,115 +239,115 @@ class AdClicker:
                 elif resource == 'forge':
                     self.forge_room_counter -= 1
 
-    def kitchen_rooms(self):
-        """
-        Ищет координаты картинок для получение рекламы
-
-        """
-        if self.preview_room():
-            self.click_repetitions += 1
-        elif self.click_repetitions > self.max_see:
-            self.KITCHEN_ROOM = False
-            self.one_click_rk = True
-            self.click_repetitions = 1
-        elif self.KITCHEN_ROOM:
-            path = self.path_normal(self.path_room_kitchen)
-            time.sleep(1)
-            self.get_room_list(path)
-
-        # print(f'Кухня найденый координат {len(path)}', self.click_repetitions)
-
-        # time.sleep(5)
-
-    def laboratory_room(self):
-        """
-        Ищет координаты картинок для получение рекламы
-        Комната улучшения знаний в лаборатории
-        """
-        if self.preview_room():
-            self.click_repetitions += 1
-        elif self.click_repetitions > self.max_see:
-            self.LAB_ROOM = False
-            self.one_click_rk = True
-            self.click_repetitions = 1
-        elif self.LAB_ROOM:
-            path = self.path_normal(self.path_room_lab)
-            time.sleep(1)
-            self.get_room_list(path)
-
-        # print(f'Лаборатория найденый координат {len(path)}', self.click_repetitions)
-
-    def joinery_room(self):
-        """
-        Ищет координаты картинок для получение рекламы
-        Комната улучшения добычи дерева
-        """
-        if self.preview_room():
-            self.click_repetitions += 1
-        elif self.click_repetitions > self.max_see:
-            self.SAWMILL_ROOM = False
-            self.one_click_rk = True
-            self.click_repetitions = 1
-        elif self.SAWMILL_ROOM:
-            path = self.path_normal(self.path_room_sawmill)
-            time.sleep(1)
-            self.get_room_list(path)
-        # print(f'Лесопилка найденый координат {len(path)}', self.click_repetitions)
-
-    def bank_room(self):
-        """
-        Ищет координаты картинок для получение рекламы
-        Комната улучшения добычи денег
-        """
-        if self.preview_room():
-            self.click_repetitions += 1
-        elif self.click_repetitions > self.max_see:
-            self.BANK_ROOM = False
-            self.one_click_rk = True
-            self.click_repetitions = 1
-        elif self.BANK_ROOM:
-            path = self.path_normal(self.path_room_bank)
-            time.sleep(1)
-            self.get_room_list(path)
-
-        # print(f'Банк', path, self.click_repetitions)
-
-    def zal_room(self):
-        """
-        Ищет координаты картинок для получение рекламы
-        Комната по повышению силы
-        """
-        if self.preview_room():
-            self.click_repetitions += 1
-        elif self.click_repetitions > self.max_see:
-            self.ZAL_ROOM = False
-            self.one_click_rk = True
-            self.click_repetitions = 1
-        elif self.ZAL_ROOM:
-            path = self.path_normal(self.path_room_zal)
-            time.sleep(1)
-            self.get_room_list(path)
-        # print(f'Спортзал', path, self.click_repetitions)
-        # time.sleep(5)
-
-    def forge_room(self):
-        """
-        Ищет координаты картинок для получение рекламы
-        Комната улучшению добычи металла
-        """
-        if self.preview_room():
-            self.click_repetitions += 1
-        elif self.click_repetitions > self.max_see:
-            self.FORGE_ROOM = False
-            self.one_click_rk = True
-            self.click_repetitions = 1
-        elif self.FORGE_ROOM:
-            path = self.path_normal(self.path_room_forge)
-            time.sleep(1)
-            self.get_room_list(path)
-        # print(f'Кузница найденый координат {len(path)}', self.click_repetitions)
-
-        # time.sleep(5)
+    # def kitchen_rooms(self):
+    #     """
+    #     Ищет координаты картинок для получение рекламы
+    #
+    #     """
+    #     if self.preview_room():
+    #         self.click_repetitions += 1
+    #     elif self.click_repetitions > self.max_see:
+    #         self.KITCHEN_ROOM = False
+    #         self.one_click_rk = True
+    #         self.click_repetitions = 1
+    #     elif self.KITCHEN_ROOM:
+    #         path = self.path_normal(self.path_room_kitchen)
+    #         time.sleep(1)
+    #         self.get_room_list(path)
+    #
+    #     # print(f'Кухня найденый координат {len(path)}', self.click_repetitions)
+    #
+    #     # time.sleep(5)
+    #
+    # def laboratory_room(self):
+    #     """
+    #     Ищет координаты картинок для получение рекламы
+    #     Комната улучшения знаний в лаборатории
+    #     """
+    #     if self.preview_room():
+    #         self.click_repetitions += 1
+    #     elif self.click_repetitions > self.max_see:
+    #         self.LAB_ROOM = False
+    #         self.one_click_rk = True
+    #         self.click_repetitions = 1
+    #     elif self.LAB_ROOM:
+    #         path = self.path_normal(self.path_room_lab)
+    #         time.sleep(1)
+    #         self.get_room_list(path)
+    #
+    #     # print(f'Лаборатория найденый координат {len(path)}', self.click_repetitions)
+    #
+    # def joinery_room(self):
+    #     """
+    #     Ищет координаты картинок для получение рекламы
+    #     Комната улучшения добычи дерева
+    #     """
+    #     if self.preview_room():
+    #         self.click_repetitions += 1
+    #     elif self.click_repetitions > self.max_see:
+    #         self.SAWMILL_ROOM = False
+    #         self.one_click_rk = True
+    #         self.click_repetitions = 1
+    #     elif self.SAWMILL_ROOM:
+    #         path = self.path_normal(self.path_room_sawmill)
+    #         time.sleep(1)
+    #         self.get_room_list(path)
+    #     # print(f'Лесопилка найденый координат {len(path)}', self.click_repetitions)
+    #
+    # def bank_room(self):
+    #     """
+    #     Ищет координаты картинок для получение рекламы
+    #     Комната улучшения добычи денег
+    #     """
+    #     if self.preview_room():
+    #         self.click_repetitions += 1
+    #     elif self.click_repetitions > self.max_see:
+    #         self.BANK_ROOM = False
+    #         self.one_click_rk = True
+    #         self.click_repetitions = 1
+    #     elif self.BANK_ROOM:
+    #         path = self.path_normal(self.path_room_bank)
+    #         time.sleep(1)
+    #         self.get_room_list(path)
+    #
+    #     # print(f'Банк', path, self.click_repetitions)
+    #
+    # def zal_room(self):
+    #     """
+    #     Ищет координаты картинок для получение рекламы
+    #     Комната по повышению силы
+    #     """
+    #     if self.preview_room():
+    #         self.click_repetitions += 1
+    #     elif self.click_repetitions > self.max_see:
+    #         self.ZAL_ROOM = False
+    #         self.one_click_rk = True
+    #         self.click_repetitions = 1
+    #     elif self.ZAL_ROOM:
+    #         path = self.path_normal(self.path_room_zal)
+    #         time.sleep(1)
+    #         self.get_room_list(path)
+    #     # print(f'Спортзал', path, self.click_repetitions)
+    #     # time.sleep(5)
+    #
+    # def forge_room(self):
+    #     """
+    #     Ищет координаты картинок для получение рекламы
+    #     Комната улучшению добычи металла
+    #     """
+    #     if self.preview_room():
+    #         self.click_repetitions += 1
+    #     elif self.click_repetitions > self.max_see:
+    #         self.FORGE_ROOM = False
+    #         self.one_click_rk = True
+    #         self.click_repetitions = 1
+    #     elif self.FORGE_ROOM:
+    #         path = self.path_normal(self.path_room_forge)
+    #         time.sleep(1)
+    #         self.get_room_list(path)
+    #     # print(f'Кузница найденый координат {len(path)}', self.click_repetitions)
+    #
+    #     # time.sleep(5)
 
 # def watch_ads():
 #     """Ручной запуск
