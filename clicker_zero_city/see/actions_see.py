@@ -104,27 +104,39 @@ class Inspector(QThread):
 
         """
         if self.mainwindow.preview.KITCHEN_ROOM:
-            self.mainwindow.preview.kitchen_rooms()
+            self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.kitchen_room_counter,
+                                               path_room=self.mainwindow.preview.path_room_kitchen, resource='kitchen')
+            # self.mainwindow.preview.kitchen_rooms()
             self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.KITCHEN_ROOM,
                                                       self.mainwindow.btn_kitchen_test)
-        elif self.mainwindow.preview.LAB_ROOM:
-            self.mainwindow.preview.laboratory_room()
+        if self.mainwindow.preview.LAB_ROOM:
+            self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.lab_room_counter,
+                                               path_room=self.mainwindow.preview.path_room_lab, resource='lab')
+            # self.mainwindow.preview.laboratory_room()
             self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.LAB_ROOM,
                                                       self.mainwindow.btn_lab_test)
-        elif self.mainwindow.preview.SAWMILL_ROOM:
-            self.mainwindow.preview.joinery_room()
+        if self.mainwindow.preview.SAWMILL_ROOM:
+            self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.sawmill_room_counter,
+                                               path_room=self.mainwindow.preview.path_room_sawmill, resource='sawmill')
+            # self.mainwindow.preview.joinery_room()
             self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.SAWMILL_ROOM,
                                                       self.mainwindow.btn_sawmill_test)
-        elif self.mainwindow.preview.ZAL_ROOM:
-            self.mainwindow.preview.zal_room()
+        if self.mainwindow.preview.ZAL_ROOM:
+            self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.zal_room_counter,
+                                               path_room=self.mainwindow.preview.path_room_zal, resource='zal')
+            # self.mainwindow.preview.zal_room()
             self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.ZAL_ROOM,
                                                       self.mainwindow.btn_zal_test)
-        elif self.mainwindow.preview.BANK_ROOM:
-            self.mainwindow.preview.bank_room()
+        if self.mainwindow.preview.BANK_ROOM:
+            self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.bank_room_counter,
+                                               path_room=self.mainwindow.preview.path_room_bank, resource='bank')
+            # self.mainwindow.preview.bank_room()
             self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.BANK_ROOM,
                                                       self.mainwindow.btn_bank_test)
-        elif self.mainwindow.preview.FORGE_ROOM:
-            self.mainwindow.preview.forge_room()
+        if self.mainwindow.preview.FORGE_ROOM:
+            self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.forge_room_counter,
+                                               path_room=self.mainwindow.preview.path_room_forge, resource='forge')
+            # self.mainwindow.preview.forge_room()
             self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.FORGE_ROOM,
                                                       self.mainwindow.btn_forge_test)
 

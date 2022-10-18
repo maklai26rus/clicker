@@ -12,11 +12,17 @@ class AdClicker:
 
     def __init__(self):
         self.KITCHEN_ROOM = False
+        self.kitchen_room_counter = 3
         self.LAB_ROOM = False
+        self.lab_room_counter = 3
         self.BANK_ROOM = False
+        self.bank_room_counter = 3
         self.ZAL_ROOM = False
+        self.zal_room_counter = False
         self.FORGE_ROOM = False
+        self.forge_room_counter = 3
         self.SAWMILL_ROOM = False
+        self.sawmill_room_counter = 3
 
         self.res_food = False
         self.res_food_counter = 2
@@ -202,6 +208,36 @@ class AdClicker:
             get_movie2 = pyautogui.locateOnScreen(self.path_step2, confidence=0.8)
             pyautogui.click(get_movie2)
             time.sleep(1)
+
+    def test_rooms(self, counter, path_room, resource):
+        """
+        Ищет координаты картинок для получение рекламы
+        room комната для просмотра рекламы
+        counter кол-во раз смотреть рекламу
+        path_room путь к деректории
+        """
+        get_pn = self.path_normal(path_room)
+        if get_pn and counter > 0:
+            pyautogui.click(get_pn[0])
+            time.sleep(1)
+
+            get_par = pyautogui.locateOnScreen(self.path_video_rooms, confidence=0.8)
+
+            time.sleep(5)
+            if get_par:
+                pyautogui.click(get_par)
+                if resource == 'kitchen':
+                    self.kitchen_room_counter -= 1
+                elif resource == 'sawmill':
+                    self.sawmill_room_counter -= 1
+                elif resource == 'lab':
+                    self.lab_room_counter -= 1
+                elif resource == 'bank':
+                    self.bank_room_counter -= 1
+                elif resource == 'zal':
+                    self.zal_room_counter -= 1
+                elif resource == 'forge':
+                    self.forge_room_counter -= 1
 
     def kitchen_rooms(self):
         """
