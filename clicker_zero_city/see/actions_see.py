@@ -69,23 +69,23 @@ class Inspector(QThread):
         """
         if self.mainwindow.preview.res_food and self.choosing_action['resourcer']:
             self.mainwindow.preview.getting_resources(path=self.mainwindow.preview.path_food,
-                                                      counter=self.mainwindow.preview.res_food_counter,
+                                                      counter=self.mainwindow.preview.counter_res_food,
                                                       resource="food")
         if self.mainwindow.preview.res_vial and self.choosing_action['resourcer']:
             self.mainwindow.preview.getting_resources(path=self.mainwindow.preview.path_vial,
-                                                      counter=self.mainwindow.preview.res_vial_counter,
+                                                      counter=self.mainwindow.preview.counter_res_vial,
                                                       resource="vial")
         if self.mainwindow.preview.res_wood and self.choosing_action['resourcer']:
             self.mainwindow.preview.getting_resources(path=self.mainwindow.preview.path_wood,
-                                                      counter=self.mainwindow.preview.res_wood_counter,
+                                                      counter=self.mainwindow.preview.counter_res_wood,
                                                       resource="wood")
         if self.mainwindow.preview.res_baks and self.choosing_action['resourcer']:
             self.mainwindow.preview.getting_resources(path=self.mainwindow.preview.path_baks,
-                                                      counter=self.mainwindow.preview.res_baks_counter,
+                                                      counter=self.mainwindow.preview.counter_res_baks,
                                                       resource="baks")
         if self.mainwindow.preview.res_metal and self.choosing_action['resourcer']:
             self.mainwindow.preview.getting_resources(path=self.mainwindow.preview.path_metal,
-                                                      counter=self.mainwindow.preview.res_metal_counter,
+                                                      counter=self.mainwindow.preview.counter_res_metal,
                                                       resource="metal")
 
     def viewing_ads_on_a_tablet(self):
@@ -103,41 +103,41 @@ class Inspector(QThread):
         Просмотр рекламы с комнат. для ускорения прокачки персонажей
 
         """
-        if self.mainwindow.preview.KITCHEN_ROOM:
-            self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.kitchen_room_counter,
+        if self.mainwindow.preview.checking_room_kitchen:
+            self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.counter_room_kitchen,
                                                path_room=self.mainwindow.preview.path_room_kitchen, resource='kitchen')
             # self.mainwindow.preview.kitchen_rooms()
-            self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.KITCHEN_ROOM,
+            self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.checking_room_kitchen,
                                                       self.mainwindow.btn_kitchen_test)
-        if self.mainwindow.preview.LAB_ROOM:
-            self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.lab_room_counter,
+        if self.mainwindow.preview.checking_room_lab:
+            self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.counter_room_lab,
                                                path_room=self.mainwindow.preview.path_room_lab, resource='lab')
             # self.mainwindow.preview.laboratory_room()
-            self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.LAB_ROOM,
+            self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.checking_room_lab,
                                                       self.mainwindow.btn_lab_test)
-        if self.mainwindow.preview.SAWMILL_ROOM:
-            self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.sawmill_room_counter,
+        if self.mainwindow.preview.checking_room_sawmill:
+            self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.counter_room_sawmill,
                                                path_room=self.mainwindow.preview.path_room_sawmill, resource='sawmill')
             # self.mainwindow.preview.joinery_room()
-            self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.SAWMILL_ROOM,
+            self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.checking_room_sawmill,
                                                       self.mainwindow.btn_sawmill_test)
-        if self.mainwindow.preview.ZAL_ROOM:
-            self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.zal_room_counter,
+        if self.mainwindow.preview.checking_room_zal:
+            self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.counter_room_zal,
                                                path_room=self.mainwindow.preview.path_room_zal, resource='zal')
             # self.mainwindow.preview.zal_room()
-            self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.ZAL_ROOM,
+            self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.checking_room_zal,
                                                       self.mainwindow.btn_zal_test)
-        if self.mainwindow.preview.BANK_ROOM:
-            self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.bank_room_counter,
+        if self.mainwindow.preview.checking_room_bank:
+            self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.counter_room_bank,
                                                path_room=self.mainwindow.preview.path_room_bank, resource='bank')
             # self.mainwindow.preview.bank_room()
-            self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.BANK_ROOM,
+            self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.checking_room_bank,
                                                       self.mainwindow.btn_bank_test)
-        if self.mainwindow.preview.FORGE_ROOM:
-            self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.forge_room_counter,
+        if self.mainwindow.preview.checking_room_forge:
+            self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.counter_room_forge,
                                                path_room=self.mainwindow.preview.path_room_forge, resource='forge')
             # self.mainwindow.preview.forge_room()
-            self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.FORGE_ROOM,
+            self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.checking_room_forge,
                                                       self.mainwindow.btn_forge_test)
 
     def is_checked_rooms(self):
@@ -148,12 +148,12 @@ class Inspector(QThread):
         """
 
         self.mainwindow.set_enabled(self.action)
-        self.mainwindow.preview.KITCHEN_ROOM = self.mainwindow.kitchen_room.isChecked()
-        self.mainwindow.preview.LAB_ROOM = self.mainwindow.lab_room.isChecked()
-        self.mainwindow.preview.BANK_ROOM = self.mainwindow.bank_room.isChecked()
-        self.mainwindow.preview.ZAL_ROOM = self.mainwindow.zal_room.isChecked()
-        self.mainwindow.preview.SAWMILL_ROOM = self.mainwindow.sawmill_room.isChecked()
-        self.mainwindow.preview.FORGE_ROOM = self.mainwindow.forge_room.isChecked()
+        self.mainwindow.preview.checking_room_kitchen = self.mainwindow.kitchen_room.isChecked()
+        self.mainwindow.preview.checking_room_lab = self.mainwindow.lab_room.isChecked()
+        self.mainwindow.preview.checking_room_bank = self.mainwindow.bank_room.isChecked()
+        self.mainwindow.preview.checking_room_zal = self.mainwindow.zal_room.isChecked()
+        self.mainwindow.preview.checking_room_sawmill = self.mainwindow.sawmill_room.isChecked()
+        self.mainwindow.preview.checking_room_forge = self.mainwindow.forge_room.isChecked()
 
     def is_checked_resources(self):
         self.mainwindow.set_enabled_resourcer(self.action)
@@ -196,12 +196,12 @@ class ActionsSee(Ui_Za_City):
 
         self.btn_resources()
 
-        self.test_kitchen_room()
-        self.test_lab_room()
-        self.test_zal_room()
-        self.test_bank_room()
-        self.test_joinery_room()
-        self.test_forge_room()
+        self.btn_action_kitchen_room()
+        self.btn_action_lab_room()
+        self.btn_action_zal_room()
+        self.btn_action_bank_room()
+        self.btn_action_joinery_room()
+        self.btn_action_forge_room()
 
         self.version_number.setText('0.171022')
         self.actionExit.triggered.connect(qApp.quit)
@@ -301,27 +301,27 @@ class ActionsSee(Ui_Za_City):
         self.check_baks.setEnabled(action)
         self.check_reagent.setEnabled(action)
 
-    def test_kitchen_room(self):
+    def btn_action_kitchen_room(self):
         """Запуск кнопки на проверка если комната """
         self.btn_kitchen_test.clicked.connect(self.test_kitchen)
 
-    def test_lab_room(self):
+    def btn_action_lab_room(self):
         """Запуск кнопки на проверка если комната """
         self.btn_lab_test.clicked.connect(self.test_lab)
 
-    def test_zal_room(self):
+    def btn_action_zal_room(self):
         """Запуск кнопки на проверка если комната """
         self.btn_zal_test.clicked.connect(self.test_zal)
 
-    def test_bank_room(self):
+    def btn_action_bank_room(self):
         """Запуск кнопки на проверка если комната """
         self.btn_bank_test.clicked.connect(self.test_bank)
 
-    def test_forge_room(self):
+    def btn_action_forge_room(self):
         """Запуск кнопки на проверка если комната """
         self.btn_forge_test.clicked.connect(self.test_forge)
 
-    def test_joinery_room(self):
+    def btn_action_joinery_room(self):
         """Запуск кнопки на проверка если комната """
         self.btn_sawmill_test.clicked.connect(self.test_sawmill)
 

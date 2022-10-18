@@ -11,38 +11,44 @@ class AdClicker:
     """
 
     def __init__(self):
-        self.KITCHEN_ROOM = False
-        self.kitchen_room_counter = 3
-        self.LAB_ROOM = False
-        self.lab_room_counter = 3
-        self.BANK_ROOM = False
-        self.bank_room_counter = 3
-        self.ZAL_ROOM = False
-        self.zal_room_counter = False
-        self.FORGE_ROOM = False
-        self.forge_room_counter = 3
-        self.SAWMILL_ROOM = False
-        self.sawmill_room_counter = 3
+
+        self.checking_room_kitchen = False
+        self.counter_room_kitchen = 3
+
+        self.checking_room_lab = False
+        self.counter_room_lab = 3
+
+        self.checking_room_bank = False
+        self.counter_room_bank = 3
+
+        self.checking_room_zal = False
+        self.counter_room_zal = 3
+
+        self.checking_room_forge = False
+        self.counter_room_forge = 3
+
+        self.checking_room_sawmill = False
+        self.counter_room_sawmill = 3
 
         self.res_food = False
-        self.res_food_counter = 2
+        self.counter_res_food = 2
         self.res_metal = False
-        self.res_metal_counter = 2
+        self.counter_res_metal = 2
         self.res_baks = False
-        self.res_baks_counter = 2
+        self.counter_res_baks = 2
         self.res_wood = False
-        self.res_wood_counter = 2
+        self.counter_res_wood = 2
         self.res_vial = False
-        self.res_vial_counter = 2
+        self.counter_res_vial = 2
 
         self.ads_in_arena = False
-        self.ads_in_arena_counter = 2
+        self.counter_ads_in_arena = 2
         self.ads_in_tunnel = False
-        self.ads_in_tunnel_counter = 4
+        self.counter_ads_in_tunnel = 4
         self.ads_in_bunker = False
-        self.ads_in_bunker_counter = 2
+        self.counter_ads_in_bunker = 2
         self.ads_in_terminal = False
-        self.ads_in_terminal_counter = 2
+        self.counter_ads_in_terminal = 2
 
         # Разовое нажатие на выбранную комнату
         self.one_click_rk = True
@@ -91,23 +97,23 @@ class AdClicker:
         resource= что за выбраный ресурс
 
         """
-        _pn = os.path.normpath(os.path.join(path))
-        get_pn = pyautogui.locateOnScreen(_pn, confidence=0.7)
-        if get_pn and counter > 0:
+        if counter > 0:
+            _pn = os.path.normpath(os.path.join(path))
+            get_pn = pyautogui.locateOnScreen(_pn, confidence=0.7)
             pyautogui.click(get_pn)
             time.sleep(1)
 
-            get_par = pyautogui.locateOnScreen(self.path_video_tablet, confidence=0.8)
-            if get_par:
-                pyautogui.click(get_par)
+            get_pvt = pyautogui.locateOnScreen(self.path_video_tablet, confidence=0.8)
+            if get_pvt:
+                pyautogui.click(get_pvt)
                 if resource == 'arena':
-                    self.res_metal_counter -= 1
+                    self.counter_res_metal -= 1
                 elif resource == 'terminal':
-                    self.res_food_counter -= 1
+                    self.counter_res_food -= 1
                 elif resource == 'bunker':
-                    self.res_wood_counter -= 1
+                    self.counter_res_wood -= 1
                 elif resource == 'tunnel':
-                    self.res_baks_counter -= 1
+                    self.counter_res_baks -= 1
 
         time.sleep(3)
 
@@ -120,9 +126,10 @@ class AdClicker:
         resource= что за выбраный ресурс
 
         """
-        _pn = os.path.normpath(os.path.join(path))
-        get_pn = pyautogui.locateOnScreen(_pn, confidence=0.7)
-        if get_pn and counter > 0:
+        # if get_pn and counter > 0:
+        if counter > 0:
+            _pn = os.path.normpath(os.path.join(path))
+            get_pn = pyautogui.locateOnScreen(_pn, confidence=0.7)
             pyautogui.click(get_pn)
             time.sleep(1)
 
@@ -130,15 +137,15 @@ class AdClicker:
             if get_par:
                 pyautogui.click(get_par)
                 if resource == 'metal':
-                    self.res_metal_counter -= 1
+                    self.counter_res_metal -= 1
                 elif resource == 'food':
-                    self.res_food_counter -= 1
+                    self.counter_res_food -= 1
                 elif resource == 'wood':
-                    self.res_wood_counter -= 1
+                    self.counter_res_wood -= 1
                 elif resource == 'baks':
-                    self.res_baks_counter -= 1
+                    self.counter_res_baks -= 1
                 elif resource == 'vial':
-                    self.res_vial_counter -= 1
+                    self.counter_res_vial -= 1
 
         time.sleep(3)
 
@@ -154,8 +161,8 @@ class AdClicker:
             if self.one_click_rk:
                 pyautogui.click(center)
                 self.one_click_rk = False
-            else:
-                self.click_repetitions += 1
+            # else:
+            #     self.click_repetitions += 1
 
     def preview_room(self):
         """Предварительный просмотр рекламы"""
@@ -216,28 +223,28 @@ class AdClicker:
         counter кол-во раз смотреть рекламу
         path_room путь к деректории
         """
-        get_pn = self.path_normal(path_room)
-        if get_pn and counter > 0:
+        if counter > 0:
+            get_pn = self.path_normal(path_room)
             pyautogui.click(get_pn[0])
             time.sleep(1)
 
-            get_par = pyautogui.locateOnScreen(self.path_video_rooms, confidence=0.8)
+            get_pvr = pyautogui.locateOnScreen(self.path_video_rooms, confidence=0.8)
 
             time.sleep(5)
-            if get_par:
-                pyautogui.click(get_par)
+            if get_pvr:
+                pyautogui.click(get_pvr)
                 if resource == 'kitchen':
-                    self.kitchen_room_counter -= 1
+                    self.counter_room_kitchen -= 1
                 elif resource == 'sawmill':
-                    self.sawmill_room_counter -= 1
+                    self.counter_room_sawmill -= 1
                 elif resource == 'lab':
-                    self.lab_room_counter -= 1
+                    self.counter_room_lab -= 1
                 elif resource == 'bank':
-                    self.bank_room_counter -= 1
+                    self.counter_room_bank -= 1
                 elif resource == 'zal':
-                    self.zal_room_counter -= 1
+                    self.counter_room_zal -= 1
                 elif resource == 'forge':
-                    self.forge_room_counter -= 1
+                    self.counter_room_forge -= 1
 
     # def kitchen_rooms(self):
     #     """
