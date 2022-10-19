@@ -224,15 +224,15 @@ class AdClicker:
         counter кол-во раз смотреть рекламу
         path_room путь к деректории
         """
+        time.sleep(3)
         get_pn = self.path_normal(path_room)
-        time.sleep(2)
+        # time.sleep(2)
         if get_pn and counter > 0:
             print(self.previous_room, resource, counter)
             if self.previous_room != resource:
                 self.get_room_list(get_pn)
                 self.previous_room = resource
 
-            time.sleep(1)
             get_pvr = pyautogui.locateOnScreen(self.path_video_rooms, confidence=0.8)
             if get_pvr:
                 pyautogui.click(get_pvr)
@@ -249,7 +249,6 @@ class AdClicker:
                 self.counter_room_zal -= 1
             elif resource == 'forge':
                 self.counter_room_forge -= 1
-
 
         time.sleep(3)
     # def test_rooms(self, counter, path_room, resource):
