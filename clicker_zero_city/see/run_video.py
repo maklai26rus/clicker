@@ -131,7 +131,6 @@ class AdClicker:
         _pn = os.path.normpath(os.path.join(path))
         get_pn = pyautogui.locateOnScreen(_pn, confidence=0.7)
         if get_pn and counter > 0:
-            # if counter > 0:
             pyautogui.click(get_pn)
             time.sleep(1)
 
@@ -225,11 +224,18 @@ class AdClicker:
         counter кол-во раз смотреть рекламу
         path_room путь к деректории
         """
-        get_pvr = pyautogui.locateOnScreen(self.path_video_rooms, confidence=0.8)
+        get_pn = self.path_normal(path_room)
+        time.sleep(2)
+        if get_pn and counter > 0:
+            print(self.previous_room, resource, counter)
+            if self.previous_room != resource:
+                self.get_room_list(get_pn)
+                self.previous_room = resource
 
-        if get_pvr and counter > 0:
-
-            pyautogui.click(get_pvr)
+            time.sleep(1)
+            get_pvr = pyautogui.locateOnScreen(self.path_video_rooms, confidence=0.8)
+            if get_pvr:
+                pyautogui.click(get_pvr)
 
             if resource == 'kitchen':
                 self.counter_room_kitchen -= 1
@@ -243,13 +249,42 @@ class AdClicker:
                 self.counter_room_zal -= 1
             elif resource == 'forge':
                 self.counter_room_forge -= 1
-        else:
-            if self.previous_room != resource:
-                get_pn = self.path_normal(path_room)
 
-                self.get_room_list(get_pn)
-                self.previous_room = resource
-                time.sleep(5)
+
+        time.sleep(3)
+    # def test_rooms(self, counter, path_room, resource):
+    #     """
+    #     Ищет координаты картинок для получение рекламы
+    #     room комната для просмотра рекламы
+    #     counter кол-во раз смотреть рекламу
+    #     path_room путь к деректории
+    #     """
+    #     get_pvr = pyautogui.locateOnScreen(self.path_video_rooms, confidence=0.8)
+    #
+    #     if get_pvr and counter > 0:
+    #
+    #         pyautogui.click(get_pvr)
+    #
+    #         if resource == 'kitchen':
+    #             self.counter_room_kitchen -= 1
+    #         elif resource == 'sawmill':
+    #             self.counter_room_sawmill -= 1
+    #         elif resource == 'lab':
+    #             self.counter_room_lab -= 1
+    #         elif resource == 'bank':
+    #             self.counter_room_bank -= 1
+    #         elif resource == 'zal':
+    #             self.counter_room_zal -= 1
+    #         elif resource == 'forge':
+    #             self.counter_room_forge -= 1
+    #         # time.sleep(3)
+    #     else:
+    #         if self.previous_room != resource:
+    #             get_pn = self.path_normal(path_room)
+    #
+    #             self.get_room_list(get_pn)
+    #             self.previous_room = resource
+    #             time.sleep(5)
 
     # def kitchen_rooms(self):
     #     """
