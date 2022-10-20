@@ -13,22 +13,22 @@ class AdClicker:
     def __init__(self):
 
         self.checking_room_kitchen = False
-        self.counter_room_kitchen = 3
+        self.counter_room_kitchen = 1
 
         self.checking_room_lab = False
-        self.counter_room_lab = 3
+        self.counter_room_lab = 1
 
         self.checking_room_bank = False
-        self.counter_room_bank = 3
+        self.counter_room_bank = 1
 
         self.checking_room_zal = False
-        self.counter_room_zal = 3
+        self.counter_room_zal = 1
 
         self.checking_room_forge = False
-        self.counter_room_forge = 3
+        self.counter_room_forge = 1
 
         self.checking_room_sawmill = False
-        self.counter_room_sawmill = 3
+        self.counter_room_sawmill = 1
 
         self.previous_room = ''
 
@@ -177,7 +177,7 @@ class AdClicker:
         get_vidio = pyautogui.locateOnScreen(self.path_video_tablet, confidence=0.8)
         if get_vidio:
             pyautogui.click(get_vidio)
-            time.sleep(self.waiting_for_end)
+            # time.sleep(self.waiting_for_end)
 
     def definition_prize(self):
         """На планшете после просмотра рекламы нажать забрать приз"""
@@ -235,7 +235,7 @@ class AdClicker:
             get_pvr = pyautogui.locateOnScreen(self.path_video_rooms, confidence=0.8)
             if get_pvr:
                 pyautogui.click(get_pvr)
-                """Кастыль. Иногда при нажатии рекламы реклама не проигрывает
+                """Кастыль. Иногда при нажатии рекламы, реклама не проигрывает
                 Теперь при просмотре добавится просмотр в комнате лишний. 
                 """
                 if resource == 'kitchen':
