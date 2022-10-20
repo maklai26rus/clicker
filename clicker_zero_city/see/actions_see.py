@@ -233,10 +233,8 @@ class ActionsSee(Ui_Za_City):
         """Начала сбора. после нажатия  """
         self.inspector.action = False
         self.inspector.program_operation_switch = True
+        self.inspector.shutdown_click()
         self.inspector.choosing_action['resourcer'] = True
-        self.inspector.choosing_action['rooms'] = False
-        self.inspector.choosing_action['tablet'] = False
-
         self.inspector.is_checked_resources()
         self.inspector.start()
 
@@ -248,10 +246,7 @@ class ActionsSee(Ui_Za_City):
         """Ручная остановка просмотра рекламы"""
         self.inspector.action = True
         self.inspector.program_operation_switch = False
-        self.inspector.choosing_action['rooms'] = False
-        self.inspector.choosing_action['tablet'] = False
-        self.inspector.choosing_action['resourcer'] = False
-        self.inspector.choosing_action['location'] = False
+        self.inspector.shutdown_click()
         self.inspector.is_checked_rooms()
         self.inspector.is_checked_resources()
 
@@ -262,9 +257,8 @@ class ActionsSee(Ui_Za_City):
         # self.preview.one_click_rk = True
         self.inspector.action = False
         self.inspector.program_operation_switch = True
-        self.inspector.choosing_action['tablet'] = False
+        self.inspector.shutdown_click()
         self.inspector.choosing_action['rooms'] = True
-        self.inspector.choosing_action['resourcer'] = False
         self.inspector.is_checked_rooms()
 
         self.inspector.start()
@@ -279,11 +273,9 @@ class ActionsSee(Ui_Za_City):
 
     def btn_ts(self):
         """Действие выполнения кнопка btn_start_tablet"""
+        self.inspector.shutdown_click()
         self.inspector.choosing_action['tablet'] = True
-        self.inspector.choosing_action['rooms'] = False
-        self.inspector.choosing_action['resourcer'] = False
         self.inspector.program_operation_switch = True
-
         self.inspector.start()
 
     def set_enabled(self, action):
