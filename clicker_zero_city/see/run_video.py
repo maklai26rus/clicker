@@ -231,10 +231,25 @@ class AdClicker:
                 self.get_room_list(get_pn)
                 self.previous_room = resource
 
-            time.sleep(2)
+            time.sleep(4)
             get_pvr = pyautogui.locateOnScreen(self.path_video_rooms, confidence=0.8)
             if get_pvr:
                 pyautogui.click(get_pvr)
+                """Кастыль. Иногда при нажатии рекламы реклама не проигрывает
+                Теперь при просмотре добавится просмотр в комнате лишний. 
+                """
+                if resource == 'kitchen':
+                    self.counter_room_kitchen += 1
+                elif resource == 'sawmill':
+                    self.counter_room_sawmill += 1
+                elif resource == 'lab':
+                    self.counter_room_lab += 1
+                elif resource == 'bank':
+                    self.counter_room_bank += 1
+                elif resource == 'zal':
+                    self.counter_room_zal += 1
+                elif resource == 'forge':
+                    self.counter_room_forge += 1
 
             if resource == 'kitchen':
                 self.counter_room_kitchen -= 1
