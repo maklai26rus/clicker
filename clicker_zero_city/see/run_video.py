@@ -13,22 +13,22 @@ class AdClicker:
     def __init__(self):
 
         self.checking_room_kitchen = False
-        self.counter_room_kitchen = 1
+        self.counter_room_kitchen = 2
 
         self.checking_room_lab = False
-        self.counter_room_lab = 1
+        self.counter_room_lab = 2
 
         self.checking_room_bank = False
-        self.counter_room_bank = 1
+        self.counter_room_bank = 2
 
         self.checking_room_zal = False
-        self.counter_room_zal = 1
+        self.counter_room_zal = 2
 
         self.checking_room_forge = False
-        self.counter_room_forge = 1
+        self.counter_room_forge = 2
 
         self.checking_room_sawmill = False
-        self.counter_room_sawmill = 1
+        self.counter_room_sawmill = 2
 
         self.previous_room = ''
 
@@ -51,16 +51,6 @@ class AdClicker:
         self.counter_ads_in_bunker = 2
         self.ads_in_terminal = False
         self.counter_ads_in_terminal = 2
-
-        # Разовое нажатие на выбранную комнату
-        # self.one_click_rk = True
-
-        # Время просмотра рекламы. Хочу сделать регулируемое
-        # self.waiting_for_end = 40
-        # # click_repetitions клик сколько раз нажали на рекаламу
-        # self.click_repetitions = 1
-        # # Максимальное кол-во просмотра рекламы
-        # self.max_see = 3
 
         self.path_video_rooms = 'png/marketing/marketing1.PNG'
         self.path_video_tablet = 'png/marketing/marketing2.PNG'
@@ -156,30 +146,15 @@ class AdClicker:
         Если координата нашлась. наводит курсор мышки на нее и 1 раз кликает
 
         """
-        # TODO нужен тест, для переменной one_click_rk. Лишний код ?
         if path:
             center = pyautogui.center(path[0])
             pyautogui.click(center)
-            # pyautogui.moveTo(center)
-            # if self.one_click_rk:
-            #     pyautogui.click(center)
-            # self.one_click_rk = False
-            # else:
-            #     self.click_repetitions += 1
-
-    # def preview_room(self):
-    #     """Предварительный просмотр рекламы"""
-    #     get_vidio = pyautogui.locateOnScreen(self.path_video_rooms, confidence=0.8)
-    #     if get_vidio:
-    #         pyautogui.click(get_vidio)
-    #         # time.sleep(self.waiting_for_end)
 
     def preview_tablet(self):
         """Предварительный просмотр рекламы"""
         get_vidio = pyautogui.locateOnScreen(self.path_video_tablet, confidence=0.8)
         if get_vidio:
             pyautogui.click(get_vidio)
-            # time.sleep(self.waiting_for_end)
 
     def definition_prize(self):
         """На планшете после просмотра рекламы нажать забрать приз"""
@@ -224,12 +199,12 @@ class AdClicker:
             pyautogui.click(get_movie2)
             time.sleep(1)
 
-    def test_rooms(self, counter, path_room, resource):
+    def ads_rooms(self, counter, path_room, resource):
         """
         Ищет координаты картинок для получение рекламы
         room комната для просмотра рекламы
         counter кол-во раз смотреть рекламу
-        path_room путь к деректории
+        path_room путь к деректории с png файлами
         """
         time.sleep(2)
         get_pn = self.path_normal(path_room)
@@ -242,9 +217,8 @@ class AdClicker:
             get_pvr = pyautogui.locateOnScreen(self.path_video_rooms, confidence=0.8)
             if get_pvr:
                 pyautogui.click(get_pvr)
-                """Кастыль. Иногда при нажатии рекламы, реклама не проигрывает
-                Теперь при просмотре добавится просмотр в комнате лишний. 
-                """
+                # Кастыль. Иногда при нажатии рекламы, реклама не проигрывает
+                # Теперь при просмотре добавится просмотр в комнате лишний.
                 if resource == 'kitchen':
                     self.counter_room_kitchen += 1
                 elif resource == 'sawmill':
@@ -272,4 +246,3 @@ class AdClicker:
                 self.counter_room_forge -= 1
 
         time.sleep(3)
-

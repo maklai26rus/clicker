@@ -104,48 +104,48 @@ class Inspector(QThread):
 
         """
         if self.mainwindow.preview.checking_room_kitchen and self.choosing_action["rooms"]:
-            self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.counter_room_kitchen,
-                                               path_room=self.mainwindow.preview.path_room_kitchen, resource='kitchen')
+            self.mainwindow.preview.ads_rooms(counter=self.mainwindow.preview.counter_room_kitchen,
+                                              path_room=self.mainwindow.preview.path_room_kitchen, resource='kitchen')
 
             if self.mainwindow.preview.counter_room_kitchen <= 0:
                 self.mainwindow.preview.checking_room_kitchen = False
             self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.checking_room_kitchen,
                                                       self.mainwindow.btn_kitchen_test)
         if self.mainwindow.preview.checking_room_lab and self.choosing_action["rooms"]:
-            self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.counter_room_lab,
-                                               path_room=self.mainwindow.preview.path_room_lab, resource='lab')
+            self.mainwindow.preview.ads_rooms(counter=self.mainwindow.preview.counter_room_lab,
+                                              path_room=self.mainwindow.preview.path_room_lab, resource='lab')
             if self.mainwindow.preview.counter_room_lab <= 0:
                 self.mainwindow.preview.checking_room_lab = False
 
             self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.checking_room_lab,
                                                       self.mainwindow.btn_lab_test)
         if self.mainwindow.preview.checking_room_sawmill and self.choosing_action["rooms"]:
-            self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.counter_room_sawmill,
-                                               path_room=self.mainwindow.preview.path_room_sawmill, resource='sawmill')
+            self.mainwindow.preview.ads_rooms(counter=self.mainwindow.preview.counter_room_sawmill,
+                                              path_room=self.mainwindow.preview.path_room_sawmill, resource='sawmill')
             if self.mainwindow.preview.counter_room_sawmill <= 0:
                 self.mainwindow.preview.checking_room_sawmill = False
 
             self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.checking_room_sawmill,
                                                       self.mainwindow.btn_sawmill_test)
         if self.mainwindow.preview.checking_room_zal and self.choosing_action["rooms"]:
-            self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.counter_room_zal,
-                                               path_room=self.mainwindow.preview.path_room_zal, resource='zal')
+            self.mainwindow.preview.ads_rooms(counter=self.mainwindow.preview.counter_room_zal,
+                                              path_room=self.mainwindow.preview.path_room_zal, resource='zal')
 
             if self.mainwindow.preview.counter_room_zal <= 0:
                 self.mainwindow.preview.checking_room_zal = False
             self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.checking_room_zal,
                                                       self.mainwindow.btn_zal_test)
         if self.mainwindow.preview.checking_room_bank and self.choosing_action["rooms"]:
-            self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.counter_room_bank,
-                                               path_room=self.mainwindow.preview.path_room_bank, resource='bank')
+            self.mainwindow.preview.ads_rooms(counter=self.mainwindow.preview.counter_room_bank,
+                                              path_room=self.mainwindow.preview.path_room_bank, resource='bank')
 
             if self.mainwindow.preview.counter_room_bank <= 0:
                 self.mainwindow.preview.checking_room_bank = False
             self.mainwindow.btn_changes_color_startup(self.mainwindow.preview.checking_room_bank,
                                                       self.mainwindow.btn_bank_test)
         if self.mainwindow.preview.checking_room_forge and self.choosing_action["rooms"]:
-            self.mainwindow.preview.test_rooms(counter=self.mainwindow.preview.counter_room_forge,
-                                               path_room=self.mainwindow.preview.path_room_forge, resource='forge')
+            self.mainwindow.preview.ads_rooms(counter=self.mainwindow.preview.counter_room_forge,
+                                              path_room=self.mainwindow.preview.path_room_forge, resource='forge')
 
             if self.mainwindow.preview.counter_room_forge <= 0:
                 self.mainwindow.preview.checking_room_forge = False
@@ -197,7 +197,7 @@ class ActionsSee(Ui_Za_City):
         self.inspector = Inspector(mainwindow=self)
 
         self.setupUi(self.main_window)
-        # MainWindow.setFixedSize(298, 384) при обновлении платформы не забуддь в ручную. поставить setFixedSize
+        # MainWindow.setFixedSize при обновлении платформы не забуддь в ручную. поставить setFixedSize
         self.bnt_watch_ads_room()
 
         self.action.triggered.connect(self.open_window)
@@ -215,7 +215,7 @@ class ActionsSee(Ui_Za_City):
         self.btn_action_joinery_room()
         self.btn_action_forge_room()
 
-        self.version_number.setText('0.171022')
+        self.version_number.setText('0.211022')
         self.actionExit.triggered.connect(qApp.quit)
 
     def open_window(self):
@@ -254,7 +254,6 @@ class ActionsSee(Ui_Za_City):
         """
         Просмотр обявлений (рекламы)
         """
-        # self.preview.one_click_rk = True
         self.inspector.action = False
         self.inspector.program_operation_switch = True
         self.inspector.shutdown_click()
@@ -332,13 +331,11 @@ class ActionsSee(Ui_Za_City):
     def test_kitchen(self):
         """Тест на проверку если комната"""
         path = self.preview.path_normal(self.preview.path_room_kitchen)
-        # self.preview.one_click_rk = True
         self.go_to_room(path, btn=self.btn_kitchen_test)
 
     def test_lab(self):
         """Тест на проверку если комната"""
         path = self.preview.path_normal(self.preview.path_room_lab)
-        # self.preview.one_click_rk = True
         self.go_to_room(path, btn=self.btn_lab_test)
 
     def btn_changes_color_startup(self, room, btn):
@@ -366,25 +363,21 @@ class ActionsSee(Ui_Za_City):
     def test_bank(self):
         """Тест на проверку если комната"""
         path = self.preview.path_normal(self.preview.path_room_bank)
-        # self.preview.one_click_rk = True
         self.go_to_room(path, btn=self.btn_bank_test)
 
     def test_zal(self):
         """Тест на проверку если комната"""
         path = self.preview.path_normal(self.preview.path_room_zal)
-        # self.preview.one_click_rk = True
         self.go_to_room(path, btn=self.btn_zal_test)
 
     def test_sawmill(self):
         """Тест на проверку если комната"""
         path = self.preview.path_normal(self.preview.path_room_sawmill)
-        # self.preview.one_click_rk = True
         self.go_to_room(path, btn=self.btn_sawmill_test)
 
     def test_forge(self):
         """Тест на проверку если комната"""
         path = self.preview.path_normal(self.preview.path_room_forge)
-        # self.preview.one_click_rk = True
         self.go_to_room(path, btn=self.btn_forge_test)
 
 
