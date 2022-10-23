@@ -247,5 +247,5 @@ class AdClicker:
             elif resource == 'forge':
                 self.counter_room_forge -= 1
 
-        print(self.previous_room, '->', resource, get_pn)
+        # print(self.previous_room, '->', resource, get_pn)
         time.sleep(3)
