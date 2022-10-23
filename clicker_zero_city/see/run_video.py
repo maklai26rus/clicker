@@ -155,6 +155,7 @@ class AdClicker:
         get_vidio = pyautogui.locateOnScreen(self.path_video_tablet, confidence=0.8)
         if get_vidio:
             pyautogui.click(get_vidio)
+            time.sleep(6)
 
     def definition_prize(self):
         """На планшете после просмотра рекламы нажать забрать приз"""
@@ -213,10 +214,11 @@ class AdClicker:
                 self.get_room_list(get_pn)
                 self.previous_room = resource
 
-            time.sleep(4)
+            time.sleep(4)  # Пауза после нахождения комнаты. для определения есть ли значек рекламы
             get_pvr = pyautogui.locateOnScreen(self.path_video_rooms, confidence=0.8)
             if get_pvr:
                 pyautogui.click(get_pvr)
+                time.sleep(4)  # Пауза на рекламу 4 секунды
                 # Кастыль. Иногда при нажатии рекламы, реклама не проигрывает
                 # Теперь при просмотре добавится просмотр в комнате лишний.
                 if resource == 'kitchen':
@@ -245,4 +247,5 @@ class AdClicker:
             elif resource == 'forge':
                 self.counter_room_forge -= 1
 
+        print(self.previous_room, '->', resource, get_pn)
         time.sleep(3)
