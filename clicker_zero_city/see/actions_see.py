@@ -1,5 +1,7 @@
 import time
 
+import keyboard
+
 from clicker_zero_city.see.run_video import AdClicker
 from clicker_zero_city.see.see import Ui_Za_City
 from clicker_zero_city.wind_menu.info_window import Ui_info
@@ -187,6 +189,8 @@ class ActionsSee(Ui_Za_City):
 
     def __init__(self, main_window):
         super().__init__()
+        # Отлучене программы с клавиатуры ALT + Z
+        keyboard.add_hotkey('ALT + Z', self.viewing_ads_stop)
         self.main_window = main_window
         self.window = QtWidgets.QMainWindow()
         self.ui_info = Ui_info()

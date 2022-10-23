@@ -1,7 +1,7 @@
 import pyautogui
 import time
 import os
-from clicker_zero_city.search_coordinate import search_coordinate_ad
+# from clicker_zero_city.search_coordinate import search_coordinate_ad
 
 
 class AdClicker:
@@ -163,11 +163,19 @@ class AdClicker:
         if click:
             pyautogui.click(click)
 
+    def search_coordinate_ad(self, path_rooms_png):
+        """Принимает путь к картинке и ещет координату.
+            Если в момент запуска была найдена точка то воозращает координату ее для дальнейшего действия
+
+        return: Возращает найденую координату
+        """
+        return pyautogui.locateOnScreen(path_rooms_png, confidence=0.7)
+
     def path_normal(self, path) -> list:
         """Модюль преобразующий в правильный путь для координат"""
         _pn = os.path.normpath(os.path.join(path))
         path_dining_room = [_pn + "\\" + file for file in os.listdir(_pn)]
-        path = list(filter(None, map(search_coordinate_ad, path_dining_room)))
+        path = list(filter(None, map(self.search_coordinate_ad, path_dining_room)))
         return path
 
     def tablet_search(self):
