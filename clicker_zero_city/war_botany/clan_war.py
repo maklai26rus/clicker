@@ -1,6 +1,6 @@
 import pyautogui
 import time
-from search_coordinate import search_coordinate
+from war_botany.search_coordinate import search_coordinate
 import os
 
 # Поиск комнаты Альянса

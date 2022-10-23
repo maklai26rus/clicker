@@ -1,7 +1,7 @@
 import os
 import pyautogui
 
-from search_coordinate import search_coordinate
+from war_botany.search_coordinate import search_coordinate
 import time
 
 
