@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>369</width>
-    <height>496</height>
+    <width>367</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -177,6 +177,13 @@
                </property>
               </widget>
              </item>
+             <item row="8" column="0">
+              <widget class="QCheckBox" name="all_rooms">
+               <property name="text">
+                <string> Все комнаты</string>
+               </property>
+              </widget>
+             </item>
             </layout>
            </item>
           </layout>
@@ -211,9 +218,6 @@
          </item>
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_6">
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_4"/>
-           </item>
            <item>
             <widget class="QLabel" name="label_resources">
              <property name="font">
@@ -328,7 +332,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>369</width>
+     <width>367</width>
      <height>21</height>
     </rect>
    </property>
@@ -340,7 +344,14 @@
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>Команды</string>
+    </property>
+    <addaction name="action_Alt_Z"/>
+   </widget>
    <addaction name="menu"/>
+   <addaction name="menu_2"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="action">
@@ -351,6 +362,14 @@
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
+   </property>
+  </action>
+  <action name="action_Alt_Z">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Стоп Alt+Z</string>
    </property>
   </action>
  </widget>
