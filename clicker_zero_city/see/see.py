@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Za_City(object):
     def setupUi(self, Za_City):
         Za_City.setObjectName("Za_City")
-        Za_City.resize(367, 500)
+        Za_City.setFixedSize(367, 500)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(".\\1.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Za_City.setWindowIcon(icon)
@@ -90,9 +90,6 @@ class Ui_Za_City(object):
         self.btn_start_rooms.setStyleSheet("")
         self.btn_start_rooms.setObjectName("btn_start_rooms")
         self.gridLayout_3.addWidget(self.btn_start_rooms, 8, 1, 1, 1)
-        self.all_rooms = QtWidgets.QCheckBox(self.verticalLayoutWidget_2)
-        self.all_rooms.setObjectName("all_rooms")
-        self.gridLayout_3.addWidget(self.all_rooms, 8, 0, 1, 1)
         self.horizontalLayout.addLayout(self.gridLayout_3)
         self.verticalLayout_5.addLayout(self.horizontalLayout)
         self.gridLayout_2 = QtWidgets.QGridLayout()
@@ -207,7 +204,6 @@ class Ui_Za_City(object):
         self.btn_zal_test.setText(_translate("Za_City", "тест спорт зал"))
         self.btn_forge_test.setText(_translate("Za_City", "тест кузница"))
         self.btn_start_rooms.setText(_translate("Za_City", "Старт"))
-        self.all_rooms.setText(_translate("Za_City", " Все комнаты"))
         self.label_tablet.setText(_translate("Za_City", "<html><head/><body><p>П/Р Планшете</p></body></html>"))
         self.btn_start_tablet.setText(_translate("Za_City", "Старт"))
         self.label_resources.setText(_translate("Za_City", "<html><head/><body><p>П/р Получение ресурсов</p></body></html>"))

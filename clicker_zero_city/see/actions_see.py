@@ -219,7 +219,7 @@ class ActionsSee(Ui_Za_City):
         self.btn_action_joinery_room()
         self.btn_action_forge_room()
 
-        self.version_number.setText('0.211022')
+        self.version_number.setText('0.241022')
         self.actionExit.triggered.connect(qApp.quit)
 
     def open_window(self):

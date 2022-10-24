@@ -1,6 +1,8 @@
 import pyautogui
 import time
 import os
+
+
 # from clicker_zero_city.search_coordinate import search_coordinate_ad
 
 
@@ -11,6 +13,7 @@ class AdClicker:
     """
 
     def __init__(self):
+        self.all_rooms = False
 
         self.checking_room_kitchen = False
         self.counter_room_kitchen = 2
