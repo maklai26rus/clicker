@@ -3,9 +3,6 @@ import time
 import os
 
 
-# from clicker_zero_city.search_coordinate import search_coordinate_ad
-
-
 class AdClicker:
     """
     Класс отвечающий за просмотр рекламы
@@ -13,7 +10,7 @@ class AdClicker:
     """
 
     def __init__(self):
-        self.all_rooms = False
+        self.crutch = 0.9
 
         self.checking_room_kitchen = False
         self.counter_room_kitchen = 2
@@ -55,9 +52,10 @@ class AdClicker:
         self.ads_in_terminal = False
         self.counter_ads_in_terminal = 2
 
-        self.path_video_rooms = 'png/marketing/marketing1.PNG'
-        self.path_video_tablet = 'png/marketing/marketing2.PNG'
-        self.path_prize = 'png/marketing/prize.PNG'
+        # self.path_video_rooms = 'png/marketing/marketing1.PNG'
+        self.path_video_rooms = 'png/marketing/type_realm_icon_1'
+        self.path_video_tablet = 'png/marketing/type_realm_icon_2'
+        self.path_prize = 'png/marketing/prize'
 
         self.path_room_kitchen = "png/study_rooms/dining_room"
         self.path_room_lab = "png/study_rooms/lab_room"
@@ -67,10 +65,10 @@ class AdClicker:
         self.path_room_forge = "png/study_rooms/forge_room"
 
         self.path_tablet = "png/marketing/tablet"
-        self.path_movie = "png/marketing/movie.PNG"
-        self.path_add_res = "png/marketing/add_res.PNG"
-        self.path_step1 = "png/marketing/step1.PNG"
-        self.path_step2 = "png/marketing/step2.PNG"
+        self.path_movie = "png/marketing/movie"
+        self.path_add_res = "png/marketing/add_res"
+        self.path_step1 = "png/marketing/step1"
+        self.path_step2 = "png/marketing/step2"
 
         self.path_food = "png/marketing/food.PNG"
         self.path_baks = "png/marketing/baks.PNG"
@@ -98,9 +96,9 @@ class AdClicker:
             pyautogui.click(get_pn)
             time.sleep(1)
 
-            get_pvt = pyautogui.locateOnScreen(self.path_video_tablet, confidence=0.8)
+            get_pvt = self.path_normal(self.path_video_tablet)
             if get_pvt:
-                pyautogui.click(get_pvt)
+                pyautogui.click(get_pvt[0])
                 if resource == 'arena':
                     self.counter_res_metal -= 1
                 elif resource == 'terminal':
@@ -127,9 +125,10 @@ class AdClicker:
             pyautogui.click(get_pn)
             time.sleep(1)
 
-            get_par = pyautogui.locateOnScreen(self.path_add_res, confidence=0.8)
+            # get_par = pyautogui.locateOnScreen(self.path_add_res, confidence=0.8)
+            get_par = self.path_normal(self.path_add_res)
             if get_par:
-                pyautogui.click(get_par)
+                pyautogui.click(get_par[0])
                 if resource == 'metal':
                     self.counter_res_metal -= 1
                 elif resource == 'food':
@@ -155,16 +154,16 @@ class AdClicker:
 
     def preview_tablet(self):
         """Предварительный просмотр рекламы"""
-        get_vidio = pyautogui.locateOnScreen(self.path_video_tablet, confidence=0.8)
+        get_vidio = self.path_normal(self.path_video_tablet)
         if get_vidio:
-            pyautogui.click(get_vidio)
+            pyautogui.click(get_vidio[0])
             time.sleep(6)
 
     def definition_prize(self):
         """На планшете после просмотра рекламы нажать забрать приз"""
-        click = pyautogui.locateOnScreen(self.path_prize, confidence=0.8)
+        click = self.path_normal(self.path_prize)
         if click:
-            pyautogui.click(click)
+            pyautogui.click(click[0])
 
     def search_coordinate_ad(self, path_rooms_png):
         """Принимает путь к картинке и ещет координату.
@@ -172,6 +171,15 @@ class AdClicker:
 
         return: Возращает найденую координату
         """
+        # path = pyautogui.locateOnScreen(path_rooms_png, confidence=self.crutch)
+        # print(path)
+        # if path and self.crutch > 0:
+        #     self.crutch = 0.9
+        #     return path
+        # else:
+        #     self.crutch -= 0.1
+        #     # self.search_coordinate_ad(path_rooms_png)
+
         return pyautogui.locateOnScreen(path_rooms_png, confidence=0.7)
 
     def path_normal(self, path) -> list:
@@ -191,24 +199,24 @@ class AdClicker:
         if get_tablet:
             pyautogui.click(get_tablet[0])
             time.sleep(1)
-            get_movie2 = pyautogui.locateOnScreen(self.path_step2, confidence=0.8)
-            pyautogui.click(get_movie2)
+            get_movie2 = self.path_normal(self.path_step2)
+            pyautogui.click(get_movie2[0])
 
     def cheking_tablet(self):
         """Проверка на рекламу в планшете. если непоявилась кнопка рекламы,  смотреть ее.
         Иначе делает клик по вверхней иконке и назад
          ....
         """
-        get_movie = pyautogui.locateOnScreen(self.path_movie, confidence=0.8)
-        get_vidio = pyautogui.locateOnScreen(self.path_video_tablet, confidence=0.8)
+        get_movie = self.path_normal(self.path_movie)
+        get_vidio = self.path_normal(self.path_video_tablet)
         if get_movie and get_vidio:
             return True
         elif get_movie:
-            get_movie1 = pyautogui.locateOnScreen(self.path_step1, confidence=0.8)
-            pyautogui.click(get_movie1)
+            get_movie1 = self.path_normal(self.path_step1)
+            pyautogui.click(get_movie1[0])
             time.sleep(1)
-            get_movie2 = pyautogui.locateOnScreen(self.path_step2, confidence=0.8)
-            pyautogui.click(get_movie2)
+            get_movie2 = self.path_normal(self.path_step2)
+            pyautogui.click(get_movie2[0])
             time.sleep(1)
 
     def ads_rooms(self, counter, path_room, resource):
@@ -226,9 +234,10 @@ class AdClicker:
                 self.previous_room = resource
 
             time.sleep(4)  # Пауза после нахождения комнаты. для определения есть ли значек рекламы
-            get_pvr = pyautogui.locateOnScreen(self.path_video_rooms, confidence=0.8)
+            # get_pvr = pyautogui.locateOnScreen(self.path_video_rooms, confidence=0.8)
+            get_pvr = self.path_normal(self.path_video_rooms)
             if get_pvr:
-                pyautogui.click(get_pvr)
+                pyautogui.click(get_pvr[0])
                 time.sleep(4)  # Пауза на рекламу 4 секунды
                 # Кастыль. Иногда при нажатии рекламы, реклама не проигрывает
                 # Теперь при просмотре добавится просмотр в комнате лишний.
