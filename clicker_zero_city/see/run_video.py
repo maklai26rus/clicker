@@ -66,7 +66,7 @@ class AdClicker:
         self.path_room_sawmill = "png/study_rooms/sawmill_room"
         self.path_room_forge = "png/study_rooms/forge_room"
 
-        self.path_tablet = "png/marketing/tablet.PNG"
+        self.path_tablet = "png/marketing/tablet"
         self.path_movie = "png/marketing/movie.PNG"
         self.path_add_res = "png/marketing/add_res.PNG"
         self.path_step1 = "png/marketing/step1.PNG"
@@ -187,9 +187,9 @@ class AdClicker:
         Переходит в него для просмотра рекламы
 
         """
-        get_tablet = pyautogui.locateOnScreen(self.path_tablet, confidence=0.9)
+        get_tablet = self.path_normal(self.path_tablet)
         if get_tablet:
-            pyautogui.click(get_tablet)
+            pyautogui.click(get_tablet[0])
             time.sleep(1)
             get_movie2 = pyautogui.locateOnScreen(self.path_step2, confidence=0.8)
             pyautogui.click(get_movie2)
