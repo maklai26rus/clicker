@@ -70,16 +70,16 @@ class AdClicker:
         self.path_step1 = "png/marketing/step1"
         self.path_step2 = "png/marketing/step2"
 
-        self.path_food = "png/marketing/food.PNG"
-        self.path_baks = "png/marketing/baks.PNG"
-        self.path_metal = "png/marketing/metal.PNG"
-        self.path_vial = "png/marketing/vial.PNG"
-        self.path_wood = "png/marketing/wood.PNG"
+        self.path_food = "png/marketing/food"
+        self.path_baks = "png/marketing/baks"
+        self.path_metal = "png/marketing/metal"
+        self.path_vial = "png/marketing/vial"
+        self.path_wood = "png/marketing/wood"
 
-        self.path_arena = "png/marketing/arena.PNG"
-        self.path_terminal = "png/marketing/terminal.PNG"
-        self.path_bunker = "png/marketing/bunker.PNG"
-        self.path_tunnel = "png/marketing/tunel.PNG"
+        self.path_arena = "png/marketing/arena"
+        self.path_terminal = "png/marketing/terminal"
+        self.path_bunker = "png/marketing/bunker"
+        self.path_tunnel = "png/marketing/tunel"
 
     def getting_resources_location(self, path, counter, resource):
         """
@@ -119,10 +119,9 @@ class AdClicker:
         resource= что за выбраный ресурс
 
         """
-        _pn = os.path.normpath(os.path.join(path))
-        get_pn = pyautogui.locateOnScreen(_pn, confidence=0.7)
+        get_pn = self.path_normal(path)
         if get_pn and counter > 0:
-            pyautogui.click(get_pn)
+            pyautogui.click(get_pn[0])
             time.sleep(1)
 
             # get_par = pyautogui.locateOnScreen(self.path_add_res, confidence=0.8)
