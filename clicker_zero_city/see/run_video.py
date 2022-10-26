@@ -171,15 +171,6 @@ class AdClicker:
 
         return: Возращает найденую координату
         """
-        # path = pyautogui.locateOnScreen(path_rooms_png, confidence=self.crutch)
-        # print(path)
-        # if path and self.crutch > 0:
-        #     self.crutch = 0.9
-        #     return path
-        # else:
-        #     self.crutch -= 0.1
-        #     # self.search_coordinate_ad(path_rooms_png)
-
         return pyautogui.locateOnScreen(path_rooms_png, confidence=0.7)
 
     def path_normal(self, path) -> list:
