@@ -52,9 +52,10 @@ class AdClicker:
         self.ads_in_terminal = False
         self.counter_ads_in_terminal = 2
 
+        self.path_shop = 'png/marketing/shop'
         # self.path_video_rooms = 'png/marketing/marketing1.PNG'
-        self.path_video_rooms = 'png/marketing/type_realm_icon_1'
-        self.path_video_tablet = 'png/marketing/type_realm_icon_2'
+        self.path_video_type1 = 'png/marketing/type_realm_icon_1'
+        self.path_video_type2 = 'png/marketing/type_realm_icon_2'
         self.path_prize = 'png/marketing/prize'
 
         self.path_room_kitchen = "png/study_rooms/dining_room"
@@ -90,25 +91,42 @@ class AdClicker:
         resource= что за выбраный ресурс
 
         """
-        _pn = os.path.normpath(os.path.join(path))
-        get_pn = pyautogui.locateOnScreen(_pn, confidence=0.7)
+        get_pn = self.path_normal(path)
         if get_pn and counter > 0:
-            pyautogui.click(get_pn)
-            time.sleep(1)
+            pyautogui.click(get_pn[0])
+            time.sleep(2)
 
-            get_pvt = self.path_normal(self.path_video_tablet)
+            get_pvt = self.path_normal(self.path_video_type2)
             if get_pvt:
                 pyautogui.click(get_pvt[0])
                 if resource == 'arena':
-                    self.counter_res_metal -= 1
+                    self.counter_ads_in_arena -= 1
                 elif resource == 'terminal':
-                    self.counter_res_food -= 1
+                    self.counter_ads_in_terminal -= 1
                 elif resource == 'bunker':
-                    self.counter_res_wood -= 1
+                    self.counter_ads_in_bunker -= 1
                 elif resource == 'tunnel':
-                    self.counter_res_baks -= 1
+                    self.counter_ads_in_tunnel -= 1
 
+            # if resource == 'arena':
+            #     self.counter_ads_in_arena -= 1
+            # elif resource == 'terminal':
+            #     self.counter_ads_in_terminal -= 1
+            # elif resource == 'bunker':
+            #     self.counter_ads_in_bunker -= 1
+            # elif resource == 'tunnel':
+            #     self.counter_ads_in_tunnel -= 1
+
+        print(self.counter_ads_in_arena, 'counter_ads_in_arena')
+        print(self.counter_ads_in_bunker, 'counter_ads_in_bunker')
+        print(self.counter_ads_in_terminal, 'counter_ads_in_terminal')
+        print(self.counter_ads_in_tunnel, 'counter_ads_in_tunnel')
         time.sleep(3)
+
+    def exit_location(self):
+        get_pns = self.path_normal(self.path_shop)
+        if get_pns:
+            pyautogui.press('esc')
 
     def getting_resources(self, path, counter, resource):
         """
@@ -153,7 +171,7 @@ class AdClicker:
 
     def preview_tablet(self):
         """Предварительный просмотр рекламы"""
-        get_vidio = self.path_normal(self.path_video_tablet)
+        get_vidio = self.path_normal(self.path_video_type2)
         if get_vidio:
             pyautogui.click(get_vidio[0])
             time.sleep(6)
@@ -199,7 +217,7 @@ class AdClicker:
          ....
         """
         get_movie = self.path_normal(self.path_movie)
-        get_vidio = self.path_normal(self.path_video_tablet)
+        get_vidio = self.path_normal(self.path_video_type2)
         if get_movie and get_vidio:
             return True
         elif get_movie:
@@ -228,7 +246,7 @@ class AdClicker:
 
             time.sleep(4)  # Пауза после нахождения комнаты. для определения есть ли значек рекламы
             # get_pvr = pyautogui.locateOnScreen(self.path_video_rooms, confidence=0.8)
-            get_pvr = self.path_normal(self.path_video_rooms)
+            get_pvr = self.path_normal(self.path_video_type1)
             if get_pvr:
                 pyautogui.click(get_pvr[0])
                 time.sleep(4)  # Пауза на рекламу 4 секунды

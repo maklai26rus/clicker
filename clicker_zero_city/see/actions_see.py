@@ -63,7 +63,35 @@ class Inspector(QThread):
         """Просмотре рекламы в локации
         Арена , Бункер, Вокзал, Тунель
         """
-        ...
+        if self.mainwindow.preview.ads_in_arena and self.choosing_action['location']:
+            self.mainwindow.preview.getting_resources_location(path=self.mainwindow.preview.path_arena,
+                                                               counter=self.mainwindow.preview.counter_ads_in_arena,
+                                                               resource="arena"
+                                                               )
+            if self.mainwindow.preview.counter_ads_in_arena <= 0:
+                self.mainwindow.preview.ads_in_arena = False
+        if self.mainwindow.preview.ads_in_tunnel and self.choosing_action['location']:
+            self.mainwindow.preview.getting_resources_location(path=self.mainwindow.preview.path_tunnel,
+                                                               counter=self.mainwindow.preview.counter_ads_in_tunnel,
+                                                               resource="tunnel"
+                                                               )
+            if self.mainwindow.preview.counter_ads_in_tunnel <= 0:
+                self.mainwindow.preview.ads_in_tunnel = False
+        if self.mainwindow.preview.ads_in_bunker and self.choosing_action['location']:
+            self.mainwindow.preview.getting_resources_location(path=self.mainwindow.preview.path_bunker,
+                                                               counter=self.mainwindow.preview.counter_ads_in_bunker,
+                                                               resource="bunker"
+                                                               )
+            if self.mainwindow.preview.counter_ads_in_bunker <= 0:
+                self.mainwindow.preview.ads_in_bunker = False
+        if self.mainwindow.preview.ads_in_terminal and self.choosing_action['location']:
+            self.mainwindow.preview.getting_resources_location(path=self.mainwindow.preview.path_terminal,
+                                                               counter=self.mainwindow.preview.counter_ads_in_terminal,
+                                                               resource="terminal"
+                                                               )
+            if self.mainwindow.preview.counter_ads_in_terminal <= 0:
+                self.mainwindow.preview.ads_in_terminal = False
+        self.mainwindow.preview.exit_location()
 
     def viewing_ads_for_resources(self):
         """Метод для просмотра рекламы для получение ресурсов
@@ -169,7 +197,16 @@ class Inspector(QThread):
         self.mainwindow.preview.checking_room_sawmill = self.mainwindow.sawmill_room.isChecked()
         self.mainwindow.preview.checking_room_forge = self.mainwindow.forge_room.isChecked()
 
+    def is_checked_location(self):
+        """Передает данные где смотреть рекламу в локации"""
+        self.mainwindow.set_enabled_location(self.action)
+        self.mainwindow.preview.ads_in_arena = self.mainwindow.check_arena.isChecked()
+        self.mainwindow.preview.ads_in_tunnel = self.mainwindow.check_tunnel.isChecked()
+        self.mainwindow.preview.ads_in_terminal = self.mainwindow.check_terminal.isChecked()
+        self.mainwindow.preview.ads_in_bunker = self.mainwindow.check_bunker.isChecked()
+
     def is_checked_resources(self):
+        """Передает данные где собирать ресурсы"""
         self.mainwindow.set_enabled_resourcer(self.action)
         self.mainwindow.preview.res_food = self.mainwindow.check_foot.isChecked()
         self.mainwindow.preview.res_metal = self.mainwindow.check_forge.isChecked()
@@ -212,6 +249,8 @@ class ActionsSee(Ui_Za_City):
 
         self.btn_resources()
 
+        self.btn_click_location()
+
         self.btn_action_kitchen_room()
         self.btn_action_lab_room()
         self.btn_action_zal_room()
@@ -226,6 +265,9 @@ class ActionsSee(Ui_Za_City):
         """Открывает окно инфо """
         self.ui_info.setupUi(self.window)
         self.window.show()
+
+    def btn_click_location(self):
+        self.btn_location.clicked.connect(self.click_location)
 
     def btn_resources(self):
         """
@@ -242,6 +284,14 @@ class ActionsSee(Ui_Za_City):
         self.inspector.is_checked_resources()
         self.inspector.start()
 
+    def click_location(self):
+        self.inspector.action = False
+        self.inspector.program_operation_switch = True
+        self.inspector.shutdown_click()
+        self.inspector.choosing_action['location'] = True
+        self.inspector.is_checked_location()
+        self.inspector.start()
+
     def bnt_watch_ads_room(self):
         """Нажатие кнопки для просмотра рекламы в комнатах"""
         self.btn_start_rooms.clicked.connect(self.viewing_ads)
@@ -253,6 +303,7 @@ class ActionsSee(Ui_Za_City):
         self.inspector.shutdown_click()
         self.inspector.is_checked_rooms()
         self.inspector.is_checked_resources()
+        self.inspector.is_checked_location()
 
     def viewing_ads(self):
         """
@@ -297,6 +348,15 @@ class ActionsSee(Ui_Za_City):
         self.btn_sawmill_test.setEnabled(action)
         self.forge_room.setEnabled(action)
         self.btn_forge_test.setEnabled(action)
+
+    def set_enabled_location(self, action):
+        """
+        Блокировка чекбокса просмотр рекламы
+        """
+        self.check_arena.setEnabled(action)
+        self.check_bunker.setEnabled(action)
+        self.check_terminal.setEnabled(action)
+        self.check_tunnel.setEnabled(action)
 
     def set_enabled_resourcer(self, action):
         """

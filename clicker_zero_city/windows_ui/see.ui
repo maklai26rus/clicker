@@ -354,7 +354,7 @@
         </widget>
        </item>
        <item row="20" column="0">
-        <widget class="QCheckBox" name="check_tunel">
+        <widget class="QCheckBox" name="check_tunnel">
          <property name="text">
           <string>Тунель</string>
          </property>
