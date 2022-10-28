@@ -188,9 +188,10 @@ class AdClicker:
         get_tablet = self.path_normal(self.path_tablet)
         if get_tablet:
             pyautogui.click(get_tablet[0])
-            time.sleep(1)
+            time.sleep(2)
             get_movie2 = self.path_normal(self.path_step2)
-            pyautogui.click(get_movie2[0])
+            if get_movie2:
+                pyautogui.click(get_movie2[0])
 
     def cheking_tablet(self):
         """Проверка на рекламу в планшете. если непоявилась кнопка рекламы,  смотреть ее.
@@ -203,10 +204,12 @@ class AdClicker:
             return True
         elif get_movie:
             get_movie1 = self.path_normal(self.path_step1)
-            pyautogui.click(get_movie1[0])
+            if get_movie1:
+                pyautogui.click(get_movie1[0])
             time.sleep(1)
             get_movie2 = self.path_normal(self.path_step2)
-            pyautogui.click(get_movie2[0])
+            if get_movie2:
+                pyautogui.click(get_movie2[0])
             time.sleep(1)
 
     def ads_rooms(self, counter, path_room, resource):
