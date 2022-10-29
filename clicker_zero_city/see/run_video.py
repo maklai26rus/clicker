@@ -53,6 +53,7 @@ class AdClicker:
         self.counter_ads_in_terminal = 2
 
         self.path_shop = 'png/marketing/shop'
+        self.path_global_map = 'png/marketing/global_map'
         # self.path_video_rooms = 'png/marketing/marketing1.PNG'
         self.path_video_type1 = 'png/marketing/type_realm_icon_1'
         self.path_video_type2 = 'png/marketing/type_realm_icon_2'
@@ -81,6 +82,11 @@ class AdClicker:
         self.path_terminal = "png/marketing/terminal"
         self.path_bunker = "png/marketing/bunker"
         self.path_tunnel = "png/marketing/tunel"
+
+    def click_global_map(self):
+        get_pngm = self.path_normal(self.path_global_map)
+        if get_pngm:
+            pyautogui.click(get_pngm[0])
 
     def getting_resources_location(self, path, counter, resource):
         """

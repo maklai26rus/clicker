@@ -53,7 +53,8 @@ class Inspector(QThread):
                 self.viewing_ads_on_a_tablet()
 
             elif self.choosing_action['location']:
-                self.viewing_ads_in_location()
+               self.mainwindow.preview.click_global_map()
+               self.viewing_ads_in_location()
 
             elif self.choosing_action['resourcer']:
 
