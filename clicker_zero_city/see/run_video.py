@@ -107,20 +107,6 @@ class AdClicker:
                     self.counter_ads_in_bunker -= 1
                 elif resource == 'tunnel':
                     self.counter_ads_in_tunnel -= 1
-
-            # if resource == 'arena':
-            #     self.counter_ads_in_arena -= 1
-            # elif resource == 'terminal':
-            #     self.counter_ads_in_terminal -= 1
-            # elif resource == 'bunker':
-            #     self.counter_ads_in_bunker -= 1
-            # elif resource == 'tunnel':
-            #     self.counter_ads_in_tunnel -= 1
-
-        print(self.counter_ads_in_arena, 'counter_ads_in_arena')
-        print(self.counter_ads_in_bunker, 'counter_ads_in_bunker')
-        print(self.counter_ads_in_terminal, 'counter_ads_in_terminal')
-        print(self.counter_ads_in_tunnel, 'counter_ads_in_tunnel')
         time.sleep(3)
 
     def exit_location(self):
@@ -244,8 +230,7 @@ class AdClicker:
                 self.get_room_list(get_pn)
                 self.previous_room = resource
 
-            time.sleep(4)  # Пауза после нахождения комнаты. для определения есть ли значек рекламы
-            # get_pvr = pyautogui.locateOnScreen(self.path_video_rooms, confidence=0.8)
+            time.sleep(6)  # Пауза после нахождения комнаты. для определения есть ли значек рекламы
             get_pvr = self.path_normal(self.path_video_type1)
             if get_pvr:
                 pyautogui.click(get_pvr[0])
@@ -278,5 +263,4 @@ class AdClicker:
             elif resource == 'forge':
                 self.counter_room_forge -= 1
 
-        # print(self.previous_room, '->', resource, get_pn)
         time.sleep(3)

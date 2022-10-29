@@ -64,34 +64,54 @@ class Inspector(QThread):
         Арена , Бункер, Вокзал, Тунель
         """
         if self.mainwindow.preview.ads_in_arena and self.choosing_action['location']:
+
+            time.sleep(6)
+            self.mainwindow.preview.exit_location()
+
             self.mainwindow.preview.getting_resources_location(path=self.mainwindow.preview.path_arena,
                                                                counter=self.mainwindow.preview.counter_ads_in_arena,
                                                                resource="arena"
                                                                )
             if self.mainwindow.preview.counter_ads_in_arena <= 0:
                 self.mainwindow.preview.ads_in_arena = False
+
         if self.mainwindow.preview.ads_in_tunnel and self.choosing_action['location']:
+
+            time.sleep(6)
+            self.mainwindow.preview.exit_location()
+
             self.mainwindow.preview.getting_resources_location(path=self.mainwindow.preview.path_tunnel,
                                                                counter=self.mainwindow.preview.counter_ads_in_tunnel,
                                                                resource="tunnel"
                                                                )
             if self.mainwindow.preview.counter_ads_in_tunnel <= 0:
                 self.mainwindow.preview.ads_in_tunnel = False
+
         if self.mainwindow.preview.ads_in_bunker and self.choosing_action['location']:
+
+            time.sleep(6)
+            self.mainwindow.preview.exit_location()
+
             self.mainwindow.preview.getting_resources_location(path=self.mainwindow.preview.path_bunker,
                                                                counter=self.mainwindow.preview.counter_ads_in_bunker,
                                                                resource="bunker"
                                                                )
             if self.mainwindow.preview.counter_ads_in_bunker <= 0:
                 self.mainwindow.preview.ads_in_bunker = False
+
         if self.mainwindow.preview.ads_in_terminal and self.choosing_action['location']:
+
+            time.sleep(6)
+            self.mainwindow.preview.exit_location()
+
             self.mainwindow.preview.getting_resources_location(path=self.mainwindow.preview.path_terminal,
                                                                counter=self.mainwindow.preview.counter_ads_in_terminal,
                                                                resource="terminal"
                                                                )
             if self.mainwindow.preview.counter_ads_in_terminal <= 0:
                 self.mainwindow.preview.ads_in_terminal = False
-        self.mainwindow.preview.exit_location()
+
+        time.sleep(6)
 
     def viewing_ads_for_resources(self):
         """Метод для просмотра рекламы для получение ресурсов
