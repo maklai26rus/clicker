@@ -245,7 +245,7 @@ class Ui_Za_City(object):
         self.label_resources.setText(_translate("Za_City", "<html><head/><body><p>Для ресурса</p></body></html>"))
         self.btn_forge_test.setText(_translate("Za_City", "тест кузница"))
         self.lab_room.setText(_translate("Za_City", "Лаборатория"))
-        self.check_tunnel.setText(_translate("Za_City", "Тунель"))
+        self.check_tunnel.setText(_translate("Za_City", "Туннель"))
         self.forge_room.setText(_translate("Za_City", "Кузница"))
         self.btn_lab_test.setText(_translate("Za_City", "тест лаборатория"))
         self.label.setText(_translate("Za_City", "С локации"))

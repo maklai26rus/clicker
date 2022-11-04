@@ -240,7 +240,7 @@ class AdClicker:
             get_pvr = self.path_normal(self.path_video_type1)
             if get_pvr:
                 pyautogui.click(get_pvr[0])
-                time.sleep(4)  # Пауза на рекламу 4 секунды
+                # time.sleep(4)  # Пауза на рекламу 4 секунды
                 # Кастыль. Иногда при нажатии рекламы, реклама не проигрывает
                 # Теперь при просмотре добавится просмотр в комнате лишний.
                 if resource == 'kitchen':
@@ -269,4 +269,4 @@ class AdClicker:
             elif resource == 'forge':
                 self.counter_room_forge -= 1
 
-        time.sleep(3)
+            time.sleep(10)
