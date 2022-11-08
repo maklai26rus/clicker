@@ -46,7 +46,7 @@ class AdClicker:
         self.ads_in_arena = False
         self.counter_ads_in_arena = 2
         self.ads_in_tunnel = False
-        self.counter_ads_in_tunnel = 4
+        self.counter_ads_in_tunnel = 5
         self.ads_in_bunker = False
         self.counter_ads_in_bunker = 2
         self.ads_in_terminal = False
@@ -236,7 +236,7 @@ class AdClicker:
                 self.get_room_list(get_pn)
                 self.previous_room = resource
 
-            time.sleep(6)  # Пауза после нахождения комнаты. для определения есть ли значек рекламы
+            time.sleep(3)  # Пауза после нахождения комнаты. для определения есть ли значек рекламы
             get_pvr = self.path_normal(self.path_video_type1)
             if get_pvr:
                 pyautogui.click(get_pvr[0])
@@ -255,6 +255,7 @@ class AdClicker:
                     self.counter_room_zal += 1
                 elif resource == 'forge':
                     self.counter_room_forge += 1
+                time.sleep(10)
 
             if resource == 'kitchen':
                 self.counter_room_kitchen -= 1
@@ -269,4 +270,4 @@ class AdClicker:
             elif resource == 'forge':
                 self.counter_room_forge -= 1
 
-            time.sleep(10)
+            # time.sleep(10)
